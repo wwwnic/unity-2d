@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - body
+  - box
+  - pedestal
+  - lever
+  - playerAttackHitbox
+  - door
   layers:
   - Default
   - TransparentFX
@@ -13,10 +19,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - LayerSol
+  - Camera
+  - Bounds
+  - Objects
   - 
   - 
   - 
@@ -40,4 +46,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 563912715
+    locked: 0
+  - name: bounds
+    uniqueID: 681165559
+    locked: 0
+  - name: ground
+    uniqueID: 335063501
+    locked: 0
+  - name: props
+    uniqueID: 825116711
+    locked: 0
+  - name: character
+    uniqueID: 1119179361
     locked: 0
