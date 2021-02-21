@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,11 +12,17 @@ public class CameraCtrl : MonoBehaviour
     [SerializeField] float hauteurDeLaCamera = 2.5f;
     [SerializeField] LayerMask layerMask;
 
+
+    [SerializeField] float zoomFactor = 3f;
+    [SerializeField] float zoomLerpSpeed = 10;
+
     // Start is called before the first frame update
     void Start()
     {
         personnage = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
         rb = GetComponent<Rigidbody2D>();
+
+
     }
 
     // Update is called once per frame
@@ -28,4 +35,5 @@ public class CameraCtrl : MonoBehaviour
 
         rb.velocity = new Vector3(distanceEntrePersonnageEtCameraEnX * vitesseDeLaCameraEnX, distanceEntrePersonnageEtCameraEnY * vitesseDeLaCameraEnY);
     }
+
 }
