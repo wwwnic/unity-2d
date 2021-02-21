@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +12,17 @@ public class CameraMove : MonoBehaviour {
     private int lastX;
     private float dynamicSpeed;
     private Camera _cam;
+    private float _targetZoom;
+
+
 
     void Start()
     {
         offset = new Vector2(Mathf.Abs(offset.x), offset.y);
         FindPlayer();
         _cam = gameObject.GetComponent<Camera>();
+        _targetZoom = _cam.orthographicSize;
+
     }
 
     public void FindPlayer()
@@ -24,6 +30,8 @@ public class CameraMove : MonoBehaviour {
         lastX = Mathf.RoundToInt(_target.position.x);
         transform.position = new Vector3(_target.position.x + offset.x, _target.position.y + offset.y, transform.position.z);
     }
+
+
 
     void FixedUpdate()
     {

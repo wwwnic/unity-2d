@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class JeuCtrl : MonoBehaviour
 {
     PersoCtrl persoCtrl;
+    CameraCtrl cameraCtrl;
 
     private bool _isJumping = false;
     private bool _isAttacking = false;
@@ -14,6 +13,8 @@ public class JeuCtrl : MonoBehaviour
     void Start()
     {
         persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
+        cameraCtrl = GameObject.FindWithTag("MainCamera").GetComponent<CameraCtrl>();
+
     }
 
     // Update is called once per frame
@@ -56,6 +57,7 @@ public class JeuCtrl : MonoBehaviour
             {
                 _isAttacking = false;
             }
+
         }
     }
 }
