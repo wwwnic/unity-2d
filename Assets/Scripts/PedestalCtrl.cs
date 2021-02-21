@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PedestalCtrl : MonoBehaviour
 {
+    // L'identificateur du pédestal.
     [SerializeField] int pedestalTag;
+    // Sprites pour tester le pédestal.
     [SerializeField] SpriteRenderer test1;
     [SerializeField] SpriteRenderer test2;
+    // L'objet activé par le pédestal/levier.
     [SerializeField] GameObject activatedObject1;
 
     private BoxCollider2D boxDetector;
@@ -25,6 +28,9 @@ public class PedestalCtrl : MonoBehaviour
       
     }
 
+    /// <summary>
+    /// Utilisé par le levier pour activer le pédestal selon les items dessus selon l'id de ce dernier.
+    /// </summary>
     public void ActivatePedestal()
     {
         switch(pedestalTag)
@@ -37,6 +43,8 @@ public class PedestalCtrl : MonoBehaviour
                 break;
         }
     }
+
+    // Détecte les items placés sur le pédestal.
     private void OnTriggerEnter2D(Collider2D other)
     {
         BoxCtrl boxCtrl = other.gameObject.GetComponent<BoxCtrl>();
@@ -55,6 +63,7 @@ public class PedestalCtrl : MonoBehaviour
         }
     }
 
+    // Détecte quand les items sont retirés du pédestal.
     private void OnTriggerExit2D(Collider2D other)
     {
         BoxCtrl boxCtrl = other.gameObject.GetComponent<BoxCtrl>();

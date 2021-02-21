@@ -7,6 +7,7 @@ public class CameraCtrl : MonoBehaviour
     private Rigidbody2D rb;
     private PersoCtrl personnage;
     [SerializeField] float vitesse = 1.0f;
+    // La layer avec laquelle la caméra peut avoir une collision.
     [SerializeField] LayerMask layerMask;
 
     // Start is called before the first frame update
