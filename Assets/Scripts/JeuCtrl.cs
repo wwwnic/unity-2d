@@ -19,11 +19,11 @@ public class JeuCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") > 0)
+        if (Input.GetAxisRaw("Horizontal") > 0)
         {
             persoCtrl.Avancer();
         }
-        else if (Input.GetAxis("Horizontal") < 0)
+        else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             persoCtrl.Reculer();
         }
@@ -34,7 +34,6 @@ public class JeuCtrl : MonoBehaviour
             {
                 persoCtrl.SauterDebut();
                 _isJumping = true;
-                persoCtrl.Sauter();
             }
             persoCtrl.Sauter();
         }

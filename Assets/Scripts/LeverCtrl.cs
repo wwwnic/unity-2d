@@ -36,7 +36,9 @@ public class LeverCtrl : MonoBehaviour
 
         spriteRendererOn.enabled = false;
         spriteRendererOff.enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
+
 
     //Activer le lever quand le joueur l'attaque.
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,6 +48,7 @@ public class LeverCtrl : MonoBehaviour
             spriteRendererOff.enabled = false;
             spriteRendererOn.enabled = true;
             ActivatePedestal();
+            GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(DeactivateLever());
         }
     }

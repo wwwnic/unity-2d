@@ -25,10 +25,9 @@ public class PersoCtrl : MonoBehaviour
 
     Rigidbody2D rb;
     Animator anim;
-    CapsuleCollider2D collider;
+    new CapsuleCollider2D collider;
 
-    bool regarderDroite = true;
-
+    private bool _regarderDroite = true;
     private bool _isJumping = false;
     private float _vitesseSaut;
 
@@ -47,12 +46,13 @@ public class PersoCtrl : MonoBehaviour
         anim.SetFloat("deplacement", Mathf.Abs(rb.velocity.x));
     }
 
+
     public void Avancer()
     {
         rb.velocity = new Vector2(vitesse, rb.velocity.y);
-        if (!regarderDroite)
+        if (!_regarderDroite)
         {
-            regarderDroite = true;
+            _regarderDroite = true;
             Retourner();
         }
     }
@@ -61,9 +61,9 @@ public class PersoCtrl : MonoBehaviour
     {
 
         rb.velocity = new Vector2(-vitesse, rb.velocity.y);
-        if (regarderDroite)
+        if (_regarderDroite)
         {
-            regarderDroite = false;
+            _regarderDroite = false;
             Retourner();
         }
     }
@@ -115,7 +115,7 @@ public class PersoCtrl : MonoBehaviour
 
     public void SauterDebut()
     {
-        if(!_isJumping)
+        if(!_isJumping && EstSurLeSol())
         {
             _isJumping = true;
             _vitesseSaut = vitesseSautInitiale;
@@ -124,7 +124,7 @@ public class PersoCtrl : MonoBehaviour
 
     public void Sauter()
     {
-        if(_isJumping && EstSurLeSol())
+        if(_isJumping)
         {
             anim.SetBool("jumping", true);
             rb.velocity += Vector2.up * _vitesseSaut;
@@ -134,6 +134,10 @@ public class PersoCtrl : MonoBehaviour
                 _vitesseSaut = 0;
                 _isJumping = false;
             }
+        }
+        if (EstSurLeSol())
+        {
+            anim.SetBool("jumping", false);
         }
     }
     public void SauterFin()
@@ -145,7 +149,7 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
-    private bool EstSurLeSol()
+    public bool EstSurLeSol()
     {
         float ajustement = 0.08f;
         RaycastHit2D raycastHit = Physics2D.Raycast(collider.bounds.center,
@@ -166,4 +170,55 @@ public class PersoCtrl : MonoBehaviour
 
         return raycastHit.collider != null;
     }
+    public bool FonceDansMurGauche()
+    {
+        float ajustement = 1.5f;
+
+        RaycastHit2D raycastHitLeft = Physics2D.Raycast(collider.bounds.center,
+    Vector2.left, collider.bounds.extents.x + ajustement, LayerSol);
+
+
+
+        Color rayColor;
+        if (raycastHitLeft.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+
+        Debug.DrawRay(collider.bounds.center,
+    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.Log(raycastHitLeft.collider);
+
+        return raycastHitLeft.collider != null;
+    }
+
+    public bool FonceDansMurDroite()
+    {
+        float ajustement = 1.5f;
+
+        RaycastHit2D raycastHitRight = Physics2D.Raycast(collider.bounds.center,
+    Vector2.right, collider.bounds.extents.x + ajustement, LayerSol);
+
+
+
+        Color rayColor;
+        if (raycastHitRight.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+        Debug.DrawRay(collider.bounds.center,
+    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.Log(raycastHitRight.collider);
+
+        return raycastHitRight.collider != null;
+    }
+
 }

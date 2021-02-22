@@ -10441,6 +10441,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7607205766806664174, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607205766806664174, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607205768232411136, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607205768232411136, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607205768297006138, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: amortiSaut
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607205768297006138, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: vitesseSautInitiale
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7607205768297006139, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}
       propertyPath: m_RootOrder

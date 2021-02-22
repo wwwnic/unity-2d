@@ -53,12 +53,12 @@ public class PedestalCtrl : MonoBehaviour
             if (boxCtrl.getBoxType() == "red")
             {
                 _hasRed = true;
-                test1.color = Color.white;
+                test1.color = Color.red;
             }
             else if (boxCtrl.getBoxType() == "blue")
             {
                 _hasBlue = true;
-                test2.color = Color.white;
+                test2.color = Color.blue;
             }
         }
     }
@@ -72,12 +72,12 @@ public class PedestalCtrl : MonoBehaviour
             if (boxCtrl.getBoxType() == "red")
             {
                 _hasRed = false;
-                test1.color = Color.black;
+                test1.color = new Color(90,210,255);
             }
             else if (boxCtrl.getBoxType() == "blue")
             {
                 _hasBlue = false;
-                test2.color = Color.black;
+                test2.color = new Color(90, 210, 255);
             }
         }
     }
