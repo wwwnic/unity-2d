@@ -12,6 +12,16 @@ public class PersoCtrl : MonoBehaviour
 
     [SerializeField] LayerMask LayerSol;
 
+    // La collision pour détecter un object à prendre.
+    [SerializeField] Transform grabHitbox;
+    // La position de l'objet tenu.
+    [SerializeField] Transform itemHolder;
+    // La distance de grabHitbox.
+    [SerializeField] float rayDist;
+
+    private bool _isGrabbing = false;
+    private GameObject _grabbedItem;
+
 
     Rigidbody2D rb;
     Animator anim;
@@ -69,6 +79,39 @@ public class PersoCtrl : MonoBehaviour
     {
         anim.SetTrigger("attaque");
     }
+
+    public void Prendre()
+    {
+        RaycastHit2D grabCheck = Physics2D.Raycast(grabHitbox.position, Vector2.right * transform.localScale,
+           rayDist);
+        if (!_isGrabbing && grabCheck.collider != null && grabCheck.collider.tag == "box")
+        {
+            _grabbedItem = grabCheck.collider.gameObject;
+            if (!_isGrabbing)
+            {
+                // Prendre l'item
+                _grabbedItem.transform.parent = itemHolder;
+                _grabbedItem.transform.position = itemHolder.position;
+                _grabbedItem.GetComponent<Rigidbody2D>().isKinematic = true;
+                _grabbedItem.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                _isGrabbing = true;
+            }
+        }
+    }
+
+    public void Laisser()
+    {
+        if (_isGrabbing)
+        {
+            // Laisser l'item
+            _grabbedItem.transform.parent = null;
+            _grabbedItem.transform.position = grabHitbox.transform.position;
+            _grabbedItem.GetComponent<Rigidbody2D>().isKinematic = false;
+            _grabbedItem.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            _isGrabbing = false;
+        }
+    }
+
 
     public void SauterDebut()
     {
