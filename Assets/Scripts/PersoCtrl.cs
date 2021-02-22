@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PersoCtrl : MonoBehaviour
 {
-    [SerializeField] float vitesse = 2f;
+    [SerializeField] float vitesse = 4f;
 
-    [SerializeField] float vitesseSautInitiale = 5f;
+    [SerializeField] float vitesseSautInitiale = 4.5f;
 
-    [SerializeField] float amortiSaut = 0.1f;
+    [SerializeField] float amortiSaut = 2f;
 
     [SerializeField] LayerMask LayerSol;
 
@@ -99,6 +99,8 @@ public class PersoCtrl : MonoBehaviour
         if (EstSurLeSol())
         {
             anim.SetBool("jumping", false);
+            anim.SetBool("estSurSol", true);
+
         }
     }
 
@@ -117,10 +119,65 @@ public class PersoCtrl : MonoBehaviour
         {
             rayColor = Color.red;
         }
+
         Debug.DrawRay(collider.bounds.center,
-            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
         Debug.Log(raycastHit.collider);
 
         return raycastHit.collider != null;
     }
+
+
+    public bool FonceDansMurGauche()
+    {
+        float ajustement = 1.5f;
+
+        RaycastHit2D raycastHitLeft = Physics2D.Raycast(collider.bounds.center,
+    Vector2.left, collider.bounds.extents.x + ajustement, LayerSol);
+
+
+
+        Color rayColor;
+        if (raycastHitLeft.collider != null )
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+
+        Debug.DrawRay(collider.bounds.center,
+    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.Log(raycastHitLeft.collider);
+
+        return raycastHitLeft.collider != null;
+    }
+
+
+    public bool FonceDansMurDroite()
+    {
+        float ajustement = 1.5f;
+
+        RaycastHit2D raycastHitRight = Physics2D.Raycast(collider.bounds.center,
+    Vector2.right, collider.bounds.extents.x + ajustement, LayerSol);
+
+
+
+        Color rayColor;
+        if (raycastHitRight.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+        Debug.DrawRay(collider.bounds.center,
+    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.Log(raycastHitRight.collider);
+
+        return raycastHitRight.collider != null;
+    }
+
 }

@@ -23,7 +23,7 @@ TagManager:
   - Camera
   - Bounds
   - Objects
-  - 
+  - Background
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: props
     uniqueID: 825116711
+    locked: 0
+  - name: Item and object
+    uniqueID: 2806348761
     locked: 0
   - name: character
     uniqueID: 1119179361
