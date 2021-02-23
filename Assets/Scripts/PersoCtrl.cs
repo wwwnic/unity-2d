@@ -12,6 +12,8 @@ public class PersoCtrl : MonoBehaviour
 
     [SerializeField] LayerMask LayerSol;
 
+    [SerializeField] LayerMask LayerMur;
+
     // La collision pour détecter un object à prendre.
     [SerializeField] Transform grabHitbox;
     // La position de l'objet tenu.
@@ -49,7 +51,10 @@ public class PersoCtrl : MonoBehaviour
 
     public void Avancer()
     {
-        rb.velocity = new Vector2(vitesse, rb.velocity.y);
+        if (!FonceDansMurDroite())
+        {
+            rb.velocity = new Vector2(vitesse, rb.velocity.y);
+        }
         if (!_regarderDroite)
         {
             _regarderDroite = true;
@@ -60,7 +65,10 @@ public class PersoCtrl : MonoBehaviour
     public void Reculer()
     {
 
-        rb.velocity = new Vector2(-vitesse, rb.velocity.y);
+        if (!FonceDansMurGauche())
+        {
+            rb.velocity = new Vector2(-vitesse, rb.velocity.y);
+        }
         if (_regarderDroite)
         {
             _regarderDroite = false;
@@ -186,10 +194,10 @@ public class PersoCtrl : MonoBehaviour
     }
     public bool FonceDansMurGauche()
     {
-        float ajustement = 1.5f;
+        float ajustement = 0.8f;
 
         RaycastHit2D raycastHitLeft = Physics2D.Raycast(collider.bounds.center,
-    Vector2.left, collider.bounds.extents.x + ajustement, LayerSol);
+    Vector2.left, collider.bounds.extents.x + ajustement, LayerMur);
 
 
 
@@ -204,7 +212,7 @@ public class PersoCtrl : MonoBehaviour
         }
 
         Debug.DrawRay(collider.bounds.center,
-    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+            Vector2.left * (collider.bounds.extents.y + ajustement), rayColor);
         Debug.Log(raycastHitLeft.collider);
 
         return raycastHitLeft.collider != null;
@@ -212,10 +220,10 @@ public class PersoCtrl : MonoBehaviour
 
     public bool FonceDansMurDroite()
     {
-        float ajustement = 1.5f;
+        float ajustement = 0.8f;
 
         RaycastHit2D raycastHitRight = Physics2D.Raycast(collider.bounds.center,
-    Vector2.right, collider.bounds.extents.x + ajustement, LayerSol);
+            Vector2.right, collider.bounds.extents.x + ajustement, LayerMur);
 
 
 
@@ -229,7 +237,7 @@ public class PersoCtrl : MonoBehaviour
             rayColor = Color.red;
         }
         Debug.DrawRay(collider.bounds.center,
-    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+            Vector2.right * (collider.bounds.extents.y + ajustement), rayColor);
         Debug.Log(raycastHitRight.collider);
 
         return raycastHitRight.collider != null;
