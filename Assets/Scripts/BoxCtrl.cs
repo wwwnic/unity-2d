@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script de contrôle des boîtes.
+/// </summary>
 public class BoxCtrl : MonoBehaviour
 {
-    // Le type d'item/boîte.
+    // Le type de boîte(Rouge ou bleu).
     [SerializeField] string boxType;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Retourne le type de boîte.
+    /// </summary>
+    /// <returns>"rouge" ou "bleu"</returns>
     public string getBoxType()
     {
         return boxType;

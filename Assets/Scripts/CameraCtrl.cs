@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script de contrôle de la caméra.
+/// </summary>
 public class CameraCtrl : MonoBehaviour
 {
     private Rigidbody2D rb;
