@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 7607205768297006138}
   - component: {fileID: 7607205768297006137}
   m_Layer: 0
-  m_Name: knight 1
+  m_Name: knight
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,6 +500,12 @@ MonoBehaviour:
   LayerSol:
     serializedVersion: 2
     m_Bits: 2304
+  LayerMur:
+    serializedVersion: 2
+    m_Bits: 0
+  LayerGrabbable:
+    serializedVersion: 2
+    m_Bits: 0
   grabHitbox: {fileID: 7607205768232411136}
   itemHolder: {fileID: 7607205766806664174}
   rayDist: 1

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Script de contrôle du personnage.
+/// </summary>
 public class PersoCtrl : MonoBehaviour
 {
     [SerializeField] float vitesse = 2f;
