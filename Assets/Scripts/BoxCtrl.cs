@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoxCtrl : MonoBehaviour
 {
+    // Le type d'item/boîte.
     [SerializeField] string boxType;
     // Start is called before the first frame update
     void Start()
