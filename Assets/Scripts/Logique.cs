@@ -22,12 +22,12 @@ public class Logique : MonoBehaviour
 
     public static bool FonctionNonEt(bool a, bool b)
     {
-        return !(a && b);
+        return !a && b;
     }
 
     public static bool FonctionNonOu(bool a, bool b)
     {
-       return !(a || b);
+       return !a || b;
     }
 
     public static bool FonctionOuExclusif(bool a, bool b)

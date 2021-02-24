@@ -59,5 +59,23 @@ public class JeuCtrl : MonoBehaviour
             }
 
         }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if(!_isGrabbing && !_isAttacking)
+            {
+                persoCtrl.Prendre();
+                if (persoCtrl.JoueurIsGrabbing())
+                {
+                    _isGrabbing = true;
+                }
+            }
+            else
+            {
+                persoCtrl.Laisser();
+                _isGrabbing = false;
+            }
+           
+        }
     }
 }
