@@ -7,26 +7,12 @@ public class Logique : MonoBehaviour
 {
     public static bool FonctionEt(bool a, bool b)
     {
-        if (a == true && b == true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return a && b;
     }
 
     public static bool FonctionOu(bool a, bool b)
     {
-        if (a == true || b == true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return a || b;
     }
 
     public static bool FonctionNon(bool a)
@@ -36,50 +22,23 @@ public class Logique : MonoBehaviour
 
     public static bool FonctionNonEt(bool a, bool b)
     {
-        if (a == false && b == false)
-        {
-            return true;
-        }
-        else if ((a == false && b == true) || (a == true && b == false))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return !(a && b);
     }
 
     public static bool FonctionNonOu(bool a, bool b)
     {
-        if (a == false && b == false)
-        {
-            return true;
-        }
-        else if ((a == false && b == true) || (a == true && b == false))
-        {
-            return false;
-        }
-        else
-        {
-            return false;
-        }
+       return !(a || b);
     }
 
     public static bool FonctionOuExclusif(bool a, bool b)
     {
-        if (a == false && b == false)
-        {
-            return false;
-        }
-        else if ((a == false && b == true) || (a == true && b == false))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return !(a && b || !a && !b);
+    }
+
+
+    public static bool FonctionNonOuExclusif(bool a, bool b)
+    {
+        return a && b || !a && !b;
     }
 }
 
