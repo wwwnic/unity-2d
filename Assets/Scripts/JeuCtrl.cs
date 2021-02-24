@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contrôleur de jeu.
+/// </summary>
 public class JeuCtrl : MonoBehaviour
 {
     PersoCtrl persoCtrl;
@@ -19,6 +22,7 @@ public class JeuCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Mouvement gauche/droite.
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             persoCtrl.Avancer();
@@ -28,6 +32,7 @@ public class JeuCtrl : MonoBehaviour
             persoCtrl.Reculer();
         }
 
+        // Sauter.
         if (Input.GetAxisRaw("Jump") != 0)
         {
             if (!_isJumping)
@@ -43,6 +48,7 @@ public class JeuCtrl : MonoBehaviour
             _isJumping = false;
         }
 
+        // L'attaque.
         if (Input.GetAxisRaw("Fire1") != 0)
         {
             if (!_isAttacking && !_isGrabbing)
@@ -56,6 +62,7 @@ public class JeuCtrl : MonoBehaviour
             _isAttacking = false;
         }
 
+        // Prendre et laisser des objets.
         if (Input.GetButtonDown("Fire2"))
         {
             if(!_isGrabbing && !_isAttacking)

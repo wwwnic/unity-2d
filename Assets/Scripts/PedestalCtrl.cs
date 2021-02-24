@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script de contrôle des pédestals.
+/// </summary>
 public class PedestalCtrl : MonoBehaviour
 {
     // L'identificateur du pédestal.
     [SerializeField] int pedestalTag;
-    // Sprites pour tester le pédestal.
-    [SerializeField] SpriteRenderer test1;
-    [SerializeField] SpriteRenderer test2;
+    // Les deux côtés du pédestal qui s'allument selon les boîtes placées dessus.
+    [SerializeField] SpriteRenderer spriteGauche;
+    [SerializeField] SpriteRenderer spriteDroit;
     // L'objet activé par le pédestal/levier.
     [SerializeField] GameObject activatedObject1;
     // Les pédestals additionnels requis pour activer celui-ci
@@ -22,12 +25,6 @@ public class PedestalCtrl : MonoBehaviour
     void Start()
     {
         boxDetector = GetComponent<BoxCollider2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-      
     }
 
     /// <summary>
@@ -57,17 +54,28 @@ public class PedestalCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Vérifie si il a un objet rouge.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool HasRed()
     {
         return _hasRed;
     }
 
+    /// <summary>
+    /// Vérifie si il a un objet bleu.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool HasBlue()
     {
         return _hasBlue;
     }
 
-    // Détecte les items placés sur le pédestal.
+    /// <summary>
+    /// Détecte les objets placés sur le pédestal.
+    /// </summary>
+    /// <param name="other">Les objets placés</param>
     private void OnTriggerStay2D(Collider2D other)
     {
         BoxCtrl boxCtrl = other.gameObject.GetComponent<BoxCtrl>();
@@ -76,17 +84,20 @@ public class PedestalCtrl : MonoBehaviour
             if (boxCtrl.getBoxType() == "red")
             {
                 _hasRed = true;
-                test1.color = Color.red;
+                spriteGauche.color = Color.red;
             }
             else if (boxCtrl.getBoxType() == "blue")
             {
                 _hasBlue = true;
-                test2.color = Color.blue;
+                spriteDroit.color = Color.blue;
             }
         }
     }
 
-    // Détecte quand les items sont retirés du pédestal.
+    /// <summary>
+    /// Détecte les objets retirés du pédestal.
+    /// </summary>
+    /// <param name="other">Les objets rétirés</param>
     private void OnTriggerExit2D(Collider2D other)
     {
         BoxCtrl boxCtrl = other.gameObject.GetComponent<BoxCtrl>();
@@ -95,12 +106,12 @@ public class PedestalCtrl : MonoBehaviour
             if (boxCtrl.getBoxType() == "red")
             {
                 _hasRed = false;
-                test1.color = new Color(0.3537736f, 0.822655f, 1.0f);
+                spriteGauche.color = new Color(0.3537736f, 0.822655f, 1.0f);
             }
             else if (boxCtrl.getBoxType() == "blue")
             {
                 _hasBlue = false;
-                test2.color = new Color(0.3537736f, 0.822655f, 1.0f);
+                spriteDroit.color = new Color(0.3537736f, 0.822655f, 1.0f);
             }
         }
     }

@@ -753,6 +753,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!212 &522132899 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2386620490142332526, guid: eed9c329c89620a459b4685eaf144188,
+    type: 3}
+  m_PrefabInstance: {fileID: 2386620489520841884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &632817915 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2386620490255275104, guid: eed9c329c89620a459b4685eaf144188,
+    type: 3}
+  m_PrefabInstance: {fileID: 2386620489520841884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &645442454
 GameObject:
   m_ObjectHideFlags: 0
@@ -6998,6 +7010,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2386620490193769217, guid: eed9c329c89620a459b4685eaf144188,
         type: 3}
+      propertyPath: spriteDroit
+      value: 
+      objectReference: {fileID: 1850055932}
+    - target: {fileID: 2386620490193769217, guid: eed9c329c89620a459b4685eaf144188,
+        type: 3}
+      propertyPath: spriteGauche
+      value: 
+      objectReference: {fileID: 1212390242}
+    - target: {fileID: 2386620490193769217, guid: eed9c329c89620a459b4685eaf144188,
+        type: 3}
       propertyPath: activatedObject1
       value: 
       objectReference: {fileID: 1591302887}
@@ -7693,6 +7715,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!212 &1212390242 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2386620490255275104, guid: eed9c329c89620a459b4685eaf144188,
+    type: 3}
+  m_PrefabInstance: {fileID: 1098510387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1478760346 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2386620490193769222, guid: eed9c329c89620a459b4685eaf144188,
@@ -14599,6 +14627,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1149272349015640399}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1850055932 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2386620490142332526, guid: eed9c329c89620a459b4685eaf144188,
+    type: 3}
+  m_PrefabInstance: {fileID: 1098510387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1863134621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14888,6 +14922,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2386620490193769217, guid: eed9c329c89620a459b4685eaf144188,
+        type: 3}
+      propertyPath: spriteDroit
+      value: 
+      objectReference: {fileID: 522132899}
+    - target: {fileID: 2386620490193769217, guid: eed9c329c89620a459b4685eaf144188,
+        type: 3}
+      propertyPath: spriteGauche
+      value: 
+      objectReference: {fileID: 632817915}
     - target: {fileID: 2386620490193769217, guid: eed9c329c89620a459b4685eaf144188,
         type: 3}
       propertyPath: activatedObject1

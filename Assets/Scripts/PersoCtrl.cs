@@ -8,16 +8,22 @@ using UnityEngine;
 /// </summary>
 public class PersoCtrl : MonoBehaviour
 {
+    // Vitesse de marche
     [SerializeField] float vitesse = 2f;
 
+    // Vitesse du saut
     [SerializeField] float vitesseSautInitiale = 5f;
 
+    // Amorti du saut
     [SerializeField] float amortiSaut = 0.1f;
 
+    // Layers considérées comme le "sol"
     [SerializeField] LayerMask LayerSol;
 
+    // Layer considérée comme le mur
     [SerializeField] LayerMask LayerMur;
 
+    // Layer contenant les objets qui peuvent être pris par le personnage
     [SerializeField] LayerMask LayerGrabbable;
 
     // La collision pour détecter un object à prendre.
@@ -54,7 +60,9 @@ public class PersoCtrl : MonoBehaviour
         anim.SetFloat("deplacement", Mathf.Abs(rb.velocity.x));
     }
 
-
+    /// <summary>
+    /// Faire marcher le personnage vers la droite.
+    /// </summary>
     public void Avancer()
     {
         if (!FonceDansMurDroite())
@@ -68,6 +76,9 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Faire marcher le personnage vers la gauche.
+    /// </summary>
     public void Reculer()
     {
 
@@ -82,6 +93,9 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Retourner le personnage quand on appuie la direction inverse.
+    /// </summary>
     public void Retourner()
     {
         Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
@@ -89,11 +103,17 @@ public class PersoCtrl : MonoBehaviour
         transform.localScale = scale;
     }
 
+    /// <summary>
+    /// Faire attaquer le personnage.
+    /// </summary>
     public void Attaquer()
     {
         anim.SetTrigger("attaque");
     }
 
+    /// <summary>
+    /// Fonction pour prendre un objet.
+    /// </summary>
     public void Prendre()
     {
         RaycastHit2D grabCheck = Physics2D.Raycast(grabHitbox.position, Vector2.right * transform.localScale,
@@ -113,11 +133,18 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Vérifier que le personnage est en train de prendre un objet ou non.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool JoueurIsGrabbing()
     {
         return _isGrabbing;
     }
 
+    /// <summary>
+    /// Laisser tomber l'objet tenu.
+    /// </summary>
     public void Laisser()
     {
         if (_isGrabbing)
@@ -131,7 +158,9 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Début du saut.
+    /// </summary>
     public void SauterDebut()
     {
         if(!_isJumping && EstSurLeSol())
@@ -141,6 +170,9 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gestion du saut.
+    /// </summary>
     public void Sauter()
     {
         if(_isJumping)
@@ -159,6 +191,10 @@ public class PersoCtrl : MonoBehaviour
             anim.SetBool("jumping", false);
         }
     }
+
+    /// <summary>
+    /// Vérification de l'atterissage.
+    /// </summary>
     public void SauterFin()
     {
         _isJumping = false;
@@ -168,6 +204,10 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Vérifier si le personnage est au sol.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool EstSurLeSol()
     {
         Vector3 centerLeft = collider.bounds.center;
@@ -200,6 +240,11 @@ public class PersoCtrl : MonoBehaviour
 
         return raycastHitLeft.collider != null || raycastHitCenter.collider != null || raycastHitRight.collider != null;
     }
+
+    /// <summary>
+    /// Vérifier si on fonce dans le mur gauche.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool FonceDansMurGauche()
     {
         float ajustement = 0.8f;
@@ -225,6 +270,10 @@ public class PersoCtrl : MonoBehaviour
         return raycastHitLeft.collider != null;
     }
 
+    /// <summary>
+    /// Vérifier si on fonce dans le mur droit.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool FonceDansMurDroite()
     {
         float ajustement = 0.8f;

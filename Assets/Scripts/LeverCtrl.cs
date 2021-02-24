@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script de contrôle des leviers.
+/// </summary>
 public class LeverCtrl : MonoBehaviour
 {
     // Le sprite quand le levier est off.
@@ -11,25 +14,18 @@ public class LeverCtrl : MonoBehaviour
     // Le pédestal relié à ce lever.
     [SerializeField] GameObject linkedPedestal;
 
-
-    private PedestalCtrl pedestal;
-    // Start is called before the first frame update
-    void Start()
-    {
-        pedestal = linkedPedestal.GetComponent<PedestalCtrl>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Active le pédestal relié.
+    /// </summary>
     private void ActivatePedestal()
     {
         linkedPedestal.GetComponent<PedestalCtrl>().ActivatePedestal();
     }
 
+    /// <summary>
+    /// Désactive le levier après une seconde.
+    /// </summary>
+    /// <returns>Énumérateur</returns>
     private IEnumerator DeactivateLever()
     {
         yield return new WaitForSeconds(1.0f);
@@ -40,7 +36,10 @@ public class LeverCtrl : MonoBehaviour
     }
 
 
-    //Activer le lever quand le joueur l'attaque.
+    /// <summary>
+    /// Active le levier quand le joueur l'attaque.
+    /// </summary>
+    /// <param name="other">La collision de l'attaque du joueur.(Qui est un Trigger)</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.isTrigger)
