@@ -4,72 +4,54 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
+    Rigidbody2D rb;
+    CapsuleCollider2D collider;
 
-    private float speed = 2;
-    [SerializeField] private LayerMask layerSol;   
+    [SerializeField] float speed;
 
-    private bool droit = true;
+    [SerializeField] private LayerMask layerSol;
 
-    private Rigidbody2D rb2d;
-    private CapsuleCollider2D collider;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        toucheLeSol();
+        estSurLeSol();
         toucheLeMurDroit();
         toucheLeMurGauche();
-
-        rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
-
-        if (toucheLeSol() == false || toucheLeMurDroit() == true || toucheLeMurGauche() == true)
-        {
-            if (droit == true)
-            {
-                transform.eulerAngles = new Vector3(0, -180, 0);
-                droit = false;
-                speed = -2;
-            } else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                droit = true;
-                speed = -2;
-            }
-        }
     }
 
-    private bool toucheLeSol()
+    private void FixedUpdate()
     {
-        float ajustement = 0.02f;
-
-        RaycastHit2D raycastHit = Physics2D.Raycast(collider.bounds.center, Vector2.down, collider.bounds.extents.y + ajustement,layerSol);
-
-        Color rayColor;
-        if (raycastHit.collider != null)
+        if(toucheLeMurDroit() || toucheLeMurGauche())
         {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
+            retourner();
+            speed = -speed;
         }
 
-        Debug.DrawRay(collider.bounds.center, Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHit.collider);
-
-        return raycastHit.collider != null;
+        if(!estSurLeSol())
+        {
+            retourner();
+            speed = -speed;
+        }
+        rb.velocity = new Vector2(speed, rb.velocity.y);
     }
 
-    private bool toucheLeMurGauche()
+    public void retourner()
     {
-        float ajustement = 0.01f;
+        Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        transform.localScale = scale;
+    }
+
+    public bool toucheLeMurGauche()
+    {
+        float ajustement = 0.2f;
         RaycastHit2D raycastHit = Physics2D.Raycast(collider.bounds.center, Vector2.left, collider.bounds.extents.x + ajustement, layerSol);
 
         Color rayColor;
@@ -90,7 +72,7 @@ public class enemy : MonoBehaviour
 
     private bool toucheLeMurDroit()
     {
-        float ajustement = 0.01f;
+        float ajustement = 0.2f;
         RaycastHit2D raycastHit = Physics2D.Raycast(collider.bounds.center, Vector2.right, collider.bounds.extents.x + ajustement, layerSol);
 
         Color rayColor;
@@ -108,4 +90,39 @@ public class enemy : MonoBehaviour
 
         return raycastHit.collider != null;
     }
+
+    private bool estSurLeSol()
+    {
+        float ajustement = 0.2f;
+
+        Vector2 centerMin = collider.bounds.center;
+        centerMin[0] = collider.bounds.min.x;
+
+        Vector2 centerMax = collider.bounds.center;
+        centerMax[0] = collider.bounds.max.x;
+
+        RaycastHit2D raycastHitMax = Physics2D.Raycast(centerMax, Vector2.down, collider.bounds.extents.y + ajustement, layerSol);
+        RaycastHit2D raycastHitMin = Physics2D.Raycast(centerMin, Vector2.down, collider.bounds.extents.y + ajustement, layerSol);
+
+        Color rayColor;
+        if (raycastHitMax.collider != null && raycastHitMin.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+
+        Debug.DrawRay(centerMax, Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(centerMin, Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+
+        return raycastHitMax.collider != null && raycastHitMin.collider != null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
+    }
+
 }
