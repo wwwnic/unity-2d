@@ -14,6 +14,8 @@ public class PersoCtrl : MonoBehaviour
 
     [SerializeField] LayerMask LayerMur;
 
+    [SerializeField] LayerMask LayerGrabbable;
+
     // La collision pour détecter un object à prendre.
     [SerializeField] Transform grabHitbox;
     // La position de l'objet tenu.
@@ -91,7 +93,7 @@ public class PersoCtrl : MonoBehaviour
     public void Prendre()
     {
         RaycastHit2D grabCheck = Physics2D.Raycast(grabHitbox.position, Vector2.right * transform.localScale,
-           rayDist);
+           rayDist,LayerGrabbable);
         if (!_isGrabbing && grabCheck.collider != null && grabCheck.collider.tag == "box")
         {
             _grabbedItem = grabCheck.collider.gameObject;
@@ -105,6 +107,11 @@ public class PersoCtrl : MonoBehaviour
                 _isGrabbing = true;
             }
         }
+    }
+
+    public bool JoueurIsGrabbing()
+    {
+        return _isGrabbing;
     }
 
     public void Laisser()
@@ -186,9 +193,6 @@ public class PersoCtrl : MonoBehaviour
             Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
         Debug.DrawRay(centerRight,
             Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHitCenter.collider);
-        Debug.Log(raycastHitLeft.collider);
-        Debug.Log(raycastHitRight.collider);
 
         return raycastHitLeft.collider != null || raycastHitCenter.collider != null || raycastHitRight.collider != null;
     }
@@ -213,7 +217,6 @@ public class PersoCtrl : MonoBehaviour
 
         Debug.DrawRay(collider.bounds.center,
             Vector2.left * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHitLeft.collider);
 
         return raycastHitLeft.collider != null;
     }
@@ -238,7 +241,6 @@ public class PersoCtrl : MonoBehaviour
         }
         Debug.DrawRay(collider.bounds.center,
             Vector2.right * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHitRight.collider);
 
         return raycastHitRight.collider != null;
     }

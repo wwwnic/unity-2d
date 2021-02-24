@@ -43,13 +43,13 @@ public class LeverCtrl : MonoBehaviour
     //Activer le lever quand le joueur l'attaque.
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other == GameObject.FindWithTag("playerAttackHitbox").GetComponent<CircleCollider2D>())
+        if (other.isTrigger)
         {
             spriteRendererOff.enabled = false;
             spriteRendererOn.enabled = true;
             ActivatePedestal();
             GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(DeactivateLever());
-        }
+        }    
     }
 }

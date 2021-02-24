@@ -61,7 +61,10 @@ public class JeuCtrl : MonoBehaviour
             if(!_isGrabbing && !_isAttacking)
             {
                 persoCtrl.Prendre();
-                _isGrabbing = true;
+                if (persoCtrl.JoueurIsGrabbing())
+                {
+                    _isGrabbing = true;
+                }
             }
             else
             {

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3655032214317893735}
   - component: {fileID: 3655032214317893734}
   - component: {fileID: 6011253029820293425}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: blueBox
   m_TagString: box
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 825116711
   m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300018, guid: ae3918a914038694d852d0bb81f62473, type: 3}
   m_Color: {r: 0.043704987, g: 0, b: 1, a: 1}
   m_FlipX: 0

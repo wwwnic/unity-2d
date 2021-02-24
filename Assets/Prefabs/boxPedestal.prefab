@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2386620488994589868}
   m_Layer: 11
   m_Name: boxPedestal
-  m_TagString: pedestal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   test1: {fileID: 2386620490255275104}
   test2: {fileID: 2386620490142332526}
   activatedObject1: {fileID: 0}
+  listePedestal: []
 --- !u!1 &2386620490255275110
 GameObject:
   m_ObjectHideFlags: 0
