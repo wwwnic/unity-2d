@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class LeverCtrl : MonoBehaviour
 {
-
+    // Le sprite quand le levier est off.
     [SerializeField] SpriteRenderer spriteRendererOn;
+    // Le sprite quand le levier est on.
     [SerializeField] SpriteRenderer spriteRendererOff;
+    // Le pédestal relié à ce lever.
     [SerializeField] GameObject linkedPedestal;
-    [SerializeField] int leverTag;
 
 
     private PedestalCtrl pedestal;
@@ -35,16 +36,20 @@ public class LeverCtrl : MonoBehaviour
 
         spriteRendererOn.enabled = false;
         spriteRendererOff.enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
+
+    //Activer le lever quand le joueur l'attaque.
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other == GameObject.FindWithTag("playerAttackHitbox").GetComponent<CircleCollider2D>())
+        if (other.isTrigger)
         {
             spriteRendererOff.enabled = false;
             spriteRendererOn.enabled = true;
             ActivatePedestal();
+            GetComponent<BoxCollider2D>().enabled = false;
             StartCoroutine(DeactivateLever());
-        }
+        }    
     }
 }
