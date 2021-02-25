@@ -58,8 +58,6 @@ public class PersoCtrl : MonoBehaviour
     void Update()
     {
         anim.SetFloat("deplacement", Mathf.Abs(rb.velocity.x));
-        FonceDansMurDroite();
-        FonceDansMurGauche();
     }
 
     /// <summary>
@@ -203,8 +201,6 @@ public class PersoCtrl : MonoBehaviour
         if (EstSurLeSol())
         {
             anim.SetBool("jumping", false);
-            anim.SetBool("estSurSol", true);
-
         }
     }
 
@@ -235,10 +231,56 @@ public class PersoCtrl : MonoBehaviour
         {
             rayColor = Color.red;
         }
+        Debug.DrawRay(collider.bounds.center,
+            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(centerLeft,
+            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(centerRight,
+            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+
+        return raycastHitLeft.collider != null || raycastHitCenter.collider != null || raycastHitRight.collider != null;
+    }
+
+    /// <summary>
+    /// Vérifier si on fonce dans le mur gauche.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
+    public bool FonceDansMurGauche()
+    {
+        float ajustement = 0.8f;
+
+        RaycastHit2D raycastHitLeft = Physics2D.Raycast(collider.bounds.center,
+    Vector2.left, collider.bounds.extents.x + ajustement, LayerMur);
+
+
+
+        Color rayColor;
+        if (raycastHitLeft.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
 
         Debug.DrawRay(collider.bounds.center,
-    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHit.collider);
+            Vector2.left * (collider.bounds.extents.y + ajustement), rayColor);
+
+        return raycastHitLeft.collider != null;
+    }
+
+    /// <summary>
+    /// Vérifier si on fonce dans le mur droit.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
+    public bool FonceDansMurDroite()
+    {
+        float ajustement = 0.8f;
+
+        RaycastHit2D raycastHitRight = Physics2D.Raycast(collider.bounds.center,
+            Vector2.right, collider.bounds.extents.x + ajustement, LayerMur);
+
 
 
         Color rayColor;
@@ -252,65 +294,6 @@ public class PersoCtrl : MonoBehaviour
         }
         Debug.DrawRay(collider.bounds.center,
             Vector2.right * (collider.bounds.extents.y + ajustement), rayColor);
-
-        return raycastHitRight.collider != null;
-    }
-
-    /// <summary>
-    /// Vérifier si on fonce dans le mur gauche.
-    /// </summary>
-    /// <returns>Vrai ou faux</returns>
-    public bool FonceDansMurGauche()
-    {
-        float ajustement = 0.5f;
-
-        RaycastHit2D raycastHitLeft = Physics2D.Raycast(collider.bounds.center,
-    Vector2.left, collider.bounds.extents.x + ajustement, LayerSol);
-
-
-
-        Color rayColor;
-        if (raycastHitLeft.collider != null )
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-
-        Debug.DrawRay(collider.bounds.center,
-    Vector2.left * (collider.bounds.extents.x + ajustement), rayColor);
-        Debug.Log(raycastHitLeft.collider);
-
-        return raycastHitLeft.collider != null;
-    }
-
-    /// <summary>
-    /// Vérifier si on fonce dans le mur droit.
-    /// </summary>
-    /// <returns>Vrai ou faux</returns>
-    public bool FonceDansMurDroite()
-    {
-        float ajustement = 0.5f;
-
-        RaycastHit2D raycastHitRight = Physics2D.Raycast(collider.bounds.center,
-    Vector2.right, collider.bounds.extents.x + ajustement, LayerSol);
-
-
-
-        Color rayColor;
-        if (raycastHitRight.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-        Debug.DrawRay(collider.bounds.center,
-    Vector2.right * (collider.bounds.extents.x + ajustement), rayColor);
-        Debug.Log(raycastHitRight.collider);
 
         return raycastHitRight.collider != null;
     }

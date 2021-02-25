@@ -728,10 +728,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f2d54016bed0e449c3031b345ded60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: 1
+  vitesseDeLaCameraEnX: 4
+  vitesseDeLaCameraEnY: 10
+  hauteurDeLaCamera: 2.5
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
+  zoomFactor: 3
+  zoomLerpSpeed: 10
 --- !u!50 &325267983
 Rigidbody2D:
   serializedVersion: 4
@@ -15104,6 +15108,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7607205766470276712, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300010, guid: 3f3f6abcce67a7145aba743500d5946e,
+        type: 3}
     - target: {fileID: 7607205766806664174, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15114,6 +15124,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.24
       objectReference: {fileID: 0}
+    - target: {fileID: 7607205767450193721, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300020, guid: 3f3f6abcce67a7145aba743500d5946e,
+        type: 3}
+    - target: {fileID: 7607205768160553261, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300008, guid: 3f3f6abcce67a7145aba743500d5946e,
+        type: 3}
     - target: {fileID: 7607205768232411136, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15124,6 +15146,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.43
       objectReference: {fileID: 0}
+    - target: {fileID: 7607205768297006136, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300022, guid: 3f3f6abcce67a7145aba743500d5946e,
+        type: 3}
     - target: {fileID: 7607205768297006138, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}
       propertyPath: amortiSaut
@@ -15209,6 +15237,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: knight
       objectReference: {fileID: 0}
+    - target: {fileID: 7607205768472453489, guid: 852f4d1f3a25f584f90104049585ee2d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300010, guid: 3f3f6abcce67a7145aba743500d5946e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 852f4d1f3a25f584f90104049585ee2d, type: 3}
 --- !u!1001 &9174989686648135745
