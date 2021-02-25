@@ -179,12 +179,9 @@ public class PersoCtrl : MonoBehaviour
         Vector3 centerRight = collider.bounds.center;
         centerRight[0] = collider.bounds.max.x;
         float ajustement = 0.08f;
-        RaycastHit2D raycastHitCenter = Physics2D.Raycast(collider.bounds.center,
-            Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
-        RaycastHit2D raycastHitLeft = Physics2D.Raycast(centerLeft,
-            Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
-        RaycastHit2D raycastHitRight = Physics2D.Raycast(centerRight,
-            Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
+        RaycastHit2D raycastHitCenter = Physics2D.Raycast(collider.bounds.center, Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
+        RaycastHit2D raycastHitLeft = Physics2D.Raycast(centerLeft, Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
+        RaycastHit2D raycastHitRight = Physics2D.Raycast(centerRight, Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
 
         Color rayColor;
         if (raycastHitLeft.collider != null || raycastHitCenter.collider != null || raycastHitRight.collider != null)
@@ -196,11 +193,11 @@ public class PersoCtrl : MonoBehaviour
             rayColor = Color.red;
         }
 
-        Debug.DrawRay(collider.bounds.center,
-    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHit.collider);
+        Debug.DrawRay(collider.bounds.center, Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
 
+        return raycastHitRight.collider != null || raycastHitCenter.collider != null || raycastHitLeft.collider != null;
 
+        /*
         Color rayColor;
         if (raycastHitRight.collider != null)
         {
@@ -214,6 +211,7 @@ public class PersoCtrl : MonoBehaviour
             Vector2.right * (collider.bounds.extents.y + ajustement), rayColor);
 
         return raycastHitRight.collider != null;
+        */
     }
 
 
