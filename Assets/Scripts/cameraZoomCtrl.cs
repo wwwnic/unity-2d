@@ -6,10 +6,10 @@ public class cameraZoomCtrl : MonoBehaviour
 {
     private Camera cam;
     private float zoomRequest;
-    [SerializeField] float zoomDistance = 4f;
+    [SerializeField] float zoomSpeed = 4f;
     [SerializeField] float zoomMaxIn = 6f;
     [SerializeField] float zoomMaxOut = 10f;
-    [SerializeField] float zoomSpeed = 6f;
+    [SerializeField] float cropSpeed = 6f;
 
 
 
@@ -24,7 +24,7 @@ public class cameraZoomCtrl : MonoBehaviour
     void Update()
     {
         float scrollData = Input.GetAxis("Mouse ScrollWheel");
-        zoomRequest -= scrollData * zoomDistance;
+        zoomRequest -= scrollData * zoomSpeed;
         zoomRequest = Mathf.Clamp(zoomRequest, zoomMaxIn, zoomMaxOut);
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomRequest, Time.deltaTime * zoomSpeed);
     }
