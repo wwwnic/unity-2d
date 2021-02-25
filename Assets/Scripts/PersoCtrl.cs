@@ -231,6 +231,19 @@ public class PersoCtrl : MonoBehaviour
         {
             rayColor = Color.red;
         }
+
+        Debug.DrawRay(collider.bounds.center,
+    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+
+
+        if (raycastHitRight.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
         Debug.DrawRay(collider.bounds.center,
             Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
         Debug.DrawRay(centerLeft,

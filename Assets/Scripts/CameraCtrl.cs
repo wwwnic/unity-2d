@@ -10,11 +10,7 @@ public class CameraCtrl : MonoBehaviour
     [SerializeField] float vitesseDeLaCameraEnX = 4.0f;
     [SerializeField] float vitesseDeLaCameraEnY = 10.0f;
     [SerializeField] float hauteurDeLaCamera = 2.5f;
-    [SerializeField] LayerMask layerMask;
 
-
-    [SerializeField] float zoomFactor = 3f;
-    [SerializeField] float zoomLerpSpeed = 10;
 
     // Start is called before the first frame update
     void Start()
