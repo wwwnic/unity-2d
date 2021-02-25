@@ -52,8 +52,6 @@ public class PersoCtrl : MonoBehaviour
     void Update()
     {
         anim.SetFloat("deplacement", Mathf.Abs(rb.velocity.x));
-        FonceDansMurDroite();
-        FonceDansMurGauche();
     }
 
 
@@ -198,10 +196,8 @@ public class PersoCtrl : MonoBehaviour
 
         Debug.DrawRay(collider.bounds.center,
     Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHit.collider);
 
 
-        Color rayColor;
         if (raycastHitRight.collider != null)
         {
             rayColor = Color.green;
@@ -219,7 +215,7 @@ public class PersoCtrl : MonoBehaviour
 
     public bool FonceDansMurGauche()
     {
-        float ajustement = 0.5f;
+        float ajustement = 1.5f;
 
         RaycastHit2D raycastHitLeft = Physics2D.Raycast(collider.bounds.center,
     Vector2.left, collider.bounds.extents.x + ajustement, LayerSol);
@@ -237,7 +233,7 @@ public class PersoCtrl : MonoBehaviour
         }
 
         Debug.DrawRay(collider.bounds.center,
-    Vector2.left * (collider.bounds.extents.x + ajustement), rayColor);
+    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
         Debug.Log(raycastHitLeft.collider);
 
         return raycastHitLeft.collider != null;
@@ -246,7 +242,7 @@ public class PersoCtrl : MonoBehaviour
 
     public bool FonceDansMurDroite()
     {
-        float ajustement = 0.5f;
+        float ajustement = 1.5f;
 
         RaycastHit2D raycastHitRight = Physics2D.Raycast(collider.bounds.center,
     Vector2.right, collider.bounds.extents.x + ajustement, LayerSol);
@@ -263,7 +259,7 @@ public class PersoCtrl : MonoBehaviour
             rayColor = Color.red;
         }
         Debug.DrawRay(collider.bounds.center,
-    Vector2.right * (collider.bounds.extents.x + ajustement), rayColor);
+    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
         Debug.Log(raycastHitRight.collider);
 
         return raycastHitRight.collider != null;
