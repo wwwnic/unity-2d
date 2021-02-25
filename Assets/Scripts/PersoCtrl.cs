@@ -8,16 +8,22 @@ using UnityEngine;
 /// </summary>
 public class PersoCtrl : MonoBehaviour
 {
-    [SerializeField] float vitesse = 4f;
+    // Vitesse de marche
+    [SerializeField] float vitesse = 2f;
 
-    [SerializeField] float vitesseSautInitiale = 4.5f;
+    // Vitesse du saut
+    [SerializeField] float vitesseSautInitiale = 5f;
 
-    [SerializeField] float amortiSaut = 2f;
+    // Amorti du saut
+    [SerializeField] float amortiSaut = 0.1f;
 
+    // Layers considérées comme le "sol"
     [SerializeField] LayerMask LayerSol;
 
+    // Layer considérée comme le mur
     [SerializeField] LayerMask LayerMur;
 
+    // Layer contenant les objets qui peuvent être pris par le personnage
     [SerializeField] LayerMask LayerGrabbable;
 
     // La collision pour détecter un object à prendre.
@@ -54,7 +60,9 @@ public class PersoCtrl : MonoBehaviour
         anim.SetFloat("deplacement", Mathf.Abs(rb.velocity.x));
     }
 
-
+    /// <summary>
+    /// Faire marcher le personnage vers la droite.
+    /// </summary>
     public void Avancer()
     {
         if (!FonceDansMurDroite())
@@ -68,6 +76,9 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Faire marcher le personnage vers la gauche.
+    /// </summary>
     public void Reculer()
     {
 
@@ -82,6 +93,9 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Retourner le personnage quand on appuie la direction inverse.
+    /// </summary>
     public void Retourner()
     {
         Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
@@ -89,11 +103,17 @@ public class PersoCtrl : MonoBehaviour
         transform.localScale = scale;
     }
 
+    /// <summary>
+    /// Faire attaquer le personnage.
+    /// </summary>
     public void Attaquer()
     {
         anim.SetTrigger("attaque");
     }
 
+    /// <summary>
+    /// Fonction pour prendre un objet.
+    /// </summary>
     public void Prendre()
     {
         RaycastHit2D grabCheck = Physics2D.Raycast(grabHitbox.position, Vector2.right * transform.localScale,
@@ -113,11 +133,18 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Vérifier que le personnage est en train de prendre un objet ou non.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool JoueurIsGrabbing()
     {
         return _isGrabbing;
     }
 
+    /// <summary>
+    /// Laisser tomber l'objet tenu.
+    /// </summary>
     public void Laisser()
     {
         if (_isGrabbing)
@@ -131,7 +158,9 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Début du saut.
+    /// </summary>
     public void SauterDebut()
     {
         if(!_isJumping && EstSurLeSol())
@@ -141,6 +170,9 @@ public class PersoCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gestion du saut.
+    /// </summary>
     public void Sauter()
     {
         if(_isJumping)
@@ -159,17 +191,23 @@ public class PersoCtrl : MonoBehaviour
             anim.SetBool("jumping", false);
         }
     }
+
+    /// <summary>
+    /// Vérification de l'atterissage.
+    /// </summary>
     public void SauterFin()
     {
         _isJumping = false;
         if (EstSurLeSol())
         {
             anim.SetBool("jumping", false);
-            anim.SetBool("estSurSol", true);
-
         }
     }
 
+    /// <summary>
+    /// Vérifier si le personnage est au sol.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool EstSurLeSol()
     {
         Vector3 centerLeft = collider.bounds.center;
@@ -207,23 +245,30 @@ public class PersoCtrl : MonoBehaviour
             rayColor = Color.red;
         }
         Debug.DrawRay(collider.bounds.center,
-            Vector2.right * (collider.bounds.extents.y + ajustement), rayColor);
+            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(centerLeft,
+            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(centerRight,
+            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
 
-        return raycastHitRight.collider != null;
+        return raycastHitLeft.collider != null || raycastHitCenter.collider != null || raycastHitRight.collider != null;
     }
 
-
+    /// <summary>
+    /// Vérifier si on fonce dans le mur gauche.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool FonceDansMurGauche()
     {
-        float ajustement = 1.5f;
+        float ajustement = 0.8f;
 
         RaycastHit2D raycastHitLeft = Physics2D.Raycast(collider.bounds.center,
-    Vector2.left, collider.bounds.extents.x + ajustement, LayerSol);
+    Vector2.left, collider.bounds.extents.x + ajustement, LayerMur);
 
 
 
         Color rayColor;
-        if (raycastHitLeft.collider != null )
+        if (raycastHitLeft.collider != null)
         {
             rayColor = Color.green;
         }
@@ -233,19 +278,21 @@ public class PersoCtrl : MonoBehaviour
         }
 
         Debug.DrawRay(collider.bounds.center,
-    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHitLeft.collider);
+            Vector2.left * (collider.bounds.extents.y + ajustement), rayColor);
 
         return raycastHitLeft.collider != null;
     }
 
-
+    /// <summary>
+    /// Vérifier si on fonce dans le mur droit.
+    /// </summary>
+    /// <returns>Vrai ou faux</returns>
     public bool FonceDansMurDroite()
     {
-        float ajustement = 1.5f;
+        float ajustement = 0.8f;
 
         RaycastHit2D raycastHitRight = Physics2D.Raycast(collider.bounds.center,
-    Vector2.right, collider.bounds.extents.x + ajustement, LayerSol);
+            Vector2.right, collider.bounds.extents.x + ajustement, LayerMur);
 
 
 
@@ -259,8 +306,7 @@ public class PersoCtrl : MonoBehaviour
             rayColor = Color.red;
         }
         Debug.DrawRay(collider.bounds.center,
-    Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.Log(raycastHitRight.collider);
+            Vector2.right * (collider.bounds.extents.y + ajustement), rayColor);
 
         return raycastHitRight.collider != null;
     }
