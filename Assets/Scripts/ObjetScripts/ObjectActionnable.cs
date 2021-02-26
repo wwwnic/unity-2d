@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace ObjetActionnable
+namespace SalleDeJeu
 {
     public class ObjectActionnable : MonoBehaviour
     {
         [SerializeField] SpriteRenderer spriteRendererOn;
         [SerializeField] SpriteRenderer spriteRendererOff;
         [SerializeField] bool _isActivated = false;
-        LogistiqueObjetActionnable scriptLogistiqueLevier;
+        [SerializeField] logiqueDesSalles scriptSalleAMettreAJour;
 
         // Start is called before the first frame update
         void Start()
         {
-            scriptLogistiqueLevier = GameObject.FindWithTag("logiqueLevier").GetComponent<LogistiqueObjetActionnable>();
+            scriptSalleAMettreAJour = GameObject.FindWithTag("salleDeJeu").GetComponent<logiqueDesSalles>();
+            
         }
 
         // Update is called once per frame
@@ -46,7 +47,7 @@ namespace ObjetActionnable
                     spriteRendererOff.enabled = false;
                     _isActivated = true;
                 }
-                scriptLogistiqueLevier.ChangementObjetActionnable();
+                scriptSalleAMettreAJour.DetectionChangementObjetActionnable();
             }
         }
     }
