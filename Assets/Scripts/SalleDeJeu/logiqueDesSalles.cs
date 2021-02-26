@@ -7,8 +7,15 @@ namespace SalleDeJeu
 {
     public abstract class logiqueDesSalles : MonoBehaviour, IlogiqueDesSales
     {
+        [Tooltip("La liste de levier")]
         [SerializeField] protected List<ObjectActionnable> objectActionnableList;
-        [SerializeField] protected SalleCtrl01 salleCompleteAction;
+        [Tooltip("Nom du parametre dans l'Animator")]
+        [SerializeField] string objectTriggerName = "activated";
+        [Tooltip("La porte à ouvrir")]
+        [SerializeField] GameObject objectToActivate;
+
+
+
         protected List<bool> conversionListeObjetActionnableAListeBooleen(List<ObjectActionnable> objectActionnableList)
         {
             List<bool> listeDeBool = new List<bool>();
@@ -21,6 +28,11 @@ namespace SalleDeJeu
 
         public abstract void DetectionChangementObjetActionnable();
 
+
+        public void objectSetTrigger()
+        {
+            objectToActivate.GetComponent<Animator>().SetTrigger(objectTriggerName);
+        }
 
 
         protected enum booleanOperation

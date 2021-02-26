@@ -6,6 +6,8 @@ namespace SalleDeJeu
 
     public class SalleCtrl01 : logiqueDesSalles
     {
+        [SerializeField] GameObject activatedObject1;
+
 
         public override void DetectionChangementObjetActionnable()
         {
@@ -16,9 +18,13 @@ namespace SalleDeJeu
             test = CompratateurBoolean(booleanOperation.et_AND, objectActionnableList[0], objectActionnableList[1]);
             test2 = CompratateurBoolean(booleanOperation.ouExclusif_XOR, objectActionnableList[2], objectActionnableList[3]);
             rep = CompratateurBoolean(booleanOperation.et_AND, test, test2);
-            Debug.Log("test = " + rep);
 
+            if (rep)
+            {
+                Debug.Log("test = " + rep);
+                activatedObject1.GetComponent<Animator>().SetTrigger("activated");
+            }
         }
-    }
 
+    }
 }

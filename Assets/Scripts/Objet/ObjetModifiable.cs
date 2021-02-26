@@ -9,14 +9,19 @@ namespace SalleDeJeu
 
     public class ObjetModifiable : MonoBehaviour
     {
+        [SerializeField] GameObject activatedObject1;
 
 
         public void ActionAFaireQuandSalleEstTerminee()
         {
-            //HELLO WORLD
-            Debug.Log("Salle terminée = " + true);
+
+
+         activatedObject1.GetComponent<Animator>().SetTrigger("activated");
+
 
         }
+
+        
 
     }
 }
