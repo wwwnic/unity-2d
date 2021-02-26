@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9174989686313429319}
   - component: {fileID: 9174989686313429316}
   - component: {fileID: 9174989686313429317}
-  - component: {fileID: 9174989686313429318}
+  - component: {fileID: 818616728907771112}
   m_Layer: 11
-  m_Name: lever1
+  m_Name: lever
   m_TagString: lever
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8125, y: 0.6041667}
   m_EdgeRadius: 0
---- !u!114 &9174989686313429318
+--- !u!114 &818616728907771112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,12 +119,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9174989686313429314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2bec9a9a0098f43b29dae64653ccd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 48a0f363381f7384fab483a96477952d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRendererOn: {fileID: 9174989687329092686}
   spriteRendererOff: {fileID: 9174989686313429316}
-  leverTag: 1
+  linkedPedestal: {fileID: 0}
 --- !u!1 &9174989687329092687
 GameObject:
   m_ObjectHideFlags: 0
