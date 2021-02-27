@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace SalleDeJeu
 {
-    public abstract class logiqueDesSalles : MonoBehaviour, IlogiqueDesSales
+    public abstract class LogiqueDesSalles : MonoBehaviour, IlogiqueDesSales
     {
         [Tooltip("La liste de levier")]
         [SerializeField] protected List<ObjectActionnable> objectActionnableList;
         [Tooltip("Nom du parametre dans l'Animator")]
-        [SerializeField] string objectTriggerName = "activated";
+        [SerializeField] protected string objectToActivateParameterName = "activated";
         [Tooltip("La porte à ouvrir")]
-        [SerializeField] GameObject objectToActivate;
+        [SerializeField] protected GameObject objectToActivate;
 
 
 
@@ -29,9 +29,9 @@ namespace SalleDeJeu
         public abstract void DetectionChangementObjetActionnable();
 
 
-        public void objectSetTrigger()
+        public void objectAnimatorSetParameterBool(bool condition)
         {
-            objectToActivate.GetComponent<Animator>().SetTrigger(objectTriggerName);
+            objectToActivate.GetComponent<Animator>().SetBool(objectToActivateParameterName, condition);
         }
 
 
@@ -48,10 +48,10 @@ namespace SalleDeJeu
         }
 
 
-        protected bool transitionCable(List<bool> listReponse)
+        protected bool transitionCable(List<bool> listeReponse)
         {  
 
-            return CompratateurBoolean(booleanOperation.ou_OR, listReponse);
+            return CompratateurBoolean(booleanOperation.ou_OR, listeReponse);
         }
 
 

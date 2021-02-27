@@ -141,7 +141,7 @@ PrefabInstance:
     - target: {fileID: 9174989686313429319, guid: 428d0182dd95d384e99284617b4ceeaa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9174989686313429319, guid: 428d0182dd95d384e99284617b4ceeaa,
         type: 3}
@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 9174989686313429319, guid: 428d0182dd95d384e99284617b4ceeaa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9174989686313429319, guid: 428d0182dd95d384e99284617b4ceeaa,
         type: 3}
@@ -274,6 +274,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 428d0182dd95d384e99284617b4ceeaa, type: 3}
+--- !u!1 &417488222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1149272348629526153, guid: 5ab12fc3d35de6541a8c82f5ad306fba,
+    type: 3}
+  m_PrefabInstance: {fileID: 629425788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &439523860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,17 +300,17 @@ PrefabInstance:
     - target: {fileID: 9174989686313429319, guid: 428d0182dd95d384e99284617b4ceeaa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9174989686313429319, guid: 428d0182dd95d384e99284617b4ceeaa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.75
+      value: 1.63
       objectReference: {fileID: 0}
     - target: {fileID: 9174989686313429319, guid: 428d0182dd95d384e99284617b4ceeaa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46.56
+      value: 37.73
       objectReference: {fileID: 0}
     - target: {fileID: 9174989686313429319, guid: 428d0182dd95d384e99284617b4ceeaa,
         type: 3}
@@ -415,7 +421,7 @@ PrefabInstance:
     - target: {fileID: 1149272348629526151, guid: 5ab12fc3d35de6541a8c82f5ad306fba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1149272348629526151, guid: 5ab12fc3d35de6541a8c82f5ad306fba,
         type: 3}
@@ -506,9 +512,11 @@ MonoBehaviour:
   objectActionnableList:
   - {fileID: 2026164979}
   - {fileID: 822948070}
-  - {fileID: 0}
+  - {fileID: 2056731988}
   - {fileID: 1138220787}
-  salleCompleteAction: {fileID: 0}
+  objectTriggerName: activated
+  objectToActivate: {fileID: 0}
+  activatedObject1: {fileID: 417488222}
 --- !u!4 &739839922
 Transform:
   m_ObjectHideFlags: 0
@@ -693,7 +701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4961243305158150, guid: 0689b5cc8c9a9be48a693d64d5857b23, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4961243305158150, guid: 0689b5cc8c9a9be48a693d64d5857b23, type: 3}
       propertyPath: m_LocalScale.x
@@ -782,7 +790,7 @@ PrefabInstance:
     - target: {fileID: 7607205768297006139, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7607205768297006139, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}
@@ -48966,6 +48974,18 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9174989686313429318, guid: 428d0182dd95d384e99284617b4ceeaa,
     type: 3}
   m_PrefabInstance: {fileID: 310640530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d2bec9a9a0098f43b29dae64653ccd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2056731988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9174989686313429318, guid: 428d0182dd95d384e99284617b4ceeaa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1837422193}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

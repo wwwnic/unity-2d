@@ -9,14 +9,9 @@ namespace SalleDeJeu
     {
 
         [SerializeField] protected bool _isActivated = false;
-        [SerializeField] protected logiqueDesSalles scriptSalleAMettreAJour;
+        [SerializeField] protected LogiqueDesSalles scriptSalleAMettreAJour;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            scriptSalleAMettreAJour = GameObject.FindWithTag("salleDeJeu").GetComponent<logiqueDesSalles>();
-            
-        }
+
 
 
 
