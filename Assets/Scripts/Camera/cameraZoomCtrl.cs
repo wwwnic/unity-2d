@@ -9,7 +9,6 @@ public class cameraZoomCtrl : MonoBehaviour
     [SerializeField] float zoomSpeed = 4f;
     [SerializeField] float zoomMaxIn = 6f;
     [SerializeField] float zoomMaxOut = 10f;
-    [SerializeField] float cropSpeed = 6f;
 
 
 
