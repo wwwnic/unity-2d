@@ -31,7 +31,14 @@ namespace SalleDeJeu
 
         public void objectAnimatorSetParameterBool(bool condition)
         {
+            Debug.Log("Une porte a ete actionee a : "  +condition);
             objectToActivate.GetComponent<Animator>().SetBool(objectToActivateParameterName, condition);
+        }
+
+
+        public void objectAnimatorSetParameterBool(ObjectActionnable levier)
+        {
+            objectAnimatorSetParameterBool(levier.Get_isActivated());
         }
 
 
