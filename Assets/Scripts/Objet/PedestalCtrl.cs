@@ -33,7 +33,7 @@ namespace SalleDeJeu
         /// <summary>
         /// Utilisé par le levier pour activer le pédestal selon les items dessus selon l'id de ce dernier.
         /// </summary>
-        public void ActivatePedestal()//fdsssssssssss
+        public void ActivatePedestal()
         {
             switch (pedestalTag)
             {
