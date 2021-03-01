@@ -7,7 +7,7 @@ namespace SalleDeJeu
     {
         public override void DetectionChangementObjetActionnable()
         {
-            objectAnimatorSetParameterBool(CompratateurBoolean(booleanOperation.ouExclusif_XOR, objectActionnableList[0], objectActionnableList[1]));
+            objectAnimatorSetParameterBool(CompratateurBoolean(BooleanOperation.ouExclusif_XOR, objectActionnableList[0], objectActionnableList[1]));
         }
     }
 }
