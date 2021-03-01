@@ -14,7 +14,7 @@ namespace SalleDeJeu
 
         public override void DetectionChangementObjetActionnable()
         {
-            conditionPourTerminerLaSalle = CompratateurBoolean(booleanOperation.et_AND, objectActionnableList[0], objectActionnableList[1]); 
+            conditionPourTerminerLaSalle = CompratateurBoolean(BooleanOperation.et_AND, objectActionnableList[0], objectActionnableList[1]); 
             objectAnimatorSetParameterBool(conditionPourTerminerLaSalle);
         }
 
