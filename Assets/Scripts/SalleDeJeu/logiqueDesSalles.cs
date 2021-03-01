@@ -31,7 +31,7 @@ namespace SalleDeJeu
 
         public void objectAnimatorSetParameterBool(bool condition)
         {
-            Debug.Log("Une porte a ete actionee a : "  +condition);
+            //Debug.Log("Une porte a ete actionee a : "  +condition);
             objectToActivate.GetComponent<Animator>().SetBool(objectToActivateParameterName, condition);
         }
 
@@ -42,7 +42,7 @@ namespace SalleDeJeu
         }
 
 
-        protected enum booleanOperation
+        protected enum BooleanOperation
         {
              et_AND, ou_OR, non_NO, nonEt_NAND, nonOu_NOR, ouExclusif_XOR, nonOuExclusif_XNOR
         }
@@ -51,37 +51,37 @@ namespace SalleDeJeu
 
         protected bool transitionCable(bool reponseX, bool reponseY)
         {
-            return CompratateurBoolean(booleanOperation.ou_OR, reponseX, reponseY);
+            return CompratateurBoolean(BooleanOperation.ou_OR, reponseX, reponseY);
         }
 
 
         protected bool transitionCable(List<bool> listeReponse)
         {  
 
-            return CompratateurBoolean(booleanOperation.ou_OR, listeReponse);
+            return CompratateurBoolean(BooleanOperation.ou_OR, listeReponse);
         }
 
 
 
 
 
-        protected bool CompratateurBoolean(booleanOperation operation, bool x, bool y)
+        protected bool CompratateurBoolean(BooleanOperation operation, bool x, bool y)
         {
             switch (operation)
             {
-                case booleanOperation.et_AND:
+                case BooleanOperation.et_AND:
                     return x && y;
-                case booleanOperation.ou_OR:
+                case BooleanOperation.ou_OR:
                     return x || y;
-                case booleanOperation.non_NO:
+                case BooleanOperation.non_NO:
                     return !x;
-                case booleanOperation.nonEt_NAND:
+                case BooleanOperation.nonEt_NAND:
                     return !(x && y);
-                case booleanOperation.nonOu_NOR:
+                case BooleanOperation.nonOu_NOR:
                     return !(x || y);
-                case booleanOperation.ouExclusif_XOR:
+                case BooleanOperation.ouExclusif_XOR:
                     return !(x && y || !x && !y);
-                case booleanOperation.nonOuExclusif_XNOR:
+                case BooleanOperation.nonOuExclusif_XNOR:
                     return x && y || !x && !y;
                 default:
                     return false;
@@ -89,33 +89,33 @@ namespace SalleDeJeu
         }
 
 
-        protected bool CompratateurBoolean(booleanOperation operation, List<bool> listBool)
+        protected bool CompratateurBoolean(BooleanOperation operation, List<bool> listBool)
         {
             switch (operation)
             {
-                case booleanOperation.et_AND:
+                case BooleanOperation.et_AND:
                     return listBool.TrueForAll(x => x);
-                case booleanOperation.ou_OR:
+                case BooleanOperation.ou_OR:
                     return listBool.Contains(true);
-                case booleanOperation.nonEt_NAND:
+                case BooleanOperation.nonEt_NAND:
                     return !listBool.TrueForAll(x => x);
-                case booleanOperation.nonOu_NOR:
+                case BooleanOperation.nonOu_NOR:
                     return !listBool.Contains(true);
-                case booleanOperation.ouExclusif_XOR:
+                case BooleanOperation.ouExclusif_XOR:
                     return listBool.Contains(true) || listBool.TrueForAll(x => x);
-                case booleanOperation.nonOuExclusif_XNOR:
+                case BooleanOperation.nonOuExclusif_XNOR:
                     return !(listBool.Contains(true) || listBool.TrueForAll(x => x));
                 default:
                     return false;
             }
         }
 
-        protected bool CompratateurBoolean(booleanOperation operation, ObjectActionnable objectActionnableX, ObjectActionnable objectActionnableY)
+        protected bool CompratateurBoolean(BooleanOperation operation, ObjectActionnable objectActionnableX, ObjectActionnable objectActionnableY)
         {
             return CompratateurBoolean(operation, objectActionnableX.Get_isActivated(), objectActionnableY.Get_isActivated());
         }
 
-        protected bool CompratateurBoolean(booleanOperation operation, List<ObjectActionnable> listObjectActionnable)
+        protected bool CompratateurBoolean(BooleanOperation operation, List<ObjectActionnable> listObjectActionnable)
         {
             return CompratateurBoolean(operation, conversionListeObjetActionnableAListeBooleen(listObjectActionnable));
 
