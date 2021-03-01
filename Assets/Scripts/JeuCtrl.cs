@@ -44,7 +44,7 @@ public class JeuCtrl : MonoBehaviour
         }
         else
         {
-            persoCtrl.SauterFin();
+            //persoCtrl.SauterFin();
             _isJumping = false;
         }
 
@@ -68,14 +68,14 @@ public class JeuCtrl : MonoBehaviour
             if(!_isGrabbing && !_isAttacking)
             {
                 persoCtrl.Prendre();
-                if (persoCtrl.JoueurIsGrabbing())
+                if (persoCtrl.PlayerIsGrabbing())
                 {
                     _isGrabbing = true;
                 }
             }
             else
             {
-                persoCtrl.Laisser();
+                persoCtrl.DropHoldItem();
                 _isGrabbing = false;
             }
            

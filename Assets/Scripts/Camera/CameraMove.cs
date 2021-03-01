@@ -11,8 +11,6 @@ public class CameraMove : MonoBehaviour {
     private bool faceLeft;
     private int lastX;
     private float dynamicSpeed;
-    private Camera _cam;
-    private float _targetZoom;
 
 
 
@@ -20,8 +18,7 @@ public class CameraMove : MonoBehaviour {
     {
         offset = new Vector2(Mathf.Abs(offset.x), offset.y);
         FindPlayer();
-        _cam = gameObject.GetComponent<Camera>();
-        _targetZoom = _cam.orthographicSize;
+
 
     }
 
