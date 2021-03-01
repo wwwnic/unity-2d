@@ -8,15 +8,17 @@ public class HealthSystem : MonoBehaviour
 
     private int vie = 3;
     private int nbCoeur = 3;
+    private bool _estInvincible;
 
     [SerializeField] private Image[] coeurs;
     [SerializeField] private Sprite coeurPlein;
     [SerializeField] private Sprite coeurVide;
+    [SerializeField] private SpriteRenderer[] knightSprites;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _estInvincible = false;
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class HealthSystem : MonoBehaviour
         if (vie <= 0)
         {
             Destroy(gameObject);
+            GameObject.FindWithTag("ui").GetComponent<UICtrl>().showLoseScreen();
         }
 
         for (int i = 0; i < coeurs.Length; i++)
@@ -53,6 +56,50 @@ public class HealthSystem : MonoBehaviour
 
     public void prendreDamage()
     {
+        if (_estInvincible) return;
+
         vie -= 1;
+        _estInvincible = true;
+        StartCoroutine(Invulnerable());
+        StartCoroutine(Flash());
     }
+
+    private IEnumerator Invulnerable()
+    {
+        yield return new WaitForSeconds(3.0f);
+        _estInvincible = false;
+    }
+
+    private IEnumerator Flash()
+    {
+        int index = 0;
+        while (_estInvincible)
+        {
+            if (index % 2 != 0)
+            {
+                foreach (SpriteRenderer s in knightSprites)
+                {
+                    s.enabled = false;
+                }
+            } else
+            {
+                foreach (SpriteRenderer s in knightSprites)
+                {
+                    s.enabled = true;
+                }
+            }
+
+            index++;
+            yield return new WaitForSeconds(0.1f);
+        }
+        if (!_estInvincible)
+        {
+            foreach (SpriteRenderer s in knightSprites)
+            {
+                s.enabled = true;
+            }
+        }
+    }
+
+
 }
