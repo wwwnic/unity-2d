@@ -16611,7 +16611,7 @@ PrefabInstance:
     - target: {fileID: 7607205768297006138, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}
       propertyPath: forceDeSaut
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7607205768297006138, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}

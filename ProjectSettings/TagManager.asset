@@ -15,6 +15,7 @@ TagManager:
   - winScreen
   - ui
   - loseScreen
+  - solution
   layers:
   - Default
   - TransparentFX

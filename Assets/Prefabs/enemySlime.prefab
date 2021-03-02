@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8186661938724221031}
   - component: {fileID: 8186661938724221030}
-  - component: {fileID: 8186661938724221029}
   - component: {fileID: 8186661938724221028}
   - component: {fileID: 8186661938724221035}
+  - component: {fileID: 6633913793877423263}
   m_Layer: 0
   m_Name: enemySlime
   m_TagString: enemy
@@ -84,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8186661938724221029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8186661938724221034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eff81a0ba5a6fcc4fa98e5886961155b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -0.5
-  layerSol:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!50 &8186661938724221028
 Rigidbody2D:
   serializedVersion: 4
@@ -137,3 +121,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.0903226, y: 0.66451615}
   m_Direction: 1
+--- !u!114 &6633913793877423263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186661938724221034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b708f6390b2df4343990d6aefe9533df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  layerSol:
+    serializedVersion: 2
+    m_Bits: 0

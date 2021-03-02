@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Contrôleur de jeu.
@@ -8,6 +9,8 @@ using UnityEngine;
 public class JeuCtrl : MonoBehaviour
 {
     PersoCtrl persoCtrl;
+    [SerializeField] GameObject solution;
+    ScrollRect solutionScroll;
 
     private bool _isJumping = false;
     private bool _isAttacking = false;
@@ -17,6 +20,7 @@ public class JeuCtrl : MonoBehaviour
     void Start()
     {
         persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
+        solutionScroll = solution.GetComponent<ScrollRect>();
     }
 
     // Update is called once per frame
@@ -79,6 +83,17 @@ public class JeuCtrl : MonoBehaviour
                 _isGrabbing = false;
             }
            
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!solution.activeSelf)
+            {
+                solution.SetActive(true);
+            } else
+            {
+                solution.SetActive(false);
+            }
         }
     }
 }
