@@ -10,7 +10,11 @@ TagManager:
   - lever
   - playerAttackHitbox
   - door
+  - enemy
   - salleDeJeu
+  - winScreen
+  - ui
+  - loseScreen
   layers:
   - Default
   - TransparentFX
