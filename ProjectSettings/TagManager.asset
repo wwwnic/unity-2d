@@ -10,6 +10,7 @@ TagManager:
   - lever
   - playerAttackHitbox
   - door
+  - salleDeJeu
   layers:
   - Default
   - TransparentFX
@@ -50,6 +51,9 @@ TagManager:
   - name: BG
     uniqueID: 563912715
     locked: 0
+  - name: photo
+    uniqueID: 2976298033
+    locked: 0
   - name: bounds
     uniqueID: 681165559
     locked: 0
@@ -59,9 +63,15 @@ TagManager:
   - name: props
     uniqueID: 825116711
     locked: 0
+  - name: wall
+    uniqueID: 4291841727
+    locked: 0
   - name: Item and object
     uniqueID: 2806348761
     locked: 0
   - name: character
     uniqueID: 1119179361
+    locked: 0
+  - name: New Layer
+    uniqueID: 3334688443
     locked: 0
