@@ -35,7 +35,7 @@ public class PersoCtrl : MonoBehaviour
 
     private bool _isGrabbing = false;
     private GameObject _grabbedItem;
-
+    
 
     Rigidbody2D rb;
     Animator anim;
@@ -46,6 +46,8 @@ public class PersoCtrl : MonoBehaviour
     private float _vitesseSaut;
     bool _estAuSol;
 
+    //Cette variable (_estEnSaut) est capital pour effectué un saut correct
+    bool _estEnSaut = false;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +70,8 @@ public class PersoCtrl : MonoBehaviour
     /// <summary>
     /// Début du saut.
     /// </summary>
+
+
     public void SauterDebut()
     {
         if (_estAuSol)
@@ -81,14 +85,25 @@ public class PersoCtrl : MonoBehaviour
     /// </summary>
     public void Sauter()
     {
-        if (_estAuSol)
+        if (_estAuSol && !_estEnSaut)
         {
+            _estEnSaut = true;
             rb.velocity += Vector2.up * _vitesseSaut;
             _vitesseSaut -= amortiSaut;
             if (_vitesseSaut < 0)
             {
                 _vitesseSaut = 0;
             }
+        }
+    } 
+
+
+    public void SauterFin()
+    {
+        if (_estAuSol)
+        {
+            _estEnSaut = false;
+
         }
     }
 
