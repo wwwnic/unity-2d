@@ -86,7 +86,7 @@ namespace SalleDeJeu
         /// <param name="x">un booleen</param>
         /// <param name="y">un deuxieme booleen</param>
         /// <returns></returns>
-        protected bool CompratateurBoolean(BooleanOperation operation, bool x, bool y)
+        protected bool ComparateurBooleen(BooleanOperation operation, bool x, bool y)
         {
             switch (operation)
             {
@@ -116,9 +116,9 @@ namespace SalleDeJeu
         /// <param name="objectActionnableX">un objet actionnable</param>
         /// <param name="objectActionnableY">un objet actionnable</param>
         /// <returns></returns>
-        protected bool CompratateurBoolean(BooleanOperation operation, ObjectActionnable objectActionnableX, ObjectActionnable objectActionnableY)
+        protected bool ComparateurBooleen(BooleanOperation operation, ObjectActionnable objectActionnableX, ObjectActionnable objectActionnableY)
         {
-            return CompratateurBoolean(operation, objectActionnableX.Get_isActivated(), objectActionnableY.Get_isActivated());
+            return ComparateurBooleen(operation, objectActionnableX.Get_isActivated(), objectActionnableY.Get_isActivated());
         }
 
 
