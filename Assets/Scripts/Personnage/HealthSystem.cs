@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Classe qui gère le système de vie du joueur.
+/// 
+/// Contient les informations du max de vie disponible, du nombre de coeur que le joueur a à chaque instant.
+/// 
+/// Permet aussi aux ennemi d'infliger des dégâts au joueur.
+/// </summary>
 public class HealthSystem : MonoBehaviour
 {
 
@@ -54,6 +61,9 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Méthode qui retire 1 coeur de vie au joueur s'il entre en collision avec un ennemi.
+    /// </summary>
     public void prendreDamage()
     {
         if (_estInvincible) return;
@@ -64,12 +74,24 @@ public class HealthSystem : MonoBehaviour
         StartCoroutine(Flash());
     }
 
+    /// <summary>
+    /// Permet au joueur de ne pas prendre de dégâts pour un certain temps après s'être fait toucher par un ennemi.
+    /// </summary>
+    /// <returns>
+    /// Retourne un temps d'attente avant de réactiver la fonctionnalité des dégâts au joueur.
+    /// </returns>
     private IEnumerator Invulnerable()
     {
         yield return new WaitForSeconds(2.0f);
         _estInvincible = false;
     }
 
+    /// <summary>
+    /// Permet d'avoir un indicatif visuel lorsque le joueur se fait toucher par un ennemi.
+    /// </summary>
+    /// <returns>
+    /// Retourne l'illusion que le personnage flash à chaque seconde pour un certain temps lorsqu'il se fait toucher par l'ennemi.
+    /// </returns>
     private IEnumerator Flash()
     {
         int index = 0;
