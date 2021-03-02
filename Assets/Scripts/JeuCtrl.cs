@@ -37,14 +37,14 @@ public class JeuCtrl : MonoBehaviour
         {
             if (!_isJumping)
             {
-                persoCtrl.SauterDebut();
+               persoCtrl.SauterDebut();
                 _isJumping = true;
             }
             persoCtrl.Sauter();
         }
         else
         {
-            //persoCtrl.SauterFin();
+            persoCtrl.SauterFin();
             _isJumping = false;
         }
 
