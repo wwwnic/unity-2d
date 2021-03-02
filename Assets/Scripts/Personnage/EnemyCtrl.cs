@@ -124,7 +124,7 @@ public class EnemyCtrl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "attackHitbox")
+        if(collision.gameObject.tag == "playerAttackHitbox")
         {
             Destroy(gameObject);
         }
@@ -132,7 +132,7 @@ public class EnemyCtrl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemy")
+        if (collision.gameObject.tag == "enemy" || collision.gameObject.tag == "door")
         {
             retourner();
             speed = -speed;
