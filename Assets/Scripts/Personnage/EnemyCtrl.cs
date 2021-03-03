@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Classe représentant un enemi du jeu.
+/// 
+/// Contient les informations de l'ennemi en question comme sa vitesse et la layer sur laquelle il doit faire des vérifications.
+/// 
+/// La classe permet de faire des vérifications pour s'assurer que l'ennemi peut se déplacer sur une plateforme sans tombé ou bloquer dans une même direction.
+/// </summary>
 public class EnemyCtrl : MonoBehaviour
 {
     private Rigidbody2D rb;
@@ -27,6 +35,11 @@ public class EnemyCtrl : MonoBehaviour
         toucheLeMurGauche();
     }
 
+    /// <summary>
+    /// Teste en permanence si une collision avec un mur survient ou si l'ennemi de ne se trouve plus sur le sol.
+    /// 
+    /// S'il détecte une collision avec un mur ou qu'il ne touche plus le sol, l'ennemi change de côté et le sprite se retourne,
+    /// </summary>
     private void FixedUpdate()
     {
         if(toucheLeMurDroit() || toucheLeMurGauche())
@@ -43,12 +56,22 @@ public class EnemyCtrl : MonoBehaviour
         rb.velocity = new Vector2(speed, rb.velocity.y);
     }
 
+    /// <summary>
+    /// Permet de faire tourner le sprite de l'ennemi qui est appelé lorsqu'une collision avec un mur survient ou lorsqu'il quitte le sol.
+    /// </summary>
     public void retourner()
     {
         Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
         transform.localScale = scale;
     }
 
+    /// <summary>
+    /// Teste si l'ennemi entre en collision avec un mur vers la gauche.
+    /// </summary>
+    /// <returns>
+    /// Vrai, s'il détecte une collision vers la gauche.
+    /// Faux, s'il ne détecte aucune collision.
+    /// </returns>
     public bool toucheLeMurGauche()
     {
         float ajustement = 0.2f;
@@ -70,6 +93,13 @@ public class EnemyCtrl : MonoBehaviour
         return raycastHit.collider != null;
     }
 
+    /// <summary>
+    /// Teste si l'ennemi entre en collision avec un mur vers la droite.
+    /// </summary>
+    /// <returns>
+    /// Vrai, s'il détecte une collision vers la droite.
+    /// Faux, s'il ne détecte aucune collision.
+    /// </returns>
     private bool toucheLeMurDroit()
     {
         float ajustement = 0.2f;
@@ -91,6 +121,13 @@ public class EnemyCtrl : MonoBehaviour
         return raycastHit.collider != null;
     }
 
+    /// <summary>
+    /// Permet de tester si les deux extrémités du sprite sont sur le sol.
+    /// </summary>
+    /// <returns>
+    /// Vrai, si un des deux côté ne se trouve plus sur le sol.
+    /// Faux, si tous le sprite de l'ennemi se trouve sur le sol.
+    /// </returns>
     private bool estSurLeSol()
     {
         float ajustement = 0.1f;
@@ -121,7 +158,10 @@ public class EnemyCtrl : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Méthode qui vérifie si quelque chose entre dans le collider de l'ennemi.
+    /// </summary>
+    /// <param name="collision">Le collider qui entre dans le collider de l'ennmi.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "playerAttackHitbox")
@@ -130,6 +170,10 @@ public class EnemyCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Méthode qui vérifie si quelque chose est entré en collision avec l'ennemi et fait la vérification de l'objet avec qui il a eu une collision.
+    /// </summary>
+    /// <param name="collision">Représente l'objet qui vient d'entrer en collision avec l'ennemi.</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "enemy" || collision.gameObject.tag == "door")
