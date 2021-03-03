@@ -14,9 +14,23 @@ namespace SalleDeJeu {
     [SerializeField] SpriteRenderer spriteRendererOff;
 
 
+        private void Start()
+        {
+            if (Get_isActivated())
+            {
+                spriteRendererOn.enabled = true;
+                spriteRendererOff.enabled = false;
+                _isActivated = true;
+            }
+            else
+            {
+                spriteRendererOn.enabled = false;
+                spriteRendererOff.enabled = true;
+                _isActivated = false;
+            }
+        }
 
-
-    private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.isTrigger)
             {

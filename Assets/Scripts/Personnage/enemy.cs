@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemy : MonoBehaviour
 {
     Rigidbody2D rb;
-    CapsuleCollider2D collider;
+    new CapsuleCollider2D collider;
 
     [SerializeField] float speed;
 

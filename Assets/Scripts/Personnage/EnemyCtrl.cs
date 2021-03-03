@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyCtrl : MonoBehaviour
 {
-    Rigidbody2D rb;
-    CapsuleCollider2D collider;
+    private Rigidbody2D rb;
+    private new CapsuleCollider2D collider;
 
     [SerializeField] float speed;
 
