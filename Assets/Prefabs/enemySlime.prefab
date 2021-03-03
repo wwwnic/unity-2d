@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300032, guid: 3f3f6abcce67a7145aba743500d5946e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.0903226, y: 0.66451615}
@@ -136,4 +136,4 @@ MonoBehaviour:
   speed: 0.5
   layerSol:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
