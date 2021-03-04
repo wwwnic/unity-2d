@@ -67,13 +67,22 @@ public class HealthSystem : MonoBehaviour
     /// <summary>
     /// Méthode qui retire 1 coeur de vie au joueur s'il entre en collision avec un ennemi.
     /// </summary>
-    public void prendreDamage()
+    public void prendreDamageEtProtege()
     {
         if (_estInvincible) return;
 
         vie -= 1;
         _estInvincible = true;
         StartCoroutine(Invulnerable());
+        StartCoroutine(Flash());
+    }
+
+
+
+
+    public void prendreDamage()
+    {
+        vie -= 1;
         StartCoroutine(Flash());
     }
 

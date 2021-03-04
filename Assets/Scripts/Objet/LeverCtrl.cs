@@ -14,9 +14,16 @@ namespace SalleDeJeu {
     [SerializeField] SpriteRenderer spriteRendererOff;
     [SerializeField] ForceSystem forceSystem;
 
+        private bool _peutEtreActive;
 
         private void Start()
         {
+            StartCoroutine(OnTriggerEnter2D(null));
+        }
+
+        private void Awake()
+        {
+            _peutEtreActive = true;
             if (_isActivated)
             {
                 spriteRendererOn.enabled = true;
@@ -29,27 +36,34 @@ namespace SalleDeJeu {
                 spriteRendererOff.enabled = true;
                 _isActivated = false;
             }
+
+
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private IEnumerator OnTriggerEnter2D(Collider2D other)
         {
-            if (other.isTrigger)
+            if (other != null && other.isTrigger && _peutEtreActive)
             {
-                forceSystem.SetPlayerForce(-1);
                 if (_isActivated)
                 {
+                    _peutEtreActive = false;
                     spriteRendererOn.enabled = false;
                     spriteRendererOff.enabled = true;
                     _isActivated = false;
                 }
                 else
                 {
+                    _peutEtreActive = false;
                     spriteRendererOn.enabled = true;
                     spriteRendererOff.enabled = false;
                     _isActivated = true;
                 }
                 scriptSalleAMettreAJour.DetectionChangementObjetActionnable();
+                forceSystem.SetPlayerForce(-1);
+                yield return new WaitForSeconds(0.5f);
+                _peutEtreActive = true;
             }
+
         }
     }
 }

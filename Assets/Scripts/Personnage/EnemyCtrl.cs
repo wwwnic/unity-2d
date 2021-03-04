@@ -185,7 +185,7 @@ public class EnemyCtrl : MonoBehaviour
         }
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<HealthSystem>().prendreDamage();
+            collision.gameObject.GetComponent<HealthSystem>().prendreDamageEtProtege();
         }
     }
 }
