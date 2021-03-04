@@ -33,7 +33,7 @@ public class ForceSystem : MonoBehaviour
         playerForce += ajustement;
         if (playerForce < 0)
         {
-            healSystemToModify.prendreDamage();
+            healSystemToModify.prendreDommageEtDevientInvincible();
             playerForce = 0;
         }
         texteToModify.text = playerForce.ToString();

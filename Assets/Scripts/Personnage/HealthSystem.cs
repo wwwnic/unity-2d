@@ -65,24 +65,26 @@ public class HealthSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode qui retire 1 coeur de vie au joueur s'il entre en collision avec un ennemi.
+    /// Méthode qui retire 1 coeur de vie au joueur sauf s’il est actuellement invincible
     /// </summary>
-    public void prendreDamageEtProtege()
+    public void prendreDamageEtDevientInvicibleSaufSiInvincible()
     {
         if (_estInvincible) return;
 
         vie -= 1;
-        _estInvincible = true;
-        StartCoroutine(Invulnerable());
+        StartCoroutine(DevientTemporairementInvincible());
         StartCoroutine(Flash());
     }
 
 
 
-
-    public void prendreDamage()
+    /// <summary>
+    /// Méthode qui retire 1 coeur de vie au joueur 
+    /// </summary>
+    public void prendreDommageEtDevientInvincible()
     {
         vie -= 1;
+        StartCoroutine(DevientTemporairementInvincible());
         StartCoroutine(Flash());
     }
 
@@ -92,9 +94,10 @@ public class HealthSystem : MonoBehaviour
     /// <returns>
     /// Retourne un temps d'attente avant de réactiver la fonctionnalité des dégâts au joueur.
     /// </returns>
-    private IEnumerator Invulnerable()
+    private IEnumerator DevientTemporairementInvincible()
     {
-        yield return new WaitForSeconds(2.0f);
+        _estInvincible = true;
+        yield return new WaitForSeconds(1.5f);
         _estInvincible = false;
     }
 
