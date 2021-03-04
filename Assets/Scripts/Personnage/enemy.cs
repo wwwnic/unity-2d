@@ -12,6 +12,7 @@ public class enemy : MonoBehaviour
     [SerializeField] private LayerMask layerSol;
 
 
+
     // Start is called before the first frame update
     void Start()
     {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 /// Script de contrôle du personnage.
 /// </summary>
@@ -12,7 +11,7 @@ public class PersoCtrl : MonoBehaviour
     [SerializeField] float vitesse = 2f;
 
     // Vitesse du saut
-    [SerializeField] float forceDeSaut = 5f;
+    [SerializeField] float puissanceDuSaut = 5f;
 
     // Amorti du saut
     [SerializeField] float amortiSaut = 3f;
@@ -33,9 +32,11 @@ public class PersoCtrl : MonoBehaviour
     // La distance de grabHitbox.
     [SerializeField] float rayDist;
 
+
+
     private bool _isGrabbing = false;
     private GameObject _grabbedItem;
-    
+
 
     Rigidbody2D rb;
     Animator anim;
@@ -76,7 +77,7 @@ public class PersoCtrl : MonoBehaviour
     {
         if (_estAuSol)
         {
-            _vitesseSaut = forceDeSaut;
+            _vitesseSaut = puissanceDuSaut;
         }
     }
 
@@ -95,7 +96,7 @@ public class PersoCtrl : MonoBehaviour
                 _vitesseSaut = 0;
             }
         }
-    } 
+    }
 
 
     public void SauterFin()
@@ -165,7 +166,7 @@ public class PersoCtrl : MonoBehaviour
     public void Prendre()
     {
         RaycastHit2D grabCheck = Physics2D.Raycast(grabHitbox.position, Vector2.right * transform.localScale,
-           rayDist,LayerGrabbable);
+           rayDist, LayerGrabbable);
         if (!_isGrabbing && grabCheck.collider != null && grabCheck.collider.tag == "box")
         {
             _grabbedItem = grabCheck.collider.gameObject;

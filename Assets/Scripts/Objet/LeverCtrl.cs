@@ -12,11 +12,12 @@ namespace SalleDeJeu {
 
     [SerializeField] SpriteRenderer spriteRendererOn;
     [SerializeField] SpriteRenderer spriteRendererOff;
+    [SerializeField] ForceSystem forceSystem;
 
 
         private void Start()
         {
-            if (Get_isActivated())
+            if (_isActivated)
             {
                 spriteRendererOn.enabled = true;
                 spriteRendererOff.enabled = false;
@@ -34,6 +35,7 @@ namespace SalleDeJeu {
         {
             if (other.isTrigger)
             {
+                forceSystem.SetPlayerForce(-1);
                 if (_isActivated)
                 {
                     spriteRendererOn.enabled = false;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 /// <summary>
 /// Classe qui gère le système de vie du joueur.
 /// 
@@ -47,14 +48,16 @@ public class HealthSystem : MonoBehaviour
             if (i < vie)
             {
                 coeurs[i].sprite = coeurPlein;
-            } else
+            }
+            else
             {
                 coeurs[i].sprite = coeurVide;
             }
             if (i < nbCoeur)
             {
                 coeurs[i].enabled = true;
-            } else
+            }
+            else
             {
                 coeurs[i].enabled = false;
             }
@@ -103,7 +106,8 @@ public class HealthSystem : MonoBehaviour
                 {
                     s.enabled = false;
                 }
-            } else
+            }
+            else
             {
                 foreach (SpriteRenderer s in knightSprites)
                 {

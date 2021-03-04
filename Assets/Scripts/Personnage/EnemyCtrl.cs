@@ -18,6 +18,7 @@ public class EnemyCtrl : MonoBehaviour
     [SerializeField] float speed;
 
     [SerializeField] private LayerMask layerSol;
+    [SerializeField] ForceSystem forceSystem;
 
 
     // Start is called before the first frame update
@@ -166,6 +167,7 @@ public class EnemyCtrl : MonoBehaviour
     {
         if(collision.gameObject.tag == "playerAttackHitbox")
         {
+            forceSystem.SetPlayerForce(1);
             Destroy(gameObject);
         }
     }
