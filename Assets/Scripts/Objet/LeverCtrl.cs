@@ -20,6 +20,7 @@ namespace SalleDeJeu
 
         private void Start()
         {
+            RafraichirLevier();
             StartCoroutine(OnTriggerEnter2D(null));
         }
 
@@ -28,29 +29,17 @@ namespace SalleDeJeu
             _opaciteDemi = new Color(1f, 1f, 1f, .5f);
             _opacitePleine = new Color(1f, 1f, 1f, 1f);
             _peutEtreActive = true;
-            RafraichirLevier();
 
 
         }
 
 
 
-       public void RafraichirLevier()
+        public void RafraichirLevier()
         {
-            if (_isActivated)
-            {
-                spriteRendererOn.enabled = true;
-                spriteRendererOff.enabled = false;
-                _isActivated = true;
-            }
-            else
-            {
-                spriteRendererOn.enabled = false;
-                spriteRendererOff.enabled = true;
-                _isActivated = false;
-            }
+            spriteRendererOn.enabled = _isActivated;
+            spriteRendererOff.enabled = !_isActivated;
         }
-
 
         private IEnumerator OnTriggerExit2D(Collider2D collision)
         {
@@ -78,10 +67,9 @@ namespace SalleDeJeu
                 else if (collision.gameObject.tag == "playerAttackHitbox" && _peutEtreActive)
                 {
                     _peutEtreActive = false;
-       
-                        spriteRendererOn.enabled = !_isActivated;
-                        spriteRendererOff.enabled = _isActivated;
-                        _isActivated = !_isActivated;
+                    spriteRendererOn.enabled = !_isActivated;
+                    spriteRendererOff.enabled = _isActivated;
+                    _isActivated = !_isActivated;
 
 
                     scriptSalleAMettreAJour.DetectionChangementObjetActionnable();

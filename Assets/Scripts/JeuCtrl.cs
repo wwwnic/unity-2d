@@ -15,7 +15,7 @@ public class JeuCtrl : MonoBehaviour
     private bool _isJumping = false;
     private bool _isAttacking = false;
     private bool _isGrabbing = false;
-
+    private bool _regardeLaSolution = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +53,7 @@ public class JeuCtrl : MonoBehaviour
         }
 
         // L'attaque.
-        if (Input.GetAxisRaw("Fire1") != 0)
+        if (Input.GetAxisRaw("Fire1") != 0 && !_regardeLaSolution)
         {
             if (!_isAttacking && !_isGrabbing)
             {
@@ -66,34 +66,11 @@ public class JeuCtrl : MonoBehaviour
             _isAttacking = false;
         }
 
-        // Prendre et laisser des objets.
-        if (Input.GetButtonDown("Fire2"))
+         // Ouvre ou ferme la solution
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!_isGrabbing && !_isAttacking)
-            {
-                persoCtrl.Prendre();
-                if (persoCtrl.PlayerIsGrabbing())
-                {
-                    _isGrabbing = true;
-                }
-            }
-            else
-            {
-                persoCtrl.DropHoldItem();
-                _isGrabbing = false;
-            }
-           
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (!solution.activeSelf)
-            {
-                solution.SetActive(true);
-            } else
-            {
-                solution.SetActive(false);
-            }
+            _regardeLaSolution = !_regardeLaSolution;
+            solution.SetActive(_regardeLaSolution);
         }
     }
 }

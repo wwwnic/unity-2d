@@ -8,20 +8,20 @@ namespace SalleDeJeu
         [SerializeField] protected List<LogiqueDesSallesDeJeu> listeDeSalleDeJeu;
 
 
-        private void Start()
+        private void Awake()
         {
             ActiverLevierAleatoirement(true);
         }
 
         /// <summary>
-        /// modfie une l'etat d'une liste d'objet actionnable
+        /// Modfie une l'etat d'une liste d'objet actionnable aleatoirement.
         /// </summary>
         /// <param name="objectActionnableList">liste d'objet actionnable</param>
         /// <returns>liste d'objet actionnable</returns>
         private void ActiverLevierAleatoirement(bool executer)
         {
-            if (executer)
-            {
+            if (!executer) return;
+
                 bool salleTerminable;
 
                 foreach (LogiqueDesSallesDeJeu salle in listeDeSalleDeJeu)
@@ -30,31 +30,15 @@ namespace SalleDeJeu
                     ObjectActionnable objectActionnableRetour;
                     while (salleTerminable)
                     {
-                        foreach (ObjectActionnable objectActionnable in salle.Get_objectActionnableList())
+                        foreach (ObjectActionnable objectActionnable in salle.GetObjectActionnableList())
                         {
                             objectActionnableRetour = objectActionnable;
-                            objectActionnable.Set_isActivated(Random.Range(0, 2) > 0);
+                            objectActionnable.SetIsActivated(Random.Range(0, 2) > 0);
                         }
                         salleTerminable = salle.CalculeBooleen();
                     }
-                    RafraichirObjetActionnable();
                 }
-            }
         }
 
-        private void RafraichirObjetActionnable()
-        {
-            foreach (LogiqueDesSallesDeJeu salle in listeDeSalleDeJeu)
-            {
-                foreach (ObjectActionnable objectActionnable in salle.Get_objectActionnableList())
-                {
-                    if (objectActionnable is LeverCtrl)
-                    {
-                        LeverCtrl levier = (LeverCtrl)objectActionnable;
-                        levier.RafraichirLevier();
-                    }
-                }
-            }
-        }
     }
 }

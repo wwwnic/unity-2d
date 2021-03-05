@@ -33,11 +33,6 @@ public class PersoCtrl : MonoBehaviour
     [SerializeField] float rayDist;
 
 
-
-    private bool _isGrabbing = false;
-    private GameObject _grabbedItem;
-
-
     Rigidbody2D rb;
     Animator anim;
     new CapsuleCollider2D collider;
@@ -158,53 +153,6 @@ public class PersoCtrl : MonoBehaviour
     public void Attaquer()
     {
         anim.SetTrigger("attaque");
-    }
-
-    /// <summary>
-    /// Fonction pour prendre un objet.
-    /// </summary>
-    public void Prendre()
-    {
-        RaycastHit2D grabCheck = Physics2D.Raycast(grabHitbox.position, Vector2.right * transform.localScale,
-           rayDist, LayerGrabbable);
-        if (!_isGrabbing && grabCheck.collider != null && grabCheck.collider.tag == "box")
-        {
-            _grabbedItem = grabCheck.collider.gameObject;
-            if (!_isGrabbing)
-            {
-                // Prendre l'item
-                _grabbedItem.transform.parent = itemHolder;
-                _grabbedItem.transform.position = itemHolder.position;
-                _grabbedItem.GetComponent<Rigidbody2D>().isKinematic = true;
-                _grabbedItem.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-                _isGrabbing = true;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Vérifier que le personnage est en train de prendre un objet ou non.
-    /// </summary>
-    /// <returns>Vrai ou faux</returns>
-    public bool PlayerIsGrabbing()
-    {
-        return _isGrabbing;
-    }
-
-    /// <summary>
-    /// Laisser tomber l'objet tenu.
-    /// </summary>
-    public void DropHoldItem()
-    {
-        if (_isGrabbing)
-        {
-            // Laisser l'item
-            _grabbedItem.transform.parent = null;
-            _grabbedItem.transform.position = grabHitbox.transform.position;
-            _grabbedItem.GetComponent<Rigidbody2D>().isKinematic = false;
-            _grabbedItem.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-            _isGrabbing = false;
-        }
     }
 
 

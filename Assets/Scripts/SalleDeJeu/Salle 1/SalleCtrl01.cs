@@ -15,7 +15,7 @@ namespace SalleDeJeu
 
         public override bool CalculeBooleen()
         {
-            _resultatColonneNO1_3 = !(objectActionnableList[2].Get_isActivated());
+            _resultatColonneNO1_3 = !(objectActionnableList[2].GetIsActivated());
 
 
             _resultatColonneAND2_1 = ComparateurBooleen(BooleanOperation.et_AND, objectActionnableList[0], objectActionnableList[1]);

@@ -28,6 +28,10 @@ public class ForceSystem : MonoBehaviour
         return playerForce;
     }
 
+    /// <summary>
+    /// Ajuste la force du joueur et envoi du dégat si la force tombe à -1
+    /// </summary>
+    /// <param name="ajustement"></param>
     public void SetPlayerForce(int ajustement)
     {
         playerForce += ajustement;

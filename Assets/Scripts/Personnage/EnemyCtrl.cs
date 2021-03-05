@@ -78,18 +78,10 @@ public class EnemyCtrl : MonoBehaviour
         float ajustement = 0.2f;
         RaycastHit2D raycastHit = Physics2D.Raycast(collider.bounds.center, Vector2.left, collider.bounds.extents.x + ajustement, layerSol);
 
-        Color rayColor;
-        if (raycastHit.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
+        Color rayColor = (raycastHit.collider != null ? Color.green : Color.red);
+
 
         Debug.DrawRay(collider.bounds.center, Vector2.left * (collider.bounds.extents.x + ajustement), rayColor);
-        Debug.Log(raycastHit.collider);
 
         return raycastHit.collider != null;
     }
@@ -106,18 +98,10 @@ public class EnemyCtrl : MonoBehaviour
         float ajustement = 0.2f;
         RaycastHit2D raycastHit = Physics2D.Raycast(collider.bounds.center, Vector2.right, collider.bounds.extents.x + ajustement, layerSol);
 
-        Color rayColor;
-        if (raycastHit.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
+        Color rayColor = (raycastHit.collider != null ? Color.green : Color.red);
+
 
         Debug.DrawRay(collider.bounds.center, Vector2.right * (collider.bounds.extents.x + ajustement), rayColor);
-        Debug.Log(raycastHit.collider);
 
         return raycastHit.collider != null;
     }
@@ -142,15 +126,9 @@ public class EnemyCtrl : MonoBehaviour
         RaycastHit2D raycastHitMax = Physics2D.Raycast(centerMax, Vector2.down, collider.bounds.extents.y + ajustement, layerSol);
         RaycastHit2D raycastHitMin = Physics2D.Raycast(centerMin, Vector2.down, collider.bounds.extents.y + ajustement, layerSol);
 
-        Color rayColor;
-        if (raycastHitMax.collider != null && raycastHitMin.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
+
+        Color rayColor = (raycastHitMax.collider != null && raycastHitMin.collider != null ? Color.green : Color.red);
+
 
         Debug.DrawRay(centerMax, Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
         Debug.DrawRay(centerMin, Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
