@@ -8,6 +8,7 @@ namespace SalleDeJeu
     {
 
         void DetectionChangementObjetActionnable();
+        bool CalculeBooleen();
 
 
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SalleDeJeu
 {
-    public class SalleCtrl05 : LogiqueDesSalles
+    public class SalleCtrl05 : LogiqueDesSallesDeJeu
     {
         bool _resultatColonneNO1_1;
         bool _resultatColonneNAND1_2;
@@ -15,7 +15,7 @@ namespace SalleDeJeu
 
         bool _resultatFinalColonneAND3_1;
 
-        public override void DetectionChangementObjetActionnable()
+        public override bool CalculeBooleen()
         {
             _resultatColonneNO1_1 = !(objectActionnableList[0].Get_isActivated());
             _resultatColonneNAND1_2 = ComparateurBooleen(BooleanOperation.nonEt_NAND, objectActionnableList[1], objectActionnableList[2]);
@@ -27,7 +27,12 @@ namespace SalleDeJeu
 
             _resultatFinalColonneAND3_1 = ComparateurBooleen(BooleanOperation.et_AND, _resultatColonneNAND2_1, _resultatColonneXOR2_2);
 
-            objectAnimatorSetParameterBool(_resultatFinalColonneAND3_1);
+            return _resultatFinalColonneAND3_1;
+        }
+
+        public override void DetectionChangementObjetActionnable()
+        {
+            objectAnimatorSetParameterBool(CalculeBooleen());
 
         }
     }

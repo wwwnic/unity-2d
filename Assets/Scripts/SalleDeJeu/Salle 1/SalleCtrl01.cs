@@ -2,7 +2,7 @@
 namespace SalleDeJeu
 {
 
-    public class SalleCtrl01 : LogiqueDesSalles
+    public class SalleCtrl01 : LogiqueDesSallesDeJeu
     {
 
         bool _resultatColonneNO1_3;
@@ -13,9 +13,8 @@ namespace SalleDeJeu
 
         bool _resultatFinalColonneAND3_1;
 
-        public override void DetectionChangementObjetActionnable()
+        public override bool CalculeBooleen()
         {
-            
             _resultatColonneNO1_3 = !(objectActionnableList[2].Get_isActivated());
 
 
@@ -28,8 +27,16 @@ namespace SalleDeJeu
 
 
 
-            objectAnimatorSetParameterBool(_resultatFinalColonneAND3_1);
+            return _resultatFinalColonneAND3_1;
         }
+
+        public override void DetectionChangementObjetActionnable()
+        {
+            objectAnimatorSetParameterBool(CalculeBooleen());
+        }
+
+
+
 
     }
 }

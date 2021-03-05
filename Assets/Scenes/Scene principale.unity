@@ -697,6 +697,7 @@ MonoBehaviour:
   - {fileID: 1960815460}
   objectToActivateParameterName: activated
   objectToActivate: {fileID: 820943336}
+  statusLevierAleatoire: {fileID: 0}
 --- !u!1 &97497372
 GameObject:
   m_ObjectHideFlags: 0
@@ -23525,12 +23526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a0f363381f7384fab483a96477952d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &723399150 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-    type: 3}
-  m_PrefabInstance: {fileID: 1171404034}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &742106170
 GameObject:
   m_ObjectHideFlags: 0
@@ -24146,6 +24141,7 @@ MonoBehaviour:
   - {fileID: 1720013732}
   objectToActivateParameterName: activated
   objectToActivate: {fileID: 116549930}
+  statusLevierAleatoire: {fileID: 0}
 --- !u!1001 &837928422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24707,17 +24703,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 882493567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc6ee5711231f346be58e33b96a730e, type: 3}
+  m_Script: {fileID: 11500000, guid: a23740baa50b1b44eb42954d26be5ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectActionnableList:
-  - {fileID: 1563548372}
-  - {fileID: 1244548800}
-  - {fileID: 801865573}
-  - {fileID: 1155544619}
-  - {fileID: 1594323032}
-  objectToActivateParameterName: activated
-  objectToActivate: {fileID: 0}
+  listeDeSalleDeJeu:
+  - {fileID: 1054118056}
+  - {fileID: 978326832}
+  - {fileID: 91894721}
+  - {fileID: 833374198}
+  - {fileID: 970590977}
+  - {fileID: 1928035193}
 --- !u!1001 &918895556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25328,6 +25323,7 @@ MonoBehaviour:
   - {fileID: 920042511}
   objectToActivateParameterName: activated
   objectToActivate: {fileID: 320711063}
+  statusLevierAleatoire: {fileID: 0}
 --- !u!1 &978326829
 GameObject:
   m_ObjectHideFlags: 0
@@ -25361,7 +25357,6 @@ Transform:
   - {fileID: 1848345954}
   - {fileID: 1224047782}
   - {fileID: 826331440}
-  - {fileID: 723399150}
   m_Father: {fileID: 882493568}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25383,6 +25378,7 @@ MonoBehaviour:
   - {fileID: 1848345955}
   objectToActivateParameterName: activated
   objectToActivate: {fileID: 1224047780}
+  statusLevierAleatoire: {fileID: 0}
 --- !u!1001 &981628232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26642,6 +26638,7 @@ MonoBehaviour:
   - {fileID: 1843360582}
   objectToActivateParameterName: activated
   objectToActivate: {fileID: 1352713923}
+  statusLevierAleatoire: {fileID: 0}
 --- !u!1 &1058977995
 GameObject:
   m_ObjectHideFlags: 0
@@ -27105,90 +27102,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169365958}
   m_CullTransparentMesh: 0
---- !u!1001 &1171404034
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 978326831}
-    m_Modifications:
-    - target: {fileID: 3454736209703477320, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477321, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477322, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: forceSystem
-      value: 
-      objectReference: {fileID: 1239484071}
-    - target: {fileID: 3454736209703477323, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_Name
-      value: enemySlime
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 21.026173
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -30.106522
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 119.89453
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454736209703477326, guid: 6d33a7302b791054b9303b74c4a92755,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6d33a7302b791054b9303b74c4a92755, type: 3}
 --- !u!1 &1194479075
 GameObject:
   m_ObjectHideFlags: 0
@@ -122451,6 +122364,7 @@ MonoBehaviour:
   - {fileID: 1364071482}
   objectToActivateParameterName: activated
   objectToActivate: {fileID: 416722980}
+  statusLevierAleatoire: {fileID: 0}
 --- !u!1001 &1959812137
 PrefabInstance:
   m_ObjectHideFlags: 0

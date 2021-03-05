@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,16 +10,20 @@ namespace SalleDeJeu
     {
 
         [SerializeField] protected bool _isActivated = false;
-        [SerializeField] protected LogiqueDesSalles scriptSalleAMettreAJour;
+        [SerializeField] protected LogiqueDesSallesDeJeu scriptSalleAMettreAJour;
 
 
-
+        public void Set_isActivated(bool newState)
+        {
+            _isActivated = newState;
+        }
 
 
         public bool Get_isActivated()
         {
             return _isActivated;
         }
+
 
     }
 }

@@ -28,6 +28,15 @@ namespace SalleDeJeu
             _opaciteDemi = new Color(1f, 1f, 1f, .5f);
             _opacitePleine = new Color(1f, 1f, 1f, 1f);
             _peutEtreActive = true;
+            RafraichirLevier();
+
+
+        }
+
+
+
+       public void RafraichirLevier()
+        {
             if (_isActivated)
             {
                 spriteRendererOn.enabled = true;
@@ -40,8 +49,6 @@ namespace SalleDeJeu
                 spriteRendererOff.enabled = true;
                 _isActivated = false;
             }
-
-
         }
 
 

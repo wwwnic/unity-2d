@@ -14,7 +14,7 @@ namespace SalleDeJeu
     ///Ensuite, elle résout l'algebre de Boole (voir énum BooleanOperation) 
     ///Elle est surchargée afin d'accommoder le scripting des salles au maximum.
     ///</summary>
-    public abstract class LogiqueDesSalles : MonoBehaviour, IlogiqueDesSales
+    public abstract class LogiqueDesSallesDeJeu : MonoBehaviour, IlogiqueDesSales
     {
         [Tooltip("La liste d'obejet actionnable, levier / pedestal")]
         [SerializeField] protected List<ObjectActionnable> objectActionnableList;
@@ -22,6 +22,18 @@ namespace SalleDeJeu
         [SerializeField] protected string objectToActivateParameterName = "activated";
         [Tooltip("La porte a ouvrir")]
         [SerializeField] protected GameObject objectToActivate;
+        [Tooltip("La classe qui permet de generer le status d'un levier")]
+        [SerializeField] protected StatusLevierAleatoire statusLevierAleatoire;
+
+        void Set_objectActionnableList(List<ObjectActionnable> NouvellelisteObjetActionnable)
+        {
+            objectActionnableList = NouvellelisteObjetActionnable;
+        }
+
+        public List<ObjectActionnable> Get_objectActionnableList()
+        {
+            return objectActionnableList;
+        }
 
 
 
@@ -57,7 +69,7 @@ namespace SalleDeJeu
         ///quand la veleur booleen de celui-ci est modifie
         ///</summary>
         public abstract void DetectionChangementObjetActionnable();
-
+        public abstract bool CalculeBooleen();
 
 
         ///<summary>
