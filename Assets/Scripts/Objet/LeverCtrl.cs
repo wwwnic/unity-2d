@@ -4,15 +4,17 @@ using UnityEngine;
 using System;
 
 
-namespace SalleDeJeu { 
+namespace SalleDeJeu
+{
 
     [Serializable]
     public class LeverCtrl : ObjectActionnable
     {
-
-    [SerializeField] SpriteRenderer spriteRendererOn;
-    [SerializeField] SpriteRenderer spriteRendererOff;
-    [SerializeField] ForceSystem forceSystem;
+        [SerializeField] SpriteRenderer spriteRendererOn;
+        [SerializeField] SpriteRenderer spriteRendererOff;
+        [SerializeField] ForceSystem forceSystem;
+        private Color _opaciteDemi;
+        private Color _opacitePleine;
 
         private bool _peutEtreActive;
 
@@ -23,6 +25,8 @@ namespace SalleDeJeu {
 
         private void Awake()
         {
+            _opaciteDemi = new Color(1f, 1f, 1f, .5f);
+            _opacitePleine = new Color(1f, 1f, 1f, 1f);
             _peutEtreActive = true;
             if (_isActivated)
             {
@@ -40,30 +44,44 @@ namespace SalleDeJeu {
 
         }
 
-        private IEnumerator OnTriggerEnter2D(Collider2D other)
+
+        private IEnumerator OnTriggerExit2D(Collider2D collision)
         {
-            if (other != null && other.isTrigger && _peutEtreActive)
+            if (collision.gameObject.tag == "enemy")
             {
-                if (_isActivated)
-                {
-                    _peutEtreActive = false;
-                    spriteRendererOn.enabled = false;
-                    spriteRendererOff.enabled = true;
-                    _isActivated = false;
-                }
-                else
-                {
-                    _peutEtreActive = false;
-                    spriteRendererOn.enabled = true;
-                    spriteRendererOff.enabled = false;
-                    _isActivated = true;
-                }
-                scriptSalleAMettreAJour.DetectionChangementObjetActionnable();
-                forceSystem.SetPlayerForce(-1);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.3f);
+                spriteRendererOn.color = _opacitePleine;
+                spriteRendererOff.color = _opacitePleine;
                 _peutEtreActive = true;
             }
+        }
 
+
+        private IEnumerator OnTriggerEnter2D(Collider2D collision)
+        {
+
+            if (collision != null)
+                if (collision.gameObject.tag == "enemy")
+                {
+                    _peutEtreActive = false;
+                    spriteRendererOn.color = _opaciteDemi;
+                    spriteRendererOff.color = _opaciteDemi;
+
+                }
+                else if (collision.gameObject.tag == "playerAttackHitbox" && _peutEtreActive)
+                {
+                    _peutEtreActive = false;
+       
+                        spriteRendererOn.enabled = !_isActivated;
+                        spriteRendererOff.enabled = _isActivated;
+                        _isActivated = !_isActivated;
+
+
+                    scriptSalleAMettreAJour.DetectionChangementObjetActionnable();
+                    forceSystem.SetPlayerForce(-1);
+                    yield return new WaitForSeconds(0.5f);
+                    _peutEtreActive = true;
+                }
         }
     }
 }

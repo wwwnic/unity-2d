@@ -68,11 +68,11 @@ TagManager:
   - name: props
     uniqueID: 825116711
     locked: 0
-  - name: wall
-    uniqueID: 4291841727
-    locked: 0
   - name: Item and object
     uniqueID: 2806348761
+    locked: 0
+  - name: wall
+    uniqueID: 4291841727
     locked: 0
   - name: character
     uniqueID: 1119179361
