@@ -22,8 +22,7 @@ namespace SalleDeJeu
         [SerializeField] protected string objectToActivateParameterName = "activated";
         [Tooltip("La porte a ouvrir")]
         [SerializeField] protected GameObject objectToActivate;
-        [Tooltip("La classe qui permet de generer le status d'un levier")]
-        [SerializeField] protected StatusLevierAleatoire statusLevierAleatoire;
+
 
         public List<ObjectActionnable> GetObjectActionnableList()
         {

@@ -59,6 +59,9 @@ TagManager:
   - name: photo
     uniqueID: 2976298033
     locked: 0
+  - name: props
+    uniqueID: 825116711
+    locked: 0
   - name: wall
     uniqueID: 4291841727
     locked: 0
@@ -67,9 +70,6 @@ TagManager:
     locked: 0
   - name: ground
     uniqueID: 335063501
-    locked: 0
-  - name: props
-    uniqueID: 825116711
     locked: 0
   - name: Item and object
     uniqueID: 2806348761
