@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraZoomCtrl : MonoBehaviour
+public class CameraSizeCtrl : MonoBehaviour
 {
     private Camera cam;
     private float zoomRequest;

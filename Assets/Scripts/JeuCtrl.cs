@@ -12,8 +12,7 @@ public class JeuCtrl : MonoBehaviour
 
     [SerializeField] GameObject solution;
 
-
-    private CameraZoomCtrl cameraZoomCtrl;
+    private CameraSizeCtrl cameraSizeCtrl;
     private bool _isJumping = false;
     private bool _isAttacking = false;
     private bool _isGrabbing = false;
@@ -22,7 +21,7 @@ public class JeuCtrl : MonoBehaviour
     void Start()
     {
         persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
-        cameraZoomCtrl = GameObject.FindWithTag("MainCamera").GetComponent<CameraZoomCtrl>();
+        cameraSizeCtrl = GameObject.FindWithTag("MainCamera").GetComponent<CameraSizeCtrl>();
     }
 
     // Update is called once per frame
@@ -78,7 +77,7 @@ public class JeuCtrl : MonoBehaviour
         //empeche de zoomer durant la solution
         if (!_regardeLaSolution)
         {
-            cameraZoomCtrl.AjustementZoomCamera(Input.GetAxis("Mouse ScrollWheel"));
+            cameraSizeCtrl.AjustementZoomCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
 }
