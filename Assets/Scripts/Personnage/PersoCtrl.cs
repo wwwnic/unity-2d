@@ -84,12 +84,8 @@ public class PersoCtrl : MonoBehaviour
         if (_estAuSol && !_estEnSaut)
         {
             _estEnSaut = true;
-            rb.velocity += Vector2.up * _vitesseSaut;
-            _vitesseSaut -= amortiSaut;
-            if (_vitesseSaut < 0)
-            {
-                _vitesseSaut = 0;
-            }
+            rb.velocity += Vector2.up * puissanceDuSaut;
+
         }
     }
 

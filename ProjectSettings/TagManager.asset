@@ -59,6 +59,9 @@ TagManager:
   - name: photo
     uniqueID: 2976298033
     locked: 0
+  - name: wall
+    uniqueID: 4291841727
+    locked: 0
   - name: bounds
     uniqueID: 681165559
     locked: 0
@@ -71,12 +74,6 @@ TagManager:
   - name: Item and object
     uniqueID: 2806348761
     locked: 0
-  - name: wall
-    uniqueID: 4291841727
-    locked: 0
   - name: character
     uniqueID: 1119179361
-    locked: 0
-  - name: New Layer
-    uniqueID: 3334688443
     locked: 0

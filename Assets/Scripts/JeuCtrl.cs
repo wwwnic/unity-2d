@@ -9,9 +9,11 @@ using UnityEngine.UI;
 public class JeuCtrl : MonoBehaviour
 {
     PersoCtrl persoCtrl;
-    [SerializeField] GameObject solution;
-    ScrollRect solutionScroll;
 
+    [SerializeField] GameObject solution;
+
+
+    private CameraZoomCtrl cameraZoomCtrl;
     private bool _isJumping = false;
     private bool _isAttacking = false;
     private bool _isGrabbing = false;
@@ -20,7 +22,7 @@ public class JeuCtrl : MonoBehaviour
     void Start()
     {
         persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
-        solutionScroll = solution.GetComponent<ScrollRect>();
+        cameraZoomCtrl = GameObject.FindWithTag("MainCamera").GetComponent<CameraZoomCtrl>();
     }
 
     // Update is called once per frame
@@ -71,6 +73,12 @@ public class JeuCtrl : MonoBehaviour
         {
             _regardeLaSolution = !_regardeLaSolution;
             solution.SetActive(_regardeLaSolution);
+        }
+
+        //empeche de zoomer durant la solution
+        if (!_regardeLaSolution)
+        {
+            cameraZoomCtrl.AjustementZoomCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
 }

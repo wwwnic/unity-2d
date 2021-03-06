@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cameraZoomCtrl : MonoBehaviour
+public class CameraZoomCtrl : MonoBehaviour
 {
     private Camera cam;
     private float zoomRequest;
@@ -20,9 +20,8 @@ public class cameraZoomCtrl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void AjustementZoomCamera(float scrollData)
     {
-        float scrollData = Input.GetAxis("Mouse ScrollWheel");
         zoomRequest -= scrollData * zoomSpeed;
         zoomRequest = Mathf.Clamp(zoomRequest, zoomMaxIn, zoomMaxOut);
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomRequest, Time.deltaTime * zoomSpeed);
