@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 /// <summary>
 /// Contrôleur de jeu.
@@ -13,9 +10,7 @@ public class JeuCtrl : MonoBehaviour
     [SerializeField] GameObject solution;
 
     private CameraSizeCtrl cameraSizeCtrl;
-    private bool _isJumping = false;
     private bool _isAttacking = false;
-    private bool _isGrabbing = false;
     private bool _regardeLaSolution = false;
     // Start is called before the first frame update
     void Start()
@@ -40,23 +35,17 @@ public class JeuCtrl : MonoBehaviour
         // Sauter.
         if (Input.GetAxisRaw("Jump") != 0)
         {
-            if (!_isJumping)
-            {
-               persoCtrl.SauterDebut();
-                _isJumping = true;
-            }
             persoCtrl.Sauter();
         }
         else
         {
             persoCtrl.SauterFin();
-            _isJumping = false;
         }
 
         // L'attaque.
         if (Input.GetAxisRaw("Fire1") != 0 && !_regardeLaSolution)
         {
-            if (!_isAttacking && !_isGrabbing)
+            if (!_isAttacking)
             {
                 persoCtrl.Attaquer();
                 _isAttacking = true;
@@ -67,7 +56,7 @@ public class JeuCtrl : MonoBehaviour
             _isAttacking = false;
         }
 
-         // Ouvre ou ferme la solution
+        // Ouvre ou ferme la solution
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
             _regardeLaSolution = !_regardeLaSolution;

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Script de contrôle du personnage.
@@ -12,9 +10,6 @@ public class PersoCtrl : MonoBehaviour
 
     // Vitesse du saut
     [SerializeField] float puissanceDuSaut = 5f;
-
-    // Amorti du saut
-    [SerializeField] float amortiSaut = 3f;
 
     // Layers considérées comme le "sol"
     [SerializeField] LayerMask LayerSol;
@@ -33,47 +28,29 @@ public class PersoCtrl : MonoBehaviour
     [SerializeField] float rayDist;
 
 
-    Rigidbody2D rb;
-    Animator anim;
-    new CapsuleCollider2D collider;
+    Rigidbody2D _rb;
+    Animator _anim;
+    CapsuleCollider2D _collider;
 
     private bool _regarderDroite = true;
-    //private bool _isJumping = false;
-    private float _vitesseSaut;
     bool _estAuSol;
-
-    //Cette variable (_estEnSaut) est capital pour effectué un saut correct
     bool _estEnSaut = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        collider = GetComponent<CapsuleCollider2D>();
+        _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+        _collider = GetComponent<CapsuleCollider2D>();
         _estAuSol = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("deplacement", Mathf.Abs(rb.velocity.x));
+        _anim.SetFloat("deplacement", Mathf.Abs(_rb.velocity.x));
         _estAuSol = EstSurLeSol();
-        anim.SetBool("jumping", !(_estAuSol));
-    }
-
-
-    /// <summary>
-    /// Début du saut.
-    /// </summary>
-
-
-    public void SauterDebut()
-    {
-        if (_estAuSol)
-        {
-            _vitesseSaut = puissanceDuSaut;
-        }
+        _anim.SetBool("jumping", !(_estAuSol));
     }
 
     /// <summary>
@@ -84,18 +61,18 @@ public class PersoCtrl : MonoBehaviour
         if (_estAuSol && !_estEnSaut)
         {
             _estEnSaut = true;
-            rb.velocity += Vector2.up * puissanceDuSaut;
+            _rb.velocity += Vector2.up * puissanceDuSaut;
 
         }
     }
-
-
+    /// <summary>
+    /// Empêche le joueur de devenir superman
+    /// </summary>
     public void SauterFin()
     {
         if (_estAuSol)
         {
             _estEnSaut = false;
-
         }
     }
 
@@ -107,7 +84,7 @@ public class PersoCtrl : MonoBehaviour
     {
         if (!FonceDansMurDroite())
         {
-            rb.velocity = new Vector2(vitesse, rb.velocity.y);
+            _rb.velocity = new Vector2(vitesse, _rb.velocity.y);
         }
         if (!_regarderDroite)
         {
@@ -124,7 +101,7 @@ public class PersoCtrl : MonoBehaviour
 
         if (!FonceDansMurGauche())
         {
-            rb.velocity = new Vector2(-vitesse, rb.velocity.y);
+            _rb.velocity = new Vector2(-vitesse, _rb.velocity.y);
         }
         if (_regarderDroite)
         {
@@ -148,7 +125,7 @@ public class PersoCtrl : MonoBehaviour
     /// </summary>
     public void Attaquer()
     {
-        anim.SetTrigger("attaque");
+        _anim.SetTrigger("attaque");
     }
 
 
@@ -158,26 +135,26 @@ public class PersoCtrl : MonoBehaviour
     /// <returns>Vrai ou faux</returns>
     public bool EstSurLeSol()
     {
-        Vector3 centerLeft = collider.bounds.center;
-        centerLeft[0] = collider.bounds.min.x;
-        Vector3 centerRight = collider.bounds.center;
-        centerRight[0] = collider.bounds.max.x;
+        Vector3 centerLeft = _collider.bounds.center;
+        centerLeft[0] = _collider.bounds.min.x;
+        Vector3 centerRight = _collider.bounds.center;
+        centerRight[0] = _collider.bounds.max.x;
         float ajustement = 0.07f;
 
-        RaycastHit2D raycastHitCenter = Physics2D.Raycast(collider.bounds.center, Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
-        RaycastHit2D raycastHitLeft = Physics2D.Raycast(centerLeft, Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
-        RaycastHit2D raycastHitRight = Physics2D.Raycast(centerRight, Vector2.down, collider.bounds.extents.y + ajustement, LayerSol);
+        RaycastHit2D raycastHitCenter = Physics2D.Raycast(_collider.bounds.center, Vector2.down, _collider.bounds.extents.y + ajustement, LayerSol);
+        RaycastHit2D raycastHitLeft = Physics2D.Raycast(centerLeft, Vector2.down, _collider.bounds.extents.y + ajustement, LayerSol);
+        RaycastHit2D raycastHitRight = Physics2D.Raycast(centerRight, Vector2.down, _collider.bounds.extents.y + ajustement, LayerSol);
 
 
         bool toucheLeSol = raycastHitLeft.collider != null || raycastHitCenter.collider != null || raycastHitRight.collider != null;
         Color rayColor = (toucheLeSol ? Color.green : Color.red);
 
-        Debug.DrawRay(collider.bounds.center,
-            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(_collider.bounds.center,
+            Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
         Debug.DrawRay(centerLeft,
-            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+            Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
         Debug.DrawRay(centerRight,
-            Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+            Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
 
         return toucheLeSol;
     }
@@ -190,13 +167,13 @@ public class PersoCtrl : MonoBehaviour
     {
         bool detecteUneColision;
         float ajustement = 0.1f;
-        RaycastHit2D raycastHitLeft = Physics2D.Raycast(collider.bounds.center,
-             Vector2.left, collider.bounds.extents.x + ajustement, LayerMur);
+        RaycastHit2D raycastHitLeft = Physics2D.Raycast(_collider.bounds.center,
+             Vector2.left, _collider.bounds.extents.x + ajustement, LayerMur);
 
         detecteUneColision = raycastHitLeft.collider != null;
         Color rayColor = (detecteUneColision ? Color.red : Color.green);
-        Debug.DrawRay(collider.bounds.center,
-            Vector2.left * (collider.bounds.extents.x + ajustement), rayColor);
+        Debug.DrawRay(_collider.bounds.center,
+            Vector2.left * (_collider.bounds.extents.x + ajustement), rayColor);
         return detecteUneColision;
     }
 
@@ -208,12 +185,12 @@ public class PersoCtrl : MonoBehaviour
     {
         bool detecteUneColision;
         float ajustement = 0.1f;
-        RaycastHit2D raycastHitRight = Physics2D.Raycast(collider.bounds.center,
-            Vector2.right, collider.bounds.extents.x + ajustement, LayerMur);
+        RaycastHit2D raycastHitRight = Physics2D.Raycast(_collider.bounds.center,
+            Vector2.right, _collider.bounds.extents.x + ajustement, LayerMur);
 
         detecteUneColision = raycastHitRight.collider != null;
         Color rayColor = (detecteUneColision ? Color.red : Color.green);
-        Debug.DrawRay(collider.bounds.center, Vector2.right * (collider.bounds.extents.x + ajustement), rayColor);
+        Debug.DrawRay(_collider.bounds.center, Vector2.right * (_collider.bounds.extents.x + ajustement), rayColor);
 
         return detecteUneColision;
     }

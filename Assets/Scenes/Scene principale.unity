@@ -28010,6 +28010,7 @@ MonoBehaviour:
   - {fileID: 25783551}
   - {fileID: 158829761}
   - {fileID: 1440996151}
+  cameraDeDefaite: {fileID: 998126386}
 --- !u!114 &1239484071
 MonoBehaviour:
   m_ObjectHideFlags: 0

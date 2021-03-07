@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace SalleDeJeu
+﻿namespace SalleDeJeu
 {
     public class SalleCtrl04 : LogiqueDesSallesDeJeu
     {
@@ -23,7 +19,6 @@ namespace SalleDeJeu
 
             _resultatColonneXNOR2_1 = ComparateurBooleen(BooleanOperation.nonOuExclusif_XNOR, _resultatColonneOR1_1, _resultatColonneNAND1_2);
             _resultatColonneXNOR2_2 = ComparateurBooleen(BooleanOperation.nonOuExclusif_XNOR, _resultatColonneNO1_3, objectActionnableList[5].GetIsActivated());
-
 
             _resultatFinalColonneAND3_1 = ComparateurBooleen(BooleanOperation.et_AND, _resultatColonneXNOR2_1, _resultatColonneXNOR2_2);
             return _resultatFinalColonneAND3_1;

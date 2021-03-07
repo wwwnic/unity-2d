@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace SalleDeJeu
 {
-
-
     ///<summary>
     ///Cette classe permet de resoudre l'algebre de boole utilise dans le jeu.
     ///
@@ -17,14 +14,14 @@ namespace SalleDeJeu
     public abstract class LogiqueDesSallesDeJeu : MonoBehaviour, IlogiqueDesSales
     {
         [Tooltip("La liste d'obejet actionnable, levier / pedestal")]
-        [SerializeField] protected List<ObjectActionnable> objectActionnableList;
+        [SerializeField] protected List<ObjetActionnable> objectActionnableList;
         [Tooltip("Nom du parametre a modifier dans l'Animator")]
         [SerializeField] protected string objectToActivateParameterName = "activated";
         [Tooltip("La porte a ouvrir")]
         [SerializeField] protected GameObject objectToActivate;
 
 
-        public List<ObjectActionnable> GetObjectActionnableList()
+        public List<ObjetActionnable> GetObjectActionnableList()
         {
             return objectActionnableList;
         }
@@ -53,7 +50,6 @@ namespace SalleDeJeu
         {
             objectToActivate.GetComponent<Animator>().SetBool(objectToActivateParameterName, condition);
         }
-
 
         /// <summary>
         /// La fonction qui s'occupe de resoudre le operation booleen
@@ -92,23 +88,10 @@ namespace SalleDeJeu
         /// <param name="objectActionnableX">un objet actionnable</param>
         /// <param name="objectActionnableY">un objet actionnable</param>
         /// <returns></returns>
-        protected bool ComparateurBooleen(BooleanOperation operation, ObjectActionnable objectActionnableX, ObjectActionnable objectActionnableY)
+        protected bool ComparateurBooleen(BooleanOperation operation, ObjetActionnable objectActionnableX, ObjetActionnable objectActionnableY)
         {
             return ComparateurBooleen(operation, objectActionnableX.GetIsActivated(), objectActionnableY.GetIsActivated());
         }
 
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
