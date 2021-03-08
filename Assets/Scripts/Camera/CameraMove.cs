@@ -14,8 +14,6 @@ public class CameraMove : MonoBehaviour
     private int lastX;
     private float dynamicSpeed;
 
-
-
     void Start()
     {
         offset = new Vector2(Mathf.Abs(offset.x), offset.y);

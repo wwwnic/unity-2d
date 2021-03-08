@@ -3,22 +3,30 @@
 
 namespace SalleDeJeu
 {
+    /// <summary>
+    /// Le controle d'une sale de jeu
+    /// </summary>
     public class SalleCtrl03 : LogiqueDesSallesDeJeu
     {
 
-        bool _resultatColonneNO1_1;
-        bool _resultatColonneAND1_2;
-        bool _resultatColonneNOR1_3;
-        bool _resultatColonneOR1_4;
+        private bool _resultatColonneNO1_1;
+        private bool _resultatColonneAND1_2;
+        private bool _resultatColonneNOR1_3;
+        private bool _resultatColonneOR1_4;
 
-        bool _resultatColonneNOR2_1;
-        bool _resultatColonneXOR2_2;
-        bool _resultatColonneNAND2_3;
+        private bool _resultatColonneNOR2_1;
+        private bool _resultatColonneXOR2_2;
+        private bool _resultatColonneNAND2_3;
 
-        bool _resultatColonneAND3_1;
-        bool _resultatColonneAND3_2;
-        bool _resultatFinalColonneAND4_1;
+        private bool _resultatColonneAND3_1;
+        private bool _resultatColonneAND3_2;
+        private bool _resultatFinalColonneAND4_1;
 
+
+        /// <summary>
+        /// Vérifie si la salle est terminée.
+        /// </summary>
+        /// <returns>Si la salle est terminée</returns>
         public override bool CalculeBooleen()
         {
             _resultatColonneNO1_1 = !(objectActionnableList[1].GetIsActivated());
@@ -38,6 +46,9 @@ namespace SalleDeJeu
             return _resultatFinalColonneAND4_1;
         }
 
+        /// <summary>
+        /// Détecte un changement dans une salle.
+        /// </summary>
         public override void DetectionChangementObjetActionnable()
         {
             objectAnimatorSetParameterBool(CalculeBooleen());

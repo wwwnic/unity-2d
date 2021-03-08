@@ -9,9 +9,9 @@ namespace SalleDeJeu
     /// </summary>
     public class LeverCtrl : ObjetActionnable
     {
-        [SerializeField] SpriteRenderer spriteRendererOn;
-        [SerializeField] SpriteRenderer spriteRendererOff;
-        [SerializeField] ForceSystem forceSystem;
+        [SerializeField] private SpriteRenderer spriteRendererOn;
+        [SerializeField] private SpriteRenderer spriteRendererOff;
+        [SerializeField] private ForceSystem forceSystem;
         [SerializeField] int CoutForceActionner = -1;
         private Color _opaciteDemi;
         private Color _opacitePleine;

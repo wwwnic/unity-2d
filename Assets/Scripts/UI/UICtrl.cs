@@ -5,16 +5,16 @@ using UnityEngine;
 public class UICtrl : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] winScreenObjects;
+    private GameObject[] winScreenObjects;
 
     [SerializeField]
-    GameObject[] loseScreenObjects;
+    private GameObject[] loseScreenObjects;
 
     [SerializeField]
-    GameObject boutonRestart;
+    private GameObject boutonRestart;
 
     [SerializeField]
-    GameObject boutonReturnTitle;
+    private GameObject boutonReturnTitle;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,9 @@ public class UICtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Montre l'ecran de victoire
+    /// </summary>
     public void ShowWinScreen()
     {
         foreach (GameObject g in winScreenObjects)
@@ -42,6 +45,10 @@ public class UICtrl : MonoBehaviour
         boutonReturnTitle.SetActive(true);
     }
 
+
+    /// <summary>
+    /// Montre l'ecran de defaite.
+    /// </summary>
     public void ShowLoseScreen()
     {
         foreach (GameObject g in loseScreenObjects)

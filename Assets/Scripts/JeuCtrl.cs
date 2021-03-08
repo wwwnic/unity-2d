@@ -5,9 +5,9 @@
 /// </summary>
 public class JeuCtrl : MonoBehaviour
 {
-    PersoCtrl persoCtrl;
+    private PersoCtrl persoCtrl;
 
-    [SerializeField] GameObject solution;
+    [SerializeField] private GameObject solution;
 
     private CameraSizeCtrl cameraSizeCtrl;
     private bool _isAttacking = false;

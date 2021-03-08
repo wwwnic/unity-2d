@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Retourne a l'ecran titre
+/// </summary>
 public class ReturnTitle : MonoBehaviour
 {
 

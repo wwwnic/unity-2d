@@ -9,11 +9,11 @@ using UnityEngine.UI;
 public class ForceSystem : MonoBehaviour
 {
 
-    [SerializeField] int playerForce;
-    [SerializeField] int winForce;
-    [SerializeField] int loseForce;
-    [SerializeField] HealthSystem healSystemToModify;
-    [SerializeField] Text texteToModify;
+    [SerializeField] private int playerForce;
+    [SerializeField] private int winForce;
+    [SerializeField] private int loseForce;
+    [SerializeField] private HealthSystem healSystemToModify;
+    [SerializeField] private Text texteToModify;
 
 
 

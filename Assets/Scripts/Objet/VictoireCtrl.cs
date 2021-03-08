@@ -2,7 +2,7 @@
 
 public class VictoireCtrl : MonoBehaviour
 {
-    UICtrl _ui;
+   private UICtrl _ui;
 
     void Start()
     {
