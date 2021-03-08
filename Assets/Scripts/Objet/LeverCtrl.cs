@@ -1,53 +1,90 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 
-namespace SalleDeJeu { 
-
-    [Serializable]
-    public class LeverCtrl : ObjectActionnable
+namespace SalleDeJeu
+{
+    /// <summary>
+    /// La classe qui gere les leviers.
+    /// </summary>
+    public class LeverCtrl : ObjetActionnable
     {
-
-    [SerializeField] SpriteRenderer spriteRendererOn;
-    [SerializeField] SpriteRenderer spriteRendererOff;
-
+        [SerializeField] SpriteRenderer spriteRendererOn;
+        [SerializeField] SpriteRenderer spriteRendererOff;
+        [SerializeField] ForceSystem forceSystem;
+        [SerializeField] int CoutForceActionner = -1;
+        private Color _opaciteDemi;
+        private Color _opacitePleine;
+        private bool _peutEtreActive;
 
         private void Start()
         {
-            if (Get_isActivated())
+            RafraichirLevier();
+            StartCoroutine(OnTriggerEnter2D(null));
+        }
+
+        private void Awake()
+        {
+            _opaciteDemi = new Color(1f, 1f, 1f, .5f);
+            _opacitePleine = new Color(1f, 1f, 1f, 1f);
+            _peutEtreActive = true;
+        }
+
+
+        /// <summary>
+        /// Rafraichit les sprites du levier
+        /// </summary>
+        public void RafraichirLevier()
+        {
+            spriteRendererOn.enabled = _isActivated;
+            spriteRendererOff.enabled = !_isActivated;
+        }
+
+        /// <summary>
+        /// Permet de retablir les sprites du levier quand un enemie sort du colider du levier.
+        /// </summary>
+        /// <param name="collision">le colideer qui touche le levier</param>
+        /// <returns></returns>
+        private IEnumerator OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag == "enemy")
             {
-                spriteRendererOn.enabled = true;
-                spriteRendererOff.enabled = false;
-                _isActivated = true;
-            }
-            else
-            {
-                spriteRendererOn.enabled = false;
-                spriteRendererOff.enabled = true;
-                _isActivated = false;
+                yield return new WaitForSeconds(0.3f);
+                spriteRendererOn.color = _opacitePleine;
+                spriteRendererOff.color = _opacitePleine;
+                _peutEtreActive = true;
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        /// <summary>
+        /// Permet au joueur d'actionner le levier ou désactive le levier si un slime touche a son colider.
+        /// </summary>
+        /// <param name="collision">le colideer qui touche le levier</param>
+        /// <returns>Le temps restant s'il y a lieu</returns>
+        private IEnumerator OnTriggerEnter2D(Collider2D collision)
         {
-            if (other.isTrigger)
-            {
-                if (_isActivated)
+
+            if (collision != null)
+                if (collision.gameObject.tag == "enemy")
                 {
-                    spriteRendererOn.enabled = false;
-                    spriteRendererOff.enabled = true;
-                    _isActivated = false;
+                    _peutEtreActive = false;
+                    spriteRendererOn.color = _opaciteDemi;
+                    spriteRendererOff.color = _opaciteDemi;
+
                 }
-                else
+                else if (collision.gameObject.tag == "playerAttackHitbox" && _peutEtreActive)
                 {
-                    spriteRendererOn.enabled = true;
-                    spriteRendererOff.enabled = false;
-                    _isActivated = true;
+                    _peutEtreActive = false;
+                    spriteRendererOn.enabled = !_isActivated;
+                    spriteRendererOff.enabled = _isActivated;
+                    _isActivated = !_isActivated;
+
+
+                    scriptSalleAMettreAJour.DetectionChangementObjetActionnable();
+                    forceSystem.SetPlayerForce(CoutForceActionner);
+                    yield return new WaitForSeconds(0.5f);
+                    _peutEtreActive = true;
                 }
-                scriptSalleAMettreAJour.DetectionChangementObjetActionnable();
-            }
         }
     }
 }

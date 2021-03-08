@@ -25,13 +25,7 @@ public class UICtrl : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void showWinScreen()
+    public void ShowWinScreen()
     {
         foreach (GameObject g in winScreenObjects)
         {
@@ -40,7 +34,7 @@ public class UICtrl : MonoBehaviour
         }
     }
 
-    public void showLoseScreen()
+    public void ShowLoseScreen()
     {
         foreach (GameObject g in loseScreenObjects)
         {

@@ -1,14 +1,15 @@
-﻿using UnityEngine;
-
-
-namespace SalleDeJeu
+﻿namespace SalleDeJeu
 {
-    public class SalleCtrl00 : LogiqueDesSalles
+    public class SalleCtrl00 : LogiqueDesSallesDeJeu
     {
+        public override bool CalculeBooleen()
+        {
+            return ComparateurBooleen(BooleanOperation.et_AND, objectActionnableList[0], objectActionnableList[1]);
+        }
 
         public override void DetectionChangementObjetActionnable()
         {
-            objectAnimatorSetParameterBool(ComparateurBooleen(BooleanOperation.et_AND, objectActionnableList[0], objectActionnableList[1]));
+            objectAnimatorSetParameterBool(CalculeBooleen());
         }
     }
 }

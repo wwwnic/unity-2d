@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 /// <summary>
 /// Classe qui gère le système de vie du joueur.
@@ -12,65 +12,93 @@ using UnityEngine.UI;
 /// </summary>
 public class HealthSystem : MonoBehaviour
 {
-
-    private int vie = 3;
-    private int nbCoeur = 3;
-    private bool _estInvincible;
-
     [SerializeField] private Image[] coeurs;
     [SerializeField] private Sprite coeurPlein;
     [SerializeField] private Sprite coeurVide;
     [SerializeField] private SpriteRenderer[] knightSprites;
+    [SerializeField] private Camera cameraDeDefaite;
+
+
+    private int _vieDuChevalier = 3;
+    private bool _estInvincible;
+    private int _vieActuel = 3;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (_vieActuel > _vieDuChevalier)
+        {
+            _vieActuel = _vieDuChevalier;
+        }
         _estInvincible = false;
+        MettreAJourLesCoeurs();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    /// <summary>
+    /// Met violament fin à la partie. 
+    /// </summary>
+    private void MettreFinALaPartie()
     {
-        if (vie > nbCoeur)
-        {
-            vie = nbCoeur;
-        }
 
-        if (vie <= 0)
+        if (_vieActuel <= 0)
         {
+            cameraDeDefaite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             Destroy(gameObject);
-            GameObject.FindWithTag("ui").GetComponent<UICtrl>().showLoseScreen();
+            GameObject.FindWithTag("ui").GetComponent<UICtrl>().ShowLoseScreen();
         }
+    }
 
+    private void MettreAJourLesCoeurs()
+    {
         for (int i = 0; i < coeurs.Length; i++)
         {
-            if (i < vie)
+            if (i < _vieActuel)
             {
                 coeurs[i].sprite = coeurPlein;
-            } else
+            }
+            else
             {
                 coeurs[i].sprite = coeurVide;
             }
-            if (i < nbCoeur)
+
+
+            if (i < _vieDuChevalier)
             {
                 coeurs[i].enabled = true;
-            } else
+            }
+            else
             {
                 coeurs[i].enabled = false;
             }
         }
+
+        if (_vieActuel <= 0)
+        {
+            MettreFinALaPartie();
+        }
     }
 
+
     /// <summary>
-    /// Méthode qui retire 1 coeur de vie au joueur s'il entre en collision avec un ennemi.
+    /// Retire 1 coeur de vie au joueur sauf s’il est actuellement invincible
     /// </summary>
-    public void prendreDamage()
+    public void prendreDamageEtDevientInvicibleSaufSiInvincible()
     {
         if (_estInvincible) return;
+        prendreDommageEtDevientInvincible();
+    }
 
-        vie -= 1;
-        _estInvincible = true;
-        StartCoroutine(Invulnerable());
+
+
+    /// <summary>
+    ///  Retire 1 coeur de vie au joueur 
+    /// </summary>
+    public void prendreDommageEtDevientInvincible()
+    {
+        _vieActuel -= 1;
+        MettreAJourLesCoeurs();
+        StartCoroutine(DevientTemporairementInvincible());
         StartCoroutine(Flash());
     }
 
@@ -80,9 +108,10 @@ public class HealthSystem : MonoBehaviour
     /// <returns>
     /// Retourne un temps d'attente avant de réactiver la fonctionnalité des dégâts au joueur.
     /// </returns>
-    private IEnumerator Invulnerable()
+    private IEnumerator DevientTemporairementInvincible()
     {
-        yield return new WaitForSeconds(2.0f);
+        _estInvincible = true;
+        yield return new WaitForSeconds(1.5f);
         _estInvincible = false;
     }
 
@@ -103,7 +132,8 @@ public class HealthSystem : MonoBehaviour
                 {
                     s.enabled = false;
                 }
-            } else
+            }
+            else
             {
                 foreach (SpriteRenderer s in knightSprites)
                 {
