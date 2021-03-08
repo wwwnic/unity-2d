@@ -1,6 +1,6 @@
 ﻿namespace SalleDeJeu
 {
-    interface IlogiqueDesSales
+    interface IlogiqueDesSalles
     {
         void DetectionChangementObjetActionnable();
         bool CalculeBooleen();

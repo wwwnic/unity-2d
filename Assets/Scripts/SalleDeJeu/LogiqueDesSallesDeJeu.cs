@@ -11,7 +11,7 @@ namespace SalleDeJeu
     ///Ensuite, elle résout l'algebre de Boole (voir énum BooleanOperation) 
     ///Elle est surchargée afin d'accommoder le scripting des salles au maximum.
     ///</summary>
-    public abstract class LogiqueDesSallesDeJeu : MonoBehaviour, IlogiqueDesSales
+    public abstract class LogiqueDesSallesDeJeu : MonoBehaviour, IlogiqueDesSalles
     {
         [Tooltip("La liste d'obejet actionnable, levier / pedestal")]
         [SerializeField] protected List<ObjetActionnable> objectActionnableList;
