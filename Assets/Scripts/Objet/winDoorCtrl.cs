@@ -23,7 +23,7 @@ public class winDoorCtrl : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            ui.showWinScreen();
+            ui.ShowWinScreen();
         }
     }
 }

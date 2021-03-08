@@ -40,7 +40,7 @@ public class HealthSystem : MonoBehaviour
         if (vie <= 0)
         {
             Destroy(gameObject);
-            GameObject.FindWithTag("ui").GetComponent<UICtrl>().showLoseScreen();
+            GameObject.FindWithTag("ui").GetComponent<UICtrl>().ShowLoseScreen();
         }
 
         for (int i = 0; i < coeurs.Length; i++)
