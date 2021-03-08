@@ -7,7 +7,7 @@ public class ReturnTitle : MonoBehaviour
 {
 
     [SerializeField] private int sceneId;
-    public void returnTitle()
+    public void ReturnTitleScreen()
     {
         SceneManager.LoadScene(sceneId);
         Time.timeScale = 1;

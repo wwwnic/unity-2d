@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Script de contrôle de la caméra.
+/// </summary>
 public class CameraCtrl : MonoBehaviour
 {
     private Rigidbody2D rb;

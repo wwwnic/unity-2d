@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Permet de zoomer la caméra avec la roulette de la souris.
+/// </summary>
 public class CameraSizeCtrl : MonoBehaviour
 {
     private Camera cam;

@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+
+/// <summary>
+/// Gére le déplacement de la caméra selon la position du joueur.
+/// </summary>
 public class CameraMove : MonoBehaviour
 {
     public float damping = 1.5f;
@@ -18,12 +22,14 @@ public class CameraMove : MonoBehaviour
         FindPlayer();
     }
 
+    /// <summary>
+    /// Trouve la position du joueur.
+    /// </summary>
     public void FindPlayer()
     {
         lastX = Mathf.RoundToInt(_target.position.x);
         transform.position = new Vector3(_target.position.x + offset.x, _target.position.y + offset.y, transform.position.z);
     }
-
 
 
     void FixedUpdate()

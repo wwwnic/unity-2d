@@ -10,6 +10,12 @@ public class UICtrl : MonoBehaviour
     [SerializeField]
     GameObject[] loseScreenObjects;
 
+    [SerializeField]
+    GameObject boutonRestart;
+
+    [SerializeField]
+    GameObject boutonReturnTitle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +38,8 @@ public class UICtrl : MonoBehaviour
             g.SetActive(true);
             Time.timeScale = 0;
         }
+        boutonRestart.SetActive(false);
+        boutonReturnTitle.SetActive(true);
     }
 
     public void ShowLoseScreen()
@@ -40,5 +48,7 @@ public class UICtrl : MonoBehaviour
         {
             g.SetActive(true);
         }
+        boutonRestart.SetActive(false);
+        boutonReturnTitle.SetActive(true);
     }
 }
