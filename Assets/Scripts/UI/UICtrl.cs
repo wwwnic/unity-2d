@@ -5,10 +5,21 @@ using UnityEngine;
 public class UICtrl : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] winScreenObjects;
+    private GameObject[] winScreenObjects;
 
     [SerializeField]
-    GameObject[] loseScreenObjects;
+    private GameObject[] loseScreenObjects;
+
+    [SerializeField]
+    private GameObject boutonRestart;
+
+    [SerializeField]
+    private GameObject boutonReturnTitle;
+
+    [SerializeField]
+    Grid bgUI;
+
+    Vector2 positionCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +34,17 @@ public class UICtrl : MonoBehaviour
         {
             g.SetActive(false);
         }
+        bgUI.transform.position = new Vector2(-25.6f, -14.6f);
     }
 
+    private void Update()
+    {
+        positionCamera = GameObject.FindGameObjectWithTag("MainCamera").transform.position;
+    }
+
+    /// <summary>
+    /// Montre l'ecran de victoire
+    /// </summary>
     public void ShowWinScreen()
     {
         foreach (GameObject g in winScreenObjects)
@@ -32,13 +52,23 @@ public class UICtrl : MonoBehaviour
             g.SetActive(true);
             Time.timeScale = 0;
         }
+        boutonRestart.SetActive(false);
+        boutonReturnTitle.SetActive(true);
+        bgUI.transform.position = positionCamera;
     }
 
+
+    /// <summary>
+    /// Montre l'ecran de defaite.
+    /// </summary>
     public void ShowLoseScreen()
     {
         foreach (GameObject g in loseScreenObjects)
         {
             g.SetActive(true);
         }
+        boutonRestart.SetActive(false);
+        boutonReturnTitle.SetActive(true);
+        bgUI.transform.position = positionCamera;
     }
 }

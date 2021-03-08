@@ -28,13 +28,13 @@ public class PersoCtrl : MonoBehaviour
     [SerializeField] float rayDist;
 
 
-    Rigidbody2D _rb;
-    Animator _anim;
-    CapsuleCollider2D _collider;
+    private Rigidbody2D _rb;
+    private Animator _anim;
+    private CapsuleCollider2D _collider;
 
     private bool _regarderDroite = true;
-    bool _estAuSol;
-    bool _estEnSaut = false;
+    private bool _estAuSol;
+    private bool _estEnSaut = false;
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +107,17 @@ public class PersoCtrl : MonoBehaviour
         {
             _regarderDroite = false;
             Retourner();
+        }
+    }
+
+    /// <summary>
+    /// Arrête le mouvement gauche/droite du personnage si on n'appuie pas sur les touches gauche/droite.
+    /// </summary>
+    public void Arreter()
+    {
+        if (_estAuSol)
+        {
+           _rb.velocity = new Vector2(0, _rb.velocity.y);
         }
     }
 

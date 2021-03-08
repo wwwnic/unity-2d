@@ -5,9 +5,9 @@
 /// </summary>
 public class JeuCtrl : MonoBehaviour
 {
-    PersoCtrl persoCtrl;
+    private PersoCtrl persoCtrl;
 
-    [SerializeField] GameObject solution;
+    [SerializeField] private GameObject solution;
 
     private CameraSizeCtrl cameraSizeCtrl;
     private bool _isAttacking = false;
@@ -30,6 +30,10 @@ public class JeuCtrl : MonoBehaviour
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             persoCtrl.Reculer();
+        }
+        else
+        {
+            persoCtrl.Arreter();
         }
 
         // Sauter.

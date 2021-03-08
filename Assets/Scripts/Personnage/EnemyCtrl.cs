@@ -15,18 +15,18 @@ public class EnemyCtrl : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] private LayerMask layerSol;
-    [SerializeField] ForceSystem forceSystem;
+    [SerializeField] private ForceSystem forceSystem;
 
     private Rigidbody2D _rb;
     private CapsuleCollider2D _collider;
-    private bool peutTourner;
+    private bool _peutTourner;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
-        peutTourner = true;
+        _peutTourner = true;
     }
 
     /// <summary>
@@ -36,13 +36,13 @@ public class EnemyCtrl : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        if (peutTourner && ToucheLeMurDroit() | ToucheLeMurGauche())
+        if (_peutTourner && ToucheLeMurDroit() | ToucheLeMurGauche())
         {
             Retourner();
 
         }
 
-        if (peutTourner && !EstSurLeSol()) 
+        if (_peutTourner && !EstSurLeSol()) 
         {
             Retourner();
 
@@ -55,7 +55,7 @@ public class EnemyCtrl : MonoBehaviour
     /// </summary>
     private void Retourner()
     {
-        if (!peutTourner) return;
+        if (!_peutTourner) return;
         speed = -speed;
         Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
         transform.localScale = scale;
@@ -65,9 +65,9 @@ public class EnemyCtrl : MonoBehaviour
 
     private IEnumerator AttendreApresTourner()
     {
-        peutTourner = false;
+        _peutTourner = false;
         yield return new WaitForSeconds(2);
-        peutTourner = true;
+        _peutTourner = true;
     }
 
     /// <summary>
@@ -150,7 +150,7 @@ public class EnemyCtrl : MonoBehaviour
     /// <param name="collision">Représente le colider qui vient d'entrer en collision avec l'ennemi</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemy" && peutTourner)
+        if (collision.gameObject.tag == "enemy" && _peutTourner)
         {
             Retourner();
         }
