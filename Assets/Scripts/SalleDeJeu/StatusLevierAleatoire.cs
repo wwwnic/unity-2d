@@ -2,6 +2,10 @@
 using UnityEngine;
 namespace SalleDeJeu
 {
+
+    /// <summary>
+    /// Classe qui mélange l'etat des leviers afin de permettre une rejouabilite
+    /// </summary>
     public class StatusLevierAleatoire : MonoBehaviour
     {
         [SerializeField] protected List<LogiqueDesSallesDeJeu> listeDeSalleDeJeu;

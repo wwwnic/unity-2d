@@ -7,9 +7,9 @@ public class CameraCtrl : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PersoCtrl personnage;
-    [SerializeField] float vitesseDeLaCameraEnX = 4.0f;
-    [SerializeField] float vitesseDeLaCameraEnY = 10.0f;
-    [SerializeField] float hauteurDeLaCamera = 2.5f;
+    [SerializeField] private float vitesseDeLaCameraEnX = 4.0f;
+    [SerializeField] private float vitesseDeLaCameraEnY = 10.0f;
+    [SerializeField] private float hauteurDeLaCamera = 2.5f;
 
 
     // Start is called before the first frame update

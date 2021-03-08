@@ -28,13 +28,13 @@ public class PersoCtrl : MonoBehaviour
     [SerializeField] float rayDist;
 
 
-    Rigidbody2D _rb;
-    Animator _anim;
-    CapsuleCollider2D _collider;
+    private Rigidbody2D _rb;
+    private Animator _anim;
+    private CapsuleCollider2D _collider;
 
     private bool _regarderDroite = true;
-    bool _estAuSol;
-    bool _estEnSaut = false;
+    private bool _estAuSol;
+    private bool _estEnSaut = false;
 
     // Start is called before the first frame update
     void Start()

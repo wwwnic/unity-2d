@@ -7,10 +7,9 @@ public class CameraSizeCtrl : MonoBehaviour
 {
     private Camera cam;
     private float zoomRequest;
-    [SerializeField] float zoomSpeed = 4f;
-    [SerializeField] float zoomMaxIn = 6f;
-    [SerializeField] float zoomMaxOut = 10f;
-
+    [SerializeField] private float zoomSpeed = 4f;
+    [SerializeField] private float zoomMaxIn = 6f;
+    [SerializeField] private float zoomMaxOut = 10f;
 
 
     // Start is called before the first frame update

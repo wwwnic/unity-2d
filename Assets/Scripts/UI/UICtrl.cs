@@ -5,16 +5,16 @@ using UnityEngine;
 public class UICtrl : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] winScreenObjects;
+    private GameObject[] winScreenObjects;
 
     [SerializeField]
-    GameObject[] loseScreenObjects;
+    private GameObject[] loseScreenObjects;
 
     [SerializeField]
-    GameObject boutonRestart;
+    private GameObject boutonRestart;
 
     [SerializeField]
-    GameObject boutonReturnTitle;
+    private GameObject boutonReturnTitle;
 
     [SerializeField]
     Grid bgUI;
@@ -42,6 +42,9 @@ public class UICtrl : MonoBehaviour
         positionCamera = GameObject.FindGameObjectWithTag("MainCamera").transform.position;
     }
 
+    /// <summary>
+    /// Montre l'ecran de victoire
+    /// </summary>
     public void ShowWinScreen()
     {
         foreach (GameObject g in winScreenObjects)
@@ -54,6 +57,10 @@ public class UICtrl : MonoBehaviour
         bgUI.transform.position = positionCamera;
     }
 
+
+    /// <summary>
+    /// Montre l'ecran de defaite.
+    /// </summary>
     public void ShowLoseScreen()
     {
         foreach (GameObject g in loseScreenObjects)
