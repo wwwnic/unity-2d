@@ -73,9 +73,11 @@ namespace SalleDeJeu
                 case BooleanOperation.nonOu_NOR:
                     return !(x || y);
                 case BooleanOperation.ouExclusif_XOR:
-                    return !(x && y || !x && !y);
+                    //return !(x && y || !x && !y);
+                    return x ^ y;
                 case BooleanOperation.nonOuExclusif_XNOR:
-                    return x && y || !x && !y;
+                    return !(x ^ y);
+                    //return x && y || !x && !y;
                 default:
                     return false;
             }

@@ -12,27 +12,21 @@ using System.Collections;
 /// </summary>
 public class EnemyCtrl : MonoBehaviour
 {
-    private Rigidbody2D _rb;
-    private CapsuleCollider2D _collider;
 
     [SerializeField] float speed;
     [SerializeField] private LayerMask layerSol;
     [SerializeField] ForceSystem forceSystem;
 
+    private Rigidbody2D _rb;
+    private CapsuleCollider2D _collider;
+    private bool peutTourner;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        EstSurLeSol();
-        ToucheLeMurDroit();
-        ToucheLeMurGauche();
+        peutTourner = true;
     }
 
     /// <summary>
@@ -42,27 +36,38 @@ public class EnemyCtrl : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        if (ToucheLeMurDroit() || ToucheLeMurGauche())
+        if (peutTourner && ToucheLeMurDroit() | ToucheLeMurGauche())
         {
             Retourner();
-            speed = -speed;
+
         }
 
-        if (!EstSurLeSol())
+        if (peutTourner && !EstSurLeSol()) 
         {
             Retourner();
-            speed = -speed;
+
         }
         _rb.velocity = new Vector2(speed, _rb.velocity.y);
     }
 
     /// <summary>
-    /// Permet de faire tourner le sprite de l'ennemi qui est appelé lorsqu'une collision avec un mur survient ou lorsqu'il quitte le sol.
+    /// Permet de faire tourner l'ennemi qui est appelé lorsqu'une collision avec un mur survient ou lorsqu'il quitte le sol.
     /// </summary>
     private void Retourner()
     {
+        if (!peutTourner) return;
+        speed = -speed;
         Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
         transform.localScale = scale;
+        StartCoroutine(AttendreApresTourner());
+    }
+
+
+    private IEnumerator AttendreApresTourner()
+    {
+        peutTourner = false;
+        yield return new WaitForSeconds(2);
+        peutTourner = true;
     }
 
     /// <summary>
@@ -74,7 +79,7 @@ public class EnemyCtrl : MonoBehaviour
     /// </returns>
     private bool ToucheLeMurGauche()
     {
-        float ajustement = 0.2f;
+        float ajustement = 0.1f;
         RaycastHit2D raycastHit = Physics2D.Raycast(_collider.bounds.center, Vector2.left, _collider.bounds.extents.x + ajustement, layerSol);
 
         Color rayColor = (raycastHit.collider != null ? Color.green : Color.red);
@@ -91,7 +96,7 @@ public class EnemyCtrl : MonoBehaviour
     /// </returns>
     private bool ToucheLeMurDroit()
     {
-        float ajustement = 0.2f;
+        float ajustement = 0.1f;
         RaycastHit2D raycastHit = Physics2D.Raycast(_collider.bounds.center, Vector2.right, _collider.bounds.extents.x + ajustement, layerSol);
 
         Color rayColor = (raycastHit.collider != null ? Color.green : Color.red);
@@ -145,10 +150,9 @@ public class EnemyCtrl : MonoBehaviour
     /// <param name="collision">Représente le colider qui vient d'entrer en collision avec l'ennemi</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemy" || collision.gameObject.tag == "door")
+        if (collision.gameObject.tag == "enemy" && peutTourner)
         {
             Retourner();
-            speed = -speed;
         }
         if (collision.gameObject.tag == "Player")
         {

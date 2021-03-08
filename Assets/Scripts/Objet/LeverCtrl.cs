@@ -12,6 +12,7 @@ namespace SalleDeJeu
         [SerializeField] SpriteRenderer spriteRendererOn;
         [SerializeField] SpriteRenderer spriteRendererOff;
         [SerializeField] ForceSystem forceSystem;
+        [SerializeField] int CoutForceActionner = -1;
         private Color _opaciteDemi;
         private Color _opacitePleine;
         private bool _peutEtreActive;
@@ -80,7 +81,7 @@ namespace SalleDeJeu
 
 
                     scriptSalleAMettreAJour.DetectionChangementObjetActionnable();
-                    forceSystem.SetPlayerForce(-1);
+                    forceSystem.SetPlayerForce(CoutForceActionner);
                     yield return new WaitForSeconds(0.5f);
                     _peutEtreActive = true;
                 }
