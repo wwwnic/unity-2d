@@ -43,6 +43,7 @@ public class HealthSystem : MonoBehaviour
 
         if (_vieActuel <= 0)
         {
+            cameraDeDefaite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             Destroy(gameObject);
             GameObject.FindWithTag("ui").GetComponent<UICtrl>().ShowLoseScreen();
         }
