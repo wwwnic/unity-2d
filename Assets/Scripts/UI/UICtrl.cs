@@ -16,6 +16,11 @@ public class UICtrl : MonoBehaviour
     [SerializeField]
     private GameObject boutonReturnTitle;
 
+    [SerializeField]
+    Grid bgUI;
+
+    Vector2 positionCamera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +34,12 @@ public class UICtrl : MonoBehaviour
         {
             g.SetActive(false);
         }
+        bgUI.transform.position = new Vector2(-25.6f, -14.6f);
+    }
+
+    private void Update()
+    {
+        positionCamera = GameObject.FindGameObjectWithTag("MainCamera").transform.position;
     }
 
     /// <summary>
@@ -43,6 +54,7 @@ public class UICtrl : MonoBehaviour
         }
         boutonRestart.SetActive(false);
         boutonReturnTitle.SetActive(true);
+        bgUI.transform.position = positionCamera;
     }
 
 
@@ -57,5 +69,6 @@ public class UICtrl : MonoBehaviour
         }
         boutonRestart.SetActive(false);
         boutonReturnTitle.SetActive(true);
+        bgUI.transform.position = positionCamera;
     }
 }

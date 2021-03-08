@@ -22,12 +22,12 @@ public class CameraCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 posPersonage = personnage.transform.position;
-        Vector3 posCamera = transform.position;
+        Vector2 posPersonage = personnage.transform.position;
+        Vector2 posCamera = transform.position;
         float distanceEntrePersonnageEtCameraEnX = posPersonage.x - posCamera.x;
         float distanceEntrePersonnageEtCameraEnY = posPersonage.y - posCamera.y + hauteurDeLaCamera;
 
-        rb.velocity = new Vector3(distanceEntrePersonnageEtCameraEnX * vitesseDeLaCameraEnX, distanceEntrePersonnageEtCameraEnY * vitesseDeLaCameraEnY);
+        rb.velocity = new Vector2(distanceEntrePersonnageEtCameraEnX * vitesseDeLaCameraEnX, distanceEntrePersonnageEtCameraEnY * vitesseDeLaCameraEnY);
     }
 
 }
