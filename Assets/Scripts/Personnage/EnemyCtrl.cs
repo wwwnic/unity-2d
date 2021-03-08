@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+
 
 
 /// <summary>
@@ -12,11 +12,10 @@ using UnityEngine;
 /// </summary>
 public class EnemyCtrl : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private new CapsuleCollider2D collider;
+    private Rigidbody2D _rb;
+    private new CapsuleCollider2D _collider;
 
     [SerializeField] float speed;
-
     [SerializeField] private LayerMask layerSol;
     [SerializeField] ForceSystem forceSystem;
 
@@ -24,16 +23,16 @@ public class EnemyCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CapsuleCollider2D>();
+        _rb = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        estSurLeSol();
-        toucheLeMurDroit();
-        toucheLeMurGauche();
+        EstSurLeSol();
+        ToucheLeMurDroit();
+        ToucheLeMurGauche();
     }
 
     /// <summary>
@@ -43,129 +42,97 @@ public class EnemyCtrl : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        if(toucheLeMurDroit() || toucheLeMurGauche())
+        if (ToucheLeMurDroit() || ToucheLeMurGauche())
         {
-            retourner();
+            Retourner();
             speed = -speed;
         }
 
-        if(!estSurLeSol())
+        if (!EstSurLeSol())
         {
-            retourner();
+            Retourner();
             speed = -speed;
         }
-        rb.velocity = new Vector2(speed, rb.velocity.y);
+        _rb.velocity = new Vector2(speed, _rb.velocity.y);
     }
 
     /// <summary>
     /// Permet de faire tourner le sprite de l'ennemi qui est appelé lorsqu'une collision avec un mur survient ou lorsqu'il quitte le sol.
     /// </summary>
-    public void retourner()
+    private void Retourner()
     {
         Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
         transform.localScale = scale;
     }
 
     /// <summary>
-    /// Teste si l'ennemi entre en collision avec un mur vers la gauche.
+    /// Teste si l'ennemi entre en collision avec un mur vers la gauche avec un raycast et les dessines pour le debug.
     /// </summary>
     /// <returns>
     /// Vrai, s'il détecte une collision vers la gauche.
     /// Faux, s'il ne détecte aucune collision.
     /// </returns>
-    public bool toucheLeMurGauche()
+    private bool ToucheLeMurGauche()
     {
         float ajustement = 0.2f;
-        RaycastHit2D raycastHit = Physics2D.Raycast(collider.bounds.center, Vector2.left, collider.bounds.extents.x + ajustement, layerSol);
+        RaycastHit2D raycastHit = Physics2D.Raycast(_collider.bounds.center, Vector2.left, _collider.bounds.extents.x + ajustement, layerSol);
 
-        Color rayColor;
-        if (raycastHit.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-
-        Debug.DrawRay(collider.bounds.center, Vector2.left * (collider.bounds.extents.x + ajustement), rayColor);
-        Debug.Log(raycastHit.collider);
-
+        Color rayColor = (raycastHit.collider != null ? Color.green : Color.red);
+        Debug.DrawRay(_collider.bounds.center, Vector2.left * (_collider.bounds.extents.x + ajustement), rayColor);
         return raycastHit.collider != null;
     }
 
     /// <summary>
-    /// Teste si l'ennemi entre en collision avec un mur vers la droite.
+    /// Teste si l'ennemi entre en collision avec un mur vers la droite avec un raycast et les dessines pour le debug.
     /// </summary>
     /// <returns>
     /// Vrai, s'il détecte une collision vers la droite.
     /// Faux, s'il ne détecte aucune collision.
     /// </returns>
-    private bool toucheLeMurDroit()
+    private bool ToucheLeMurDroit()
     {
         float ajustement = 0.2f;
-        RaycastHit2D raycastHit = Physics2D.Raycast(collider.bounds.center, Vector2.right, collider.bounds.extents.x + ajustement, layerSol);
+        RaycastHit2D raycastHit = Physics2D.Raycast(_collider.bounds.center, Vector2.right, _collider.bounds.extents.x + ajustement, layerSol);
 
-        Color rayColor;
-        if (raycastHit.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-
-        Debug.DrawRay(collider.bounds.center, Vector2.right * (collider.bounds.extents.x + ajustement), rayColor);
-        Debug.Log(raycastHit.collider);
-
+        Color rayColor = (raycastHit.collider != null ? Color.green : Color.red);
+        Debug.DrawRay(_collider.bounds.center, Vector2.right * (_collider.bounds.extents.x + ajustement), rayColor);
         return raycastHit.collider != null;
     }
 
     /// <summary>
-    /// Permet de tester si les deux extrémités du sprite sont sur le sol.
+    /// Permet de tester si les deux extrémités du sprite sont sur le sol avec un raycast et les dessines pour le debug.
     /// </summary>
     /// <returns>
     /// Vrai, si un des deux côté ne se trouve plus sur le sol.
     /// Faux, si tous le sprite de l'ennemi se trouve sur le sol.
     /// </returns>
-    private bool estSurLeSol()
+    private bool EstSurLeSol()
     {
         float ajustement = 0.1f;
 
-        Vector2 centerMin = collider.bounds.center;
-        centerMin[0] = collider.bounds.min.x;
+        Vector2 centerMin = _collider.bounds.center;
+        centerMin[0] = _collider.bounds.min.x;
+        Vector2 centerMax = _collider.bounds.center;
+        centerMax[0] = _collider.bounds.max.x;
 
-        Vector2 centerMax = collider.bounds.center;
-        centerMax[0] = collider.bounds.max.x;
+        RaycastHit2D raycastHitMax = Physics2D.Raycast(centerMax, Vector2.down, _collider.bounds.extents.y + ajustement, layerSol);
+        RaycastHit2D raycastHitMin = Physics2D.Raycast(centerMin, Vector2.down, _collider.bounds.extents.y + ajustement, layerSol);
 
-        RaycastHit2D raycastHitMax = Physics2D.Raycast(centerMax, Vector2.down, collider.bounds.extents.y + ajustement, layerSol);
-        RaycastHit2D raycastHitMin = Physics2D.Raycast(centerMin, Vector2.down, collider.bounds.extents.y + ajustement, layerSol);
-
-        Color rayColor;
-        if (raycastHitMax.collider != null && raycastHitMin.collider != null)
-        {
-            rayColor = Color.green;
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-
-        Debug.DrawRay(centerMax, Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
-        Debug.DrawRay(centerMin, Vector2.down * (collider.bounds.extents.y + ajustement), rayColor);
+        Color rayColor = (raycastHitMax.collider != null && raycastHitMin.collider != null ? Color.green : Color.red);
+        Debug.DrawRay(centerMax, Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(centerMin, Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
 
         return raycastHitMax.collider != null && raycastHitMin.collider != null;
     }
 
 
     /// <summary>
-    /// Méthode qui vérifie si quelque chose entre dans le collider de l'ennemi.
+    /// Ajoute de la force au joueur et detruit le gameobject de l'enemie lorsque le joueur l'attaque.
     /// </summary>
     /// <param name="collision">Le collider qui entre dans le collider de l'ennmi.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "playerAttackHitbox")
+        if (collision.gameObject.tag == "playerAttackHitbox")
         {
             forceSystem.SetPlayerForce(1);
             Destroy(gameObject);
@@ -173,14 +140,14 @@ public class EnemyCtrl : MonoBehaviour
     }
 
     /// <summary>
-    /// Méthode qui vérifie si quelque chose est entré en collision avec l'ennemi et fait la vérification de l'objet avec qui il a eu une collision.
+    /// Fait la vérification du colider avec qui il a eu une collision et retourne l'enemie besoin ou fait du degat s'il touche au joueur
     /// </summary>
-    /// <param name="collision">Représente l'objet qui vient d'entrer en collision avec l'ennemi.</param>
+    /// <param name="collision">Représente le colider qui vient d'entrer en collision avec l'ennemi</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "enemy" || collision.gameObject.tag == "door")
         {
-            retourner();
+            Retourner();
             speed = -speed;
         }
         if (collision.gameObject.tag == "Player")
@@ -188,4 +155,18 @@ public class EnemyCtrl : MonoBehaviour
             collision.gameObject.GetComponent<HealthSystem>().prendreDamageEtDevientInvicibleSaufSiInvincible();
         }
     }
+
+
+    /// <summary>
+    /// Permet de faire du degat si le joueur reste coller sur un enemie.
+    /// </summary>
+    /// <param name="collision">Représente le colider qui vient d'entrer en collision avec l'ennemi</param>
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<HealthSystem>().prendreDamageEtDevientInvicibleSaufSiInvincible();
+        }
+    }
+
 }

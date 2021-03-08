@@ -1,25 +1,24 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 
 namespace SalleDeJeu
 {
-
-    [Serializable]
-    public class LeverCtrl : ObjectActionnable
+    /// <summary>
+    /// La classe qui gere les leviers.
+    /// </summary>
+    public class LeverCtrl : ObjetActionnable
     {
         [SerializeField] SpriteRenderer spriteRendererOn;
         [SerializeField] SpriteRenderer spriteRendererOff;
         [SerializeField] ForceSystem forceSystem;
         private Color _opaciteDemi;
         private Color _opacitePleine;
-
         private bool _peutEtreActive;
 
         private void Start()
         {
+            RafraichirLevier();
             StartCoroutine(OnTriggerEnter2D(null));
         }
 
@@ -28,30 +27,23 @@ namespace SalleDeJeu
             _opaciteDemi = new Color(1f, 1f, 1f, .5f);
             _opacitePleine = new Color(1f, 1f, 1f, 1f);
             _peutEtreActive = true;
-            RafraichirLevier();
-
-
         }
 
 
-
-       public void RafraichirLevier()
+        /// <summary>
+        /// Rafraichit les sprites du levier
+        /// </summary>
+        public void RafraichirLevier()
         {
-            if (_isActivated)
-            {
-                spriteRendererOn.enabled = true;
-                spriteRendererOff.enabled = false;
-                _isActivated = true;
-            }
-            else
-            {
-                spriteRendererOn.enabled = false;
-                spriteRendererOff.enabled = true;
-                _isActivated = false;
-            }
+            spriteRendererOn.enabled = _isActivated;
+            spriteRendererOff.enabled = !_isActivated;
         }
 
-
+        /// <summary>
+        /// Permet de retablir les sprites du levier quand un enemie sort du colider du levier.
+        /// </summary>
+        /// <param name="collision">le colideer qui touche le levier</param>
+        /// <returns></returns>
         private IEnumerator OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.tag == "enemy")
@@ -63,7 +55,11 @@ namespace SalleDeJeu
             }
         }
 
-
+        /// <summary>
+        /// Permet au joueur d'actionner le levier ou désactive le levier si un slime touche a son colider.
+        /// </summary>
+        /// <param name="collision">le colideer qui touche le levier</param>
+        /// <returns>Le temps restant s'il y a lieu</returns>
         private IEnumerator OnTriggerEnter2D(Collider2D collision)
         {
 
@@ -78,10 +74,9 @@ namespace SalleDeJeu
                 else if (collision.gameObject.tag == "playerAttackHitbox" && _peutEtreActive)
                 {
                     _peutEtreActive = false;
-       
-                        spriteRendererOn.enabled = !_isActivated;
-                        spriteRendererOff.enabled = _isActivated;
-                        _isActivated = !_isActivated;
+                    spriteRendererOn.enabled = !_isActivated;
+                    spriteRendererOff.enabled = _isActivated;
+                    _isActivated = !_isActivated;
 
 
                     scriptSalleAMettreAJour.DetectionChangementObjetActionnable();

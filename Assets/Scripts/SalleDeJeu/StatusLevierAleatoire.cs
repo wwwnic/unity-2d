@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 namespace SalleDeJeu
 {
@@ -8,53 +7,37 @@ namespace SalleDeJeu
         [SerializeField] protected List<LogiqueDesSallesDeJeu> listeDeSalleDeJeu;
 
 
-        private void Start()
+        private void Awake()
         {
-            ActiverLevierAleatoirement(true);
+            ActiverLevierAleatoirement();
         }
 
         /// <summary>
-        /// modfie une l'etat d'une liste d'objet actionnable
+        /// Modfie l'etat d'une liste d'objet actionnable aleatoirement.
+        /// Actionne les leviers aléatoirement avant le début de la partie
         /// </summary>
         /// <param name="objectActionnableList">liste d'objet actionnable</param>
         /// <returns>liste d'objet actionnable</returns>
-        private void ActiverLevierAleatoirement(bool executer)
+        private void ActiverLevierAleatoirement()
         {
-            if (executer)
-            {
-                bool salleTerminable;
 
-                foreach (LogiqueDesSallesDeJeu salle in listeDeSalleDeJeu)
-                {
-                    salleTerminable = true;
-                    ObjectActionnable objectActionnableRetour;
-                    while (salleTerminable)
-                    {
-                        foreach (ObjectActionnable objectActionnable in salle.Get_objectActionnableList())
-                        {
-                            objectActionnableRetour = objectActionnable;
-                            objectActionnable.Set_isActivated(Random.Range(0, 2) > 0);
-                        }
-                        salleTerminable = salle.CalculeBooleen();
-                    }
-                    RafraichirObjetActionnable();
-                }
-            }
-        }
+            bool salleTerminable;
 
-        private void RafraichirObjetActionnable()
-        {
             foreach (LogiqueDesSallesDeJeu salle in listeDeSalleDeJeu)
             {
-                foreach (ObjectActionnable objectActionnable in salle.Get_objectActionnableList())
+                salleTerminable = true;
+                ObjetActionnable objectActionnableRetour;
+                while (salleTerminable)
                 {
-                    if (objectActionnable is LeverCtrl)
+                    foreach (ObjetActionnable objectActionnable in salle.GetObjectActionnableList())
                     {
-                        LeverCtrl levier = (LeverCtrl)objectActionnable;
-                        levier.RafraichirLevier();
+                        objectActionnableRetour = objectActionnable;
+                        objectActionnable.SetIsActivated(Random.Range(0, 2) > 0);
                     }
+                    salleTerminable = salle.CalculeBooleen();
                 }
             }
         }
+
     }
 }

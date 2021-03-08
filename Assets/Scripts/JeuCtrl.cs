@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 /// <summary>
 /// Contrôleur de jeu.
@@ -9,18 +6,17 @@ using UnityEngine.UI;
 public class JeuCtrl : MonoBehaviour
 {
     PersoCtrl persoCtrl;
+
     [SerializeField] GameObject solution;
-    ScrollRect solutionScroll;
 
-    private bool _isJumping = false;
+    private CameraSizeCtrl cameraSizeCtrl;
     private bool _isAttacking = false;
-    private bool _isGrabbing = false;
-
+    private bool _regardeLaSolution = false;
     // Start is called before the first frame update
     void Start()
     {
         persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
-        solutionScroll = solution.GetComponent<ScrollRect>();
+        cameraSizeCtrl = GameObject.FindWithTag("MainCamera").GetComponent<CameraSizeCtrl>();
     }
 
     // Update is called once per frame
@@ -39,23 +35,17 @@ public class JeuCtrl : MonoBehaviour
         // Sauter.
         if (Input.GetAxisRaw("Jump") != 0)
         {
-            if (!_isJumping)
-            {
-               persoCtrl.SauterDebut();
-                _isJumping = true;
-            }
             persoCtrl.Sauter();
         }
         else
         {
             persoCtrl.SauterFin();
-            _isJumping = false;
         }
 
         // L'attaque.
-        if (Input.GetAxisRaw("Fire1") != 0)
+        if (Input.GetAxisRaw("Fire1") != 0 && !_regardeLaSolution)
         {
-            if (!_isAttacking && !_isGrabbing)
+            if (!_isAttacking)
             {
                 persoCtrl.Attaquer();
                 _isAttacking = true;
@@ -66,34 +56,17 @@ public class JeuCtrl : MonoBehaviour
             _isAttacking = false;
         }
 
-        // Prendre et laisser des objets.
-        if (Input.GetButtonDown("Fire2"))
+        // Ouvre ou ferme la solution
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!_isGrabbing && !_isAttacking)
-            {
-                persoCtrl.Prendre();
-                if (persoCtrl.PlayerIsGrabbing())
-                {
-                    _isGrabbing = true;
-                }
-            }
-            else
-            {
-                persoCtrl.DropHoldItem();
-                _isGrabbing = false;
-            }
-           
+            _regardeLaSolution = !_regardeLaSolution;
+            solution.SetActive(_regardeLaSolution);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        //empeche de zoomer durant la solution
+        if (!_regardeLaSolution)
         {
-            if (!solution.activeSelf)
-            {
-                solution.SetActive(true);
-            } else
-            {
-                solution.SetActive(false);
-            }
+            cameraSizeCtrl.AjustementZoomCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
 }

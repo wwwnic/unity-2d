@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraCtrl : MonoBehaviour
 {
@@ -17,8 +14,6 @@ public class CameraCtrl : MonoBehaviour
     {
         personnage = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
         rb = GetComponent<Rigidbody2D>();
-
-
     }
 
     // Update is called once per frame

@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 namespace SalleDeJeu
 {
-    public class ObjectActionnable : MonoBehaviour
+    /// <summary>
+    /// La classe parent des objets actionnable (ex: levier)
+    /// </summary>
+    public class ObjetActionnable : MonoBehaviour
     {
 
         [SerializeField] protected bool _isActivated = false;
         [SerializeField] protected LogiqueDesSallesDeJeu scriptSalleAMettreAJour;
 
-
-        public void Set_isActivated(bool newState)
+        public void SetIsActivated(bool newState)
         {
             _isActivated = newState;
         }
 
-
-        public bool Get_isActivated()
+        public bool GetIsActivated()
         {
             return _isActivated;
         }
-
-
     }
 }

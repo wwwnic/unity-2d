@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
     public float WalkSpeed;
     public float JumpForce;
     public AnimationClip _walk, _jump;
@@ -21,11 +19,11 @@ public class Player : MonoBehaviour {
     private Vector2 _inputAxis;
     private RaycastHit2D _hit;
 
-	void Start ()
+    void Start()
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
         _startScale = transform.localScale.x;
-	}
+    }
 
     void Update()
     {
