@@ -31,6 +31,10 @@ public class JeuCtrl : MonoBehaviour
         {
             persoCtrl.Reculer();
         }
+        else
+        {
+            persoCtrl.Arreter();
+        }
 
         // Sauter.
         if (Input.GetAxisRaw("Jump") != 0)

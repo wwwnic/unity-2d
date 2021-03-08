@@ -111,6 +111,17 @@ public class PersoCtrl : MonoBehaviour
     }
 
     /// <summary>
+    /// Arrête le mouvement gauche/droite du personnage si on n'appuie pas sur les touches gauche/droite.
+    /// </summary>
+    public void Arreter()
+    {
+        if (_estAuSol)
+        {
+           _rb.velocity = new Vector2(0, _rb.velocity.y);
+        }
+    }
+
+    /// <summary>
     /// Retourner le personnage quand on appuie la direction inverse.
     /// </summary>
     public void Retourner()
