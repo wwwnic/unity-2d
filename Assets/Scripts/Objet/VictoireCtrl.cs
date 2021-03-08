@@ -13,7 +13,7 @@ public class VictoireCtrl : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _ui.showWinScreen();
+            _ui.ShowWinScreen();
         }
     }
 }

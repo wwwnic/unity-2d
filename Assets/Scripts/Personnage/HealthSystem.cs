@@ -38,15 +38,18 @@ public class HealthSystem : MonoBehaviour
     /// <summary>
     /// Met violament fin à la partie. 
     /// </summary>
-    private void mettreFinALaPartie()
+    private void MettreFinALaPartie()
     {
 
-        if (vie <= 0)
+        if (_vieActuel <= 0)
         {
             Destroy(gameObject);
             GameObject.FindWithTag("ui").GetComponent<UICtrl>().ShowLoseScreen();
         }
+    }
 
+    private void MettreAJourLesCoeurs()
+    {
         for (int i = 0; i < coeurs.Length; i++)
         {
             if (i < _vieActuel)
@@ -71,9 +74,8 @@ public class HealthSystem : MonoBehaviour
 
         if (_vieActuel <= 0)
         {
-            mettreFinALaPartie();
+            MettreFinALaPartie();
         }
-
     }
 
 

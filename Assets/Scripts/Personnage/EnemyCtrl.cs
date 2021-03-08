@@ -13,7 +13,7 @@ using System.Collections;
 public class EnemyCtrl : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    private new CapsuleCollider2D _collider;
+    private CapsuleCollider2D _collider;
 
     [SerializeField] float speed;
     [SerializeField] private LayerMask layerSol;
