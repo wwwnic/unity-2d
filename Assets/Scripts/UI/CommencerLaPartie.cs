@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
 /// <summary>
 /// Commence une partie.
 /// </summary>
-public class StartGame : MonoBehaviour
+public class CommencerLaPartie : MonoBehaviour
 {
     [SerializeField] private int sceneId;
 
-    public void StartGameButton()
+    /// <summary>
+    /// Charge une scene
+    /// </summary>
+    public void CommencerPartie()
     {
         SceneManager.LoadScene(sceneId);
     }

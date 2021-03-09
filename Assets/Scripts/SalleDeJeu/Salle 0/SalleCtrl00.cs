@@ -3,7 +3,8 @@
     /// <summary>
     /// Le controle d'une sale de jeu
     /// </summary>
-    public class SalleCtrl00 : LogiqueDesSallesDeJeu { 
+    public class SalleCtrl00 : LogiqueDesSallesDeJeu
+    {
 
         /// <summary>
         /// Vérifie si la salle est terminée.

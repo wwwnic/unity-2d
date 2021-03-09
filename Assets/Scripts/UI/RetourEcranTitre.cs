@@ -1,16 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Retourne a l'ecran titre
 /// </summary>
-public class ReturnTitle : MonoBehaviour
+public class RetourEcranTitre : MonoBehaviour
 {
-
     [SerializeField] private int sceneId;
-    public void ReturnTitleScreen()
+
+    /// <summary>
+    /// Charge une scene qui retourne a l'ecran titre
+    /// </summary>
+    public void RetourneAEcranTitre()
     {
         SceneManager.LoadScene(sceneId);
         Time.timeScale = 1;

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 
 
@@ -42,7 +42,7 @@ public class EnemyCtrl : MonoBehaviour
 
         }
 
-        if (_peutTourner && !EstSurLeSol()) 
+        if (_peutTourner && !EstSurLeSol())
         {
             Retourner();
 

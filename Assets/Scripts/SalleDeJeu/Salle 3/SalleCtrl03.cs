@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-
-
-namespace SalleDeJeu
+﻿namespace SalleDeJeu
 {
     /// <summary>
     /// Le controle d'une sale de jeu

@@ -22,6 +22,14 @@ public class HealthSystem : MonoBehaviour
     private int _vieDuChevalier = 3;
     private bool _estInvincible;
     private int _vieActuel = 3;
+    private UICtrl _uictrl;
+    private PersoCtrl persoCtrl;
+    void Awake()
+    {
+        persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
+        _uictrl = GameObject.FindWithTag("ui").GetComponent<UICtrl>();
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,19 +44,23 @@ public class HealthSystem : MonoBehaviour
 
 
     /// <summary>
-    /// Met violament fin à la partie. 
+    /// Met brutalement fin à la partie. 
     /// </summary>
     private void MettreFinALaPartie()
     {
 
         if (_vieActuel <= 0)
         {
+            CacherMenuPause();
             cameraDeDefaite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-            Destroy(gameObject);
-            GameObject.FindWithTag("ui").GetComponent<UICtrl>().ShowLoseScreen();
+            CacherLesSpritesDuChevalier();
+            persoCtrl.joueurEstMort();
+            _uictrl.MontrerEcranDefaite();
         }
     }
-
+    /// <summary>
+    /// Met a jour les coeurs
+    /// </summary>
     private void MettreAJourLesCoeurs()
     {
         for (int i = 0; i < coeurs.Length; i++)
@@ -89,13 +101,17 @@ public class HealthSystem : MonoBehaviour
         prendreDommageEtDevientInvincible();
     }
 
-
+    /// <summary>
+    /// Cache le menu pause
+    /// </summary>
+    private void CacherMenuPause() => _uictrl.AfficherMenuPause(false);
 
     /// <summary>
     ///  Retire 1 coeur de vie au joueur 
     /// </summary>
     public void prendreDommageEtDevientInvincible()
     {
+        CacherMenuPause();
         _vieActuel -= 1;
         MettreAJourLesCoeurs();
         StartCoroutine(DevientTemporairementInvincible());
@@ -128,19 +144,12 @@ public class HealthSystem : MonoBehaviour
         {
             if (index % 2 != 0)
             {
-                foreach (SpriteRenderer s in knightSprites)
-                {
-                    s.enabled = false;
-                }
+                CacherLesSpritesDuChevalier();
             }
             else
             {
-                foreach (SpriteRenderer s in knightSprites)
-                {
-                    s.enabled = true;
-                }
+                MontrerLesSpriteDuChevalier();
             }
-
             index++;
             yield return new WaitForSeconds(0.1f);
         }
@@ -153,5 +162,27 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Cache visuelement les sprites du chevalier
+    /// </summary>
+    private void CacherLesSpritesDuChevalier()
+    {
+        foreach (SpriteRenderer s in knightSprites)
+        {
+            s.enabled = false;
+        }
+    }
+    /// <summary>
+    /// Montre visuelement les sprites du chevalier 
+    /// </summary>
+    private void MontrerLesSpriteDuChevalier()
+    {
+        foreach (SpriteRenderer s in knightSprites)
+        {
+            s.enabled = true;
+        }
+    }
 }
+
+
+

@@ -77,7 +77,7 @@ namespace SalleDeJeu
                     return x ^ y;
                 case BooleanOperation.nonOuExclusif_XNOR:
                     return !(x ^ y);
-                    //return x && y || !x && !y;
+                //return x && y || !x && !y;
                 default:
                     return false;
             }

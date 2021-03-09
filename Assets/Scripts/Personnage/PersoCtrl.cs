@@ -34,7 +34,8 @@ public class PersoCtrl : MonoBehaviour
 
     private bool _regarderDroite = true;
     private bool _estAuSol;
-    private bool _estEnSaut = false;
+    private bool _joueurAppuiPourSauter = false;
+    private bool _estMort = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,17 @@ public class PersoCtrl : MonoBehaviour
         _collider = GetComponent<CapsuleCollider2D>();
         _estAuSol = true;
     }
+
+
+    /// <summary>
+    /// Tue le joueur
+    /// </summary>
+    public void joueurEstMort()
+    {
+        _estMort = true;
+        print("JoueurEstMort");
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -58,9 +70,9 @@ public class PersoCtrl : MonoBehaviour
     /// </summary>
     public void Sauter()
     {
-        if (_estAuSol && !_estEnSaut)
+        if (_estAuSol && !_joueurAppuiPourSauter && !_estMort)
         {
-            _estEnSaut = true;
+            _joueurAppuiPourSauter = true;
             _rb.velocity += Vector2.up * puissanceDuSaut;
 
         }
@@ -72,7 +84,7 @@ public class PersoCtrl : MonoBehaviour
     {
         if (_estAuSol)
         {
-            _estEnSaut = false;
+            _joueurAppuiPourSauter = false;
         }
     }
 
@@ -82,11 +94,11 @@ public class PersoCtrl : MonoBehaviour
     /// </summary>
     public void Avancer()
     {
-        if (!FonceDansMurDroite())
+        if (!FonceDansMurDroite() && !_estMort)
         {
             _rb.velocity = new Vector2(vitesse, _rb.velocity.y);
         }
-        if (!_regarderDroite)
+        if (!_regarderDroite && !_estMort)
         {
             _regarderDroite = true;
             Retourner();
@@ -99,11 +111,11 @@ public class PersoCtrl : MonoBehaviour
     public void Reculer()
     {
 
-        if (!FonceDansMurGauche())
+        if (!FonceDansMurGauche() && !_estMort)
         {
             _rb.velocity = new Vector2(-vitesse, _rb.velocity.y);
         }
-        if (_regarderDroite)
+        if (_regarderDroite && !_estMort)
         {
             _regarderDroite = false;
             Retourner();
@@ -117,7 +129,7 @@ public class PersoCtrl : MonoBehaviour
     {
         if (_estAuSol)
         {
-           _rb.velocity = new Vector2(0, _rb.velocity.y);
+            _rb.velocity = new Vector2(0, _rb.velocity.y);
         }
     }
 
@@ -126,6 +138,7 @@ public class PersoCtrl : MonoBehaviour
     /// </summary>
     public void Retourner()
     {
+        if (_estMort) return;
         Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
 
         transform.localScale = scale;
@@ -136,6 +149,7 @@ public class PersoCtrl : MonoBehaviour
     /// </summary>
     public void Attaquer()
     {
+        if (_estMort) return;
         _anim.SetTrigger("attaque");
     }
 

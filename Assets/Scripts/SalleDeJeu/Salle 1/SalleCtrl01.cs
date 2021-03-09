@@ -5,10 +5,10 @@
     /// </summary>
     public class SalleCtrl01 : LogiqueDesSallesDeJeu
     {
-       private bool _resultatColonneNO1_3;
-       private bool _resultatColonneAND2_1;
-       private bool _resultatColonneNOR2_2;
-       private bool _resultatFinalColonneAND3_1;
+        private bool _resultatColonneNO1_3;
+        private bool _resultatColonneAND2_1;
+        private bool _resultatColonneNOR2_2;
+        private bool _resultatFinalColonneAND3_1;
 
         /// <summary>
         /// Vérifie si la salle est terminée.

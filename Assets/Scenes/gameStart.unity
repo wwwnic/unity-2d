@@ -335,8 +335,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1743739982}
   - {fileID: 900308341}
+  - {fileID: 1743739982}
   - {fileID: 404057401}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 404057403}
   - component: {fileID: 404057402}
   m_Layer: 5
-  m_Name: Button2
+  m_Name: BoutonQuitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,7 +375,7 @@ RectTransform:
   m_GameObject: {fileID: 404057400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2076875, y: 1.9443749, z: 1}
+  m_LocalScale: {x: 1.4809461, y: 2.3843212, z: 1.2225738}
   m_Children:
   - {fileID: 678191685}
   m_Father: {fileID: 249268804}
@@ -383,7 +383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -5, y: 112}
+  m_AnchoredPosition: {x: -0.000010967255, y: 126.42001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &404057402
@@ -442,7 +442,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 404057402}
-        m_MethodName: ExitGame
+        m_MethodName: QuitteJeu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 546826715}
   - component: {fileID: 546826714}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextCommencer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,15 +516,15 @@ RectTransform:
   m_GameObject: {fileID: 546826712}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35810354, y: 0.25780764, z: 1}
+  m_LocalScale: {x: 0.25674188, y: 0.18483487, z: 0.7169486}
   m_Children: []
   m_Father: {fileID: 1743739982}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0, y: 6}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.5900192, y: 4.3016872}
+  m_SizeDelta: {x: 3.1799579, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &546826714
 MonoBehaviour:
@@ -558,7 +558,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Start
+  m_Text: Commencer
 --- !u!222 &546826715
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 678191687}
   - component: {fileID: 678191686}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextQuitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,14 +660,14 @@ RectTransform:
   m_GameObject: {fileID: 678191684}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35810354, y: 0.25780764, z: 1}
+  m_LocalScale: {x: 0.25674194, y: 0.18483487, z: 0.71911407}
   m_Children: []
   m_Father: {fileID: 404057401}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0, y: 6}
+  m_AnchoredPosition: {x: 0, y: 4.301697}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678191686
@@ -702,7 +702,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Quit
+  m_Text: Quitter
 --- !u!222 &678191687
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -813,7 +813,7 @@ GameObject:
   - component: {fileID: 900308342}
   - component: {fileID: 900308344}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Titre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -831,11 +831,11 @@ RectTransform:
   m_LocalScale: {x: 0.5072918, y: 0.5262572, z: 1}
   m_Children: []
   m_Father: {fileID: 249268804}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: 124}
+  m_AnchoredPosition: {x: 9, y: 124}
   m_SizeDelta: {x: -370, y: -268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &900308342
@@ -1869,7 +1869,7 @@ GameObject:
   - component: {fileID: 1743739983}
   - component: {fileID: 1743739986}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BoutonCommencer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1884,15 +1884,15 @@ RectTransform:
   m_GameObject: {fileID: 1743739981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2076875, y: 1.9443749, z: 1}
+  m_LocalScale: {x: 1.4809464, y: 2.3843212, z: 1.2262663}
   m_Children:
   - {fileID: 546826713}
   m_Father: {fileID: 249268804}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -5, y: 190}
+  m_AnchoredPosition: {x: -0, y: 195}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743739983
@@ -1939,7 +1939,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1743739986}
-        m_MethodName: StartGameButton
+        m_MethodName: CommencerPartie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

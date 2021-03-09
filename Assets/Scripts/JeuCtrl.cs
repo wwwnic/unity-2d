@@ -6,15 +6,14 @@
 public class JeuCtrl : MonoBehaviour
 {
     private PersoCtrl persoCtrl;
-
-    [SerializeField] private GameObject solution;
-
     private CameraSizeCtrl cameraSizeCtrl;
     private bool _isAttacking = false;
     private bool _regardeLaSolution = false;
+    private UICtrl _uictrl;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        _uictrl = GameObject.FindWithTag("ui").GetComponent<UICtrl>();
         persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
         cameraSizeCtrl = GameObject.FindWithTag("MainCamera").GetComponent<CameraSizeCtrl>();
     }
@@ -64,7 +63,7 @@ public class JeuCtrl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
             _regardeLaSolution = !_regardeLaSolution;
-            solution.SetActive(_regardeLaSolution);
+            _uictrl.AfficherMenuPause(_regardeLaSolution);
         }
 
         //empeche de zoomer durant la solution
