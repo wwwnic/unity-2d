@@ -5,9 +5,9 @@
     /// </summary>
     public class SalleCtrl02 : LogiqueDesSallesDeJeu
     {
-        bool _resultatColonneXNOR1_1;
-        bool _resultatColonneXOR1_2;
-        bool _resultatFinalColonneNAND2_1;
+        private bool _resultatColonneXNOR1_1;
+        private bool _resultatColonneXOR1_2;
+        private bool _resultatFinalColonneNAND2_1;
 
         /// <summary>
         /// Vérifie si la salle est terminée.

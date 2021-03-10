@@ -39,6 +39,10 @@ namespace SalleDeJeu
         ///quand la veleur booleen de celui-ci est modifie
         ///</summary>
         public abstract void DetectionChangementObjetActionnable();
+        /// <summary>
+        /// Fait l'opération booléene.
+        /// </summary>
+        /// <returns></returns>
         public abstract bool CalculeBooleen();
 
 
@@ -73,11 +77,9 @@ namespace SalleDeJeu
                 case BooleanOperation.nonOu_NOR:
                     return !(x || y);
                 case BooleanOperation.ouExclusif_XOR:
-                    //return !(x && y || !x && !y);
                     return x ^ y;
                 case BooleanOperation.nonOuExclusif_XNOR:
                     return !(x ^ y);
-                //return x && y || !x && !y;
                 default:
                     return false;
             }
@@ -92,7 +94,7 @@ namespace SalleDeJeu
         /// <returns></returns>
         protected bool ComparateurBooleen(BooleanOperation operation, ObjetActionnable objectActionnableX, ObjetActionnable objectActionnableY)
         {
-            return ComparateurBooleen(operation, objectActionnableX.GetIsActivated(), objectActionnableY.GetIsActivated());
+            return ComparateurBooleen(operation, objectActionnableX.AvoirEstActivé(), objectActionnableY.AvoirEstActivé());
         }
 
     }

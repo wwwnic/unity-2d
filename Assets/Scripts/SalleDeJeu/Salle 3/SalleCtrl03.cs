@@ -26,12 +26,12 @@
         /// <returns>Si la salle est terminée</returns>
         public override bool CalculeBooleen()
         {
-            _resultatColonneNO1_1 = !(objectActionnableList[1].GetIsActivated());
+            _resultatColonneNO1_1 = !(objectActionnableList[1].AvoirEstActivé());
             _resultatColonneAND1_2 = ComparateurBooleen(BooleanOperation.et_AND, objectActionnableList[2], objectActionnableList[3]);
             _resultatColonneNOR1_3 = ComparateurBooleen(BooleanOperation.nonOu_NOR, objectActionnableList[4], objectActionnableList[5]);
             _resultatColonneOR1_4 = ComparateurBooleen(BooleanOperation.ou_OR, objectActionnableList[6], objectActionnableList[7]);
 
-            _resultatColonneNOR2_1 = ComparateurBooleen(BooleanOperation.nonOu_NOR, objectActionnableList[0].GetIsActivated(), _resultatColonneNO1_1);
+            _resultatColonneNOR2_1 = ComparateurBooleen(BooleanOperation.nonOu_NOR, objectActionnableList[0].AvoirEstActivé(), _resultatColonneNO1_1);
             _resultatColonneXOR2_2 = ComparateurBooleen(BooleanOperation.ouExclusif_XOR, _resultatColonneAND1_2, _resultatColonneNOR1_3);
             _resultatColonneNAND2_3 = ComparateurBooleen(BooleanOperation.nonEt_NAND, _resultatColonneNOR1_3, _resultatColonneOR1_4);
 

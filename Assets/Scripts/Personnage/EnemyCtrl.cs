@@ -15,7 +15,7 @@ public class EnemyCtrl : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] private LayerMask layerSol;
-    [SerializeField] private ForceSystem forceSystem;
+    [SerializeField] private SystemeForce systemeForce;
 
     private Rigidbody2D _rb;
     private CapsuleCollider2D _collider;
@@ -139,7 +139,7 @@ public class EnemyCtrl : MonoBehaviour
     {
         if (collision.gameObject.tag == "playerAttackHitbox")
         {
-            forceSystem.SetPlayerForce(1);
+            systemeForce.MettreJoueurForce(1);
             Destroy(gameObject);
         }
     }
@@ -156,7 +156,7 @@ public class EnemyCtrl : MonoBehaviour
         }
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<HealthSystem>().prendreDamageEtDevientInvicibleSaufSiInvincible();
+            collision.gameObject.GetComponent<SystemeDeVie>().prendreDamageEtDevientInvicibleSaufSiInvincible();
         }
     }
 
@@ -169,7 +169,7 @@ public class EnemyCtrl : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<HealthSystem>().prendreDamageEtDevientInvicibleSaufSiInvincible();
+            collision.gameObject.GetComponent<SystemeDeVie>().prendreDamageEtDevientInvicibleSaufSiInvincible();
         }
     }
 

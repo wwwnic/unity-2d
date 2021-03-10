@@ -11,7 +11,7 @@ namespace SalleDeJeu
     {
         [SerializeField] private SpriteRenderer spriteRendererOn;
         [SerializeField] private SpriteRenderer spriteRendererOff;
-        [SerializeField] private ForceSystem forceSystem;
+        [SerializeField] private SystemeForce forceSystem;
         [SerializeField] int CoutForceActionner = -1;
         private Color _opaciteDemi;
         private Color _opacitePleine;
@@ -36,8 +36,8 @@ namespace SalleDeJeu
         /// </summary>
         public void RafraichirLevier()
         {
-            spriteRendererOn.enabled = _isActivated;
-            spriteRendererOff.enabled = !_isActivated;
+            spriteRendererOn.enabled = _estActivé;
+            spriteRendererOff.enabled = !_estActivé;
         }
 
         /// <summary>
@@ -75,13 +75,13 @@ namespace SalleDeJeu
                 else if (collision.gameObject.tag == "playerAttackHitbox" && _peutEtreActive)
                 {
                     _peutEtreActive = false;
-                    spriteRendererOn.enabled = !_isActivated;
-                    spriteRendererOff.enabled = _isActivated;
-                    _isActivated = !_isActivated;
+                    spriteRendererOn.enabled = !_estActivé;
+                    spriteRendererOff.enabled = _estActivé;
+                    _estActivé = !_estActivé;
 
 
                     scriptSalleAMettreAJour.DetectionChangementObjetActionnable();
-                    forceSystem.SetPlayerForce(CoutForceActionner);
+                    forceSystem.MettreJoueurForce(CoutForceActionner);
                     yield return new WaitForSeconds(0.5f);
                     _peutEtreActive = true;
                 }

@@ -17,17 +17,6 @@ public class PersoCtrl : MonoBehaviour
     // Layer considérée comme le mur
     [SerializeField] LayerMask LayerMur;
 
-    // Layer contenant les objets qui peuvent être pris par le personnage
-    [SerializeField] LayerMask LayerGrabbable;
-
-    // La collision pour détecter un object à prendre.
-    [SerializeField] Transform grabHitbox;
-    // La position de l'objet tenu.
-    [SerializeField] Transform itemHolder;
-    // La distance de grabHitbox.
-    [SerializeField] float rayDist;
-
-
     private Rigidbody2D _rb;
     private Animator _anim;
     private CapsuleCollider2D _collider;

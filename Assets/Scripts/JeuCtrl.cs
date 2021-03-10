@@ -6,8 +6,8 @@
 public class JeuCtrl : MonoBehaviour
 {
     private PersoCtrl persoCtrl;
-    private CameraSizeCtrl cameraSizeCtrl;
-    private bool _isAttacking = false;
+    private TailleCameraCtrl cameraSizeCtrl;
+    private bool _enAttaque = false;
     private bool _regardeLaSolution = false;
     private UICtrl _uictrl;
     // Start is called before the first frame update
@@ -15,7 +15,14 @@ public class JeuCtrl : MonoBehaviour
     {
         _uictrl = GameObject.FindWithTag("ui").GetComponent<UICtrl>();
         persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
-        cameraSizeCtrl = GameObject.FindWithTag("MainCamera").GetComponent<CameraSizeCtrl>();
+        cameraSizeCtrl = GameObject.FindWithTag("MainCamera").GetComponent<TailleCameraCtrl>();
+
+        #if UNITY_EDITOR
+        Debug.unityLogger.logEnabled = true;
+        #else
+        Debug.logger.logEnabled = false;
+        #endif
+
     }
 
     // Update is called once per frame
@@ -49,15 +56,15 @@ public class JeuCtrl : MonoBehaviour
         _regardeLaSolution = _uictrl.getJoueurAfficheMenuPause();
         if (Input.GetAxisRaw("Fire1") != 0 && !_regardeLaSolution)
         {
-            if (!_isAttacking)
+            if (!_enAttaque)
             {
                 persoCtrl.Attaquer();
-                _isAttacking = true;
+                _enAttaque = true;
             }
         }
         else
         {
-            _isAttacking = false;
+            _enAttaque = false;
         }
 
         // Ouvre ou ferme la solution

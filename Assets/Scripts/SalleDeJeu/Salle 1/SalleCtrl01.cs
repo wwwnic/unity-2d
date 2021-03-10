@@ -16,7 +16,7 @@
         /// <returns>Si la salle est terminée</returns>
         public override bool CalculeBooleen()
         {
-            _resultatColonneNO1_3 = !(objectActionnableList[2].GetIsActivated());
+            _resultatColonneNO1_3 = !(objectActionnableList[2].AvoirEstActivé());
 
             _resultatColonneAND2_1 = ComparateurBooleen(BooleanOperation.et_AND, objectActionnableList[0], objectActionnableList[1]);
             _resultatColonneNOR2_2 = ComparateurBooleen(BooleanOperation.ouExclusif_XOR, objectActionnableList[1], _resultatColonneNO1_3);
@@ -32,9 +32,5 @@
         {
             objectAnimatorSetParameterBool(CalculeBooleen());
         }
-
-
-
-
     }
 }

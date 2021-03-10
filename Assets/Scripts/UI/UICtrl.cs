@@ -22,10 +22,10 @@ public class UICtrl : MonoBehaviour
     /// <summary>
     /// Affiche une série d'objet qui compose un ecran.
     /// </summary>
-    /// <param name="ecranPartie"></param>
-    private void MontrerUnEcran(GameObject[] ecranPartie)
+    /// <param name="ecranAMontrer"></param>
+    private void MontrerUnEcran(GameObject[] ecranAMontrer)
     {
-        foreach (GameObject g in ecranPartie)
+        foreach (GameObject g in ecranAMontrer)
         {
             g.SetActive(true);
             Time.timeScale = 0;
@@ -49,13 +49,13 @@ public class UICtrl : MonoBehaviour
     /// <summary>
     /// Affiche le menu pause
     /// </summary>
-    /// <param name="afficherMenu">la valeur d'affichage imposé</param>
-    public void AfficherMenuPause(bool afficherMenu)
+    /// <param name="menuAffiché">la valeur d'affichage imposé</param>
+    public void AfficherMenuPause(bool menuAffiché)
     {
 
-        menuPause.SetActive(afficherMenu);
-        ChangerOpaciteInfoJoueur(afficherMenu);
-        _joueurAfficheMenuPause = afficherMenu;
+        menuPause.SetActive(menuAffiché);
+        ChangerOpaciteInfoJoueur(menuAffiché);
+        _joueurAfficheMenuPause = menuAffiché;
     }
 
     public bool getJoueurAfficheMenuPause() => _joueurAfficheMenuPause;

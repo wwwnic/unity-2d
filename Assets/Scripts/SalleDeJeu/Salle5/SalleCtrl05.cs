@@ -21,7 +21,7 @@
         /// <returns>Si la salle est terminée</returns>
         public override bool CalculeBooleen()
         {
-            _resultatColonneNO1_1 = !(objectActionnableList[0].GetIsActivated());
+            _resultatColonneNO1_1 = !(objectActionnableList[0].AvoirEstActivé());
             _resultatColonneNAND1_2 = ComparateurBooleen(BooleanOperation.nonEt_NAND, objectActionnableList[1], objectActionnableList[2]);
             _resultatColonneNOR1_3 = ComparateurBooleen(BooleanOperation.nonOu_NOR, objectActionnableList[3], objectActionnableList[4]);
 

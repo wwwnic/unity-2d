@@ -36,7 +36,7 @@ namespace SalleDeJeu
                     foreach (ObjetActionnable objectActionnable in salle.GetObjectActionnableList())
                     {
                         objectActionnableRetour = objectActionnable;
-                        objectActionnable.SetIsActivated(Random.Range(0, 2) > 0);
+                        objectActionnable.MettreEstActivé(Random.Range(0, 2) > 0);
                     }
                     salleTerminable = salle.CalculeBooleen();
                 }

@@ -3,11 +3,11 @@
 /// <summary>
 /// Permet de zoomer la caméra avec la roulette de la souris.
 /// </summary>
-public class CameraSizeCtrl : MonoBehaviour
+public class TailleCameraCtrl : MonoBehaviour
 {
     private Camera cam;
     private float requeteDeZoom;
-    [SerializeField] private float vistesseDuZoom = 4f;
+    [SerializeField] private float vitesseDuZoom = 4f;
     [SerializeField] private float zoomMaxDevant = 6f;
     [SerializeField] private float zoomMaxDerriere = 10f;
 
@@ -20,10 +20,10 @@ public class CameraSizeCtrl : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void AjustementZoomCamera(float scrollData)
+    public void AjustementZoomCamera(float valeurRoulette)
     {
-        requeteDeZoom -= scrollData * vistesseDuZoom;
+        requeteDeZoom -= valeurRoulette * vitesseDuZoom;
         requeteDeZoom = Mathf.Clamp(requeteDeZoom, zoomMaxDevant, zoomMaxDerriere);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, requeteDeZoom, Time.deltaTime * vistesseDuZoom);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, requeteDeZoom, Time.deltaTime * vitesseDuZoom);
     }
 }

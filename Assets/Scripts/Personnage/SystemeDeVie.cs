@@ -10,7 +10,7 @@ using UnityEngine.UI;
 /// 
 /// Permet aussi aux ennemi d'infliger des dégâts au joueur.
 /// </summary>
-public class HealthSystem : MonoBehaviour
+public class SystemeDeVie : MonoBehaviour
 {
     [SerializeField] private Image[] coeurs;
     [SerializeField] private Sprite coeurPlein;
