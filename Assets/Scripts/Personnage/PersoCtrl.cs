@@ -38,7 +38,7 @@ public class PersoCtrl : MonoBehaviour
     private bool _estMort = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
@@ -53,7 +53,6 @@ public class PersoCtrl : MonoBehaviour
     public void joueurEstMort()
     {
         _estMort = true;
-        print("JoueurEstMort");
     }
 
 

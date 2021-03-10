@@ -4,7 +4,7 @@ public class VictoireCtrl : MonoBehaviour
 {
     private UICtrl _ui;
 
-    void Start()
+    void Awake()
     {
         _ui = GameObject.FindWithTag("ui").GetComponent<UICtrl>();
     }

@@ -6,24 +6,24 @@
 public class CameraSizeCtrl : MonoBehaviour
 {
     private Camera cam;
-    private float zoomRequest;
-    [SerializeField] private float zoomSpeed = 4f;
-    [SerializeField] private float zoomMaxIn = 6f;
-    [SerializeField] private float zoomMaxOut = 10f;
+    private float requeteDeZoom;
+    [SerializeField] private float vistesseDuZoom = 4f;
+    [SerializeField] private float zoomMaxDevant = 6f;
+    [SerializeField] private float zoomMaxDerriere = 10f;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cam = Camera.main;
-        zoomRequest = cam.orthographicSize;
+        requeteDeZoom = cam.orthographicSize;
     }
 
     // Update is called once per frame
     public void AjustementZoomCamera(float scrollData)
     {
-        zoomRequest -= scrollData * zoomSpeed;
-        zoomRequest = Mathf.Clamp(zoomRequest, zoomMaxIn, zoomMaxOut);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomRequest, Time.deltaTime * zoomSpeed);
+        requeteDeZoom -= scrollData * vistesseDuZoom;
+        requeteDeZoom = Mathf.Clamp(requeteDeZoom, zoomMaxDevant, zoomMaxDerriere);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, requeteDeZoom, Time.deltaTime * vistesseDuZoom);
     }
 }

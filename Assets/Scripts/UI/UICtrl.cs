@@ -7,59 +7,59 @@ public class UICtrl : MonoBehaviour
     [SerializeField] private Grid bgUI;
     [SerializeField] private GameObject menuPause;
 
-    private GameObject _cam;
+    private Camera _cam;
     private CanvasGroup _canvaInfoJoueur;
-    private Vector2 _positionCamera;
-
+    private bool _joueurAfficheMenuPause = false;
     private void Awake()
     {
         _canvaInfoJoueur = GameObject.Find("InformationJoueur").GetComponent<CanvasGroup>();
-        _cam = GameObject.FindGameObjectWithTag("MainCamera");
+        _cam = Camera.main;
         Time.timeScale = 1;
         bgUI.transform.position = new Vector2(-25.6f, -14.6f);
     }
 
 
-    private void Update()
+    /// <summary>
+    /// Affiche une série d'objet qui compose un ecran.
+    /// </summary>
+    /// <param name="ecranPartie"></param>
+    private void MontrerUnEcran(GameObject[] ecranPartie)
     {
-        _positionCamera = _cam.transform.position;
+        foreach (GameObject g in ecranPartie)
+        {
+            g.SetActive(true);
+            Time.timeScale = 0;
+        }
+        _cam.orthographicSize = 6;
+        Vector2 _positionCamera = _cam.transform.position;
+        bgUI.transform.position = _positionCamera;
+
     }
 
     /// <summary>
     /// Montre l'ecran de victoire
     /// </summary>
-    public void MontrerEcranVictoire()
-    {
-        foreach (GameObject g in ecranPartieGagnee)
-        {
-            g.SetActive(true);
-            Time.timeScale = 0;
-        }
-        bgUI.transform.position = _positionCamera;
-    }
-
+    public void MontrerEcranVictoire() => MontrerUnEcran(ecranPartieGagnee);
 
     /// <summary>
     /// Montre l'ecran de defaite.
     /// </summary>
-    public void MontrerEcranDefaite()
-    {
-        foreach (GameObject g in ecranPartiePerdu)
-        {
-            g.SetActive(true);
-        }
-        bgUI.transform.position = _positionCamera;
-    }
+    public void MontrerEcranDefaite() => MontrerUnEcran(ecranPartiePerdu);
 
     /// <summary>
     /// Affiche le menu pause
     /// </summary>
-    /// <param name="afficherMenu">Si le menu doit etre affiche</param>
+    /// <param name="afficherMenu">la valeur d'affichage imposé</param>
     public void AfficherMenuPause(bool afficherMenu)
     {
+
         menuPause.SetActive(afficherMenu);
         ChangerOpaciteInfoJoueur(afficherMenu);
+        _joueurAfficheMenuPause = afficherMenu;
     }
+
+    public bool getJoueurAfficheMenuPause() => _joueurAfficheMenuPause;
+
 
     /// <summary>
     /// Change l'opacite des infos du joueur (ex: coeur, force)

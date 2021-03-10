@@ -46,6 +46,7 @@ public class JeuCtrl : MonoBehaviour
         }
 
         // L'attaque.
+        _regardeLaSolution = _uictrl.getJoueurAfficheMenuPause();
         if (Input.GetAxisRaw("Fire1") != 0 && !_regardeLaSolution)
         {
             if (!_isAttacking)
@@ -62,11 +63,10 @@ public class JeuCtrl : MonoBehaviour
         // Ouvre ou ferme la solution
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
-            _regardeLaSolution = !_regardeLaSolution;
-            _uictrl.AfficherMenuPause(_regardeLaSolution);
+            _uictrl.AfficherMenuPause(!_regardeLaSolution);
         }
 
-        //empeche de zoomer durant la solution
+        //permet le zoom sauf si le joueur regarde la solution
         if (!_regardeLaSolution)
         {
             cameraSizeCtrl.AjustementZoomCamera(Input.GetAxis("Mouse ScrollWheel"));
