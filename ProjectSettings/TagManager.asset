@@ -16,6 +16,7 @@ TagManager:
   - ui
   - loseScreen
   - solution
+  - menuPause
   layers:
   - Default
   - TransparentFX
