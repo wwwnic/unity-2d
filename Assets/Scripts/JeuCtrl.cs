@@ -70,7 +70,17 @@ public class JeuCtrl : MonoBehaviour
         // Ouvre ou ferme la solution
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
-            _uictrl.AfficherMenuPause(!_regardeLaSolution);
+            _regardeLaSolution = _uictrl.getJoueurAfficheMenuPause();
+            if (!_regardeLaSolution)
+            {
+                _uictrl.AfficherMenuPause(true);
+                Time.timeScale = 0;
+            }
+            if (_regardeLaSolution)
+            {
+                _uictrl.AfficherMenuPause(false);
+                Time.timeScale = 1;
+            }
         }
 
         //permet le zoom sauf si le joueur regarde la solution

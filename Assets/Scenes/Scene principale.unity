@@ -26484,7 +26484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e240e9918075e4f816078e8e2ee797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vistesseDuZoom: 4
+  vitesseDuZoom: 4
   zoomMaxDevant: 6
   zoomMaxDerriere: 10
 --- !u!50 &998126383
@@ -28263,11 +28263,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4cf023c8222bf498a38d3bfe221129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerForce: 5
-  winForce: 1
-  loseForce: 1
-  healSystemToModify: {fileID: 1239484070}
-  texteToModify: {fileID: 1599823052}
+  forceJoueur: 5
+  gainForce: 1
+  perteForce: 1
+  systemeDeVieAmodifier: {fileID: 1239484070}
+  texteAmodifier: {fileID: 1599823052}
 --- !u!212 &1239484074 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7607205768297006136, guid: 852f4d1f3a25f584f90104049585ee2d,
