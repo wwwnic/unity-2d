@@ -55,7 +55,7 @@ public class SystemeDeVie : MonoBehaviour
             cameraDeDefaite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             CacherLesSpritesDuChevalier();
             persoCtrl.joueurEstMort();
-            _uictrl.MontrerEcranDefaite();
+            _uictrl.MontrerEcranPerdu();
         }
     }
     /// <summary>

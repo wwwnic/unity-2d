@@ -10,6 +10,7 @@ public class UICtrl : MonoBehaviour
     private Camera _cam;
     private CanvasGroup _canvaInfoJoueur;
     private bool _joueurAfficheMenuPause = false;
+    private bool _afficheUnEcranFinal = false;
     private void Awake()
     {
         _canvaInfoJoueur = GameObject.Find("InformationJoueur").GetComponent<CanvasGroup>();
@@ -20,11 +21,12 @@ public class UICtrl : MonoBehaviour
 
 
     /// <summary>
-    /// Affiche une série d'objet qui compose un ecran.
+    /// Affiche une série d'objet qui compose un ecran lorsque la partie est terminee (gagne ou perdu)
     /// </summary>
     /// <param name="ecranAMontrer"></param>
-    private void MontrerUnEcran(GameObject[] ecranAMontrer)
+    private void MontrerUnEcranDePartieTerminee(GameObject[] ecranAMontrer)
     {
+        _afficheUnEcranFinal = true;
         foreach (GameObject g in ecranAMontrer)
         {
             g.SetActive(true);
@@ -39,23 +41,24 @@ public class UICtrl : MonoBehaviour
     /// <summary>
     /// Montre l'ecran de victoire
     /// </summary>
-    public void MontrerEcranVictoire() => MontrerUnEcran(ecranPartieGagnee);
+    public void MontrerEcranVictoire() => MontrerUnEcranDePartieTerminee(ecranPartieGagnee);
 
     /// <summary>
     /// Montre l'ecran de defaite.
     /// </summary>
-    public void MontrerEcranDefaite() => MontrerUnEcran(ecranPartiePerdu);
+    public void MontrerEcranPerdu() => MontrerUnEcranDePartieTerminee(ecranPartiePerdu);
 
     /// <summary>
     /// Affiche le menu pause
     /// </summary>
-    /// <param name="menuAffiché">la valeur d'affichage imposé</param>
-    public void AfficherMenuPause(bool menuAffiché)
+    /// <param name="menuAffiche">la valeur d'affichage imposé</param>
+    public void AfficherMenuPause(bool menuAffiche)
     {
-
-        menuPause.SetActive(menuAffiché);
-        ChangerOpaciteInfoJoueur(menuAffiché);
-        _joueurAfficheMenuPause = menuAffiché;
+        if (_afficheUnEcranFinal) return;
+        menuPause.SetActive(menuAffiche);
+        ChangerOpaciteInfoJoueur(menuAffiche);
+        _joueurAfficheMenuPause = menuAffiche;
+        Time.timeScale = menuAffiche ? 0 : 1;
     }
 
     public bool getJoueurAfficheMenuPause() => _joueurAfficheMenuPause;

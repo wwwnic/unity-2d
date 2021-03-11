@@ -10,7 +10,7 @@ public class JeuCtrl : MonoBehaviour
     private bool _enAttaque = false;
     private bool _regardeLaSolution = false;
     private UICtrl _uictrl;
-    // Start is called before the first frame update
+
     void Awake()
     {
         _uictrl = GameObject.FindWithTag("ui").GetComponent<UICtrl>();
@@ -74,12 +74,10 @@ public class JeuCtrl : MonoBehaviour
             if (!_regardeLaSolution)
             {
                 _uictrl.AfficherMenuPause(true);
-                Time.timeScale = 0;
             }
             if (_regardeLaSolution)
             {
                 _uictrl.AfficherMenuPause(false);
-                Time.timeScale = 1;
             }
         }
 

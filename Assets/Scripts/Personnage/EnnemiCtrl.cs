@@ -10,13 +10,13 @@ using UnityEngine;
 /// 
 /// La classe permet de faire des vérifications pour s'assurer que l'ennemi peut se déplacer sur une plateforme sans tombé ou bloquer dans une même direction.
 /// </summary>
-public class EnemyCtrl : MonoBehaviour
+public class EnnemiCtrl : MonoBehaviour
 {
 
     [SerializeField] float speed;
     [SerializeField] private LayerMask layerSol;
-    [SerializeField] private SystemeForce systemeForce;
 
+    private SystemeForce _systemeForce;
     private Rigidbody2D _rb;
     private CapsuleCollider2D _collider;
     private bool _peutTourner;
@@ -24,6 +24,7 @@ public class EnemyCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        _systemeForce = GameObject.FindGameObjectWithTag("Player").GetComponent<SystemeForce>();
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
         _peutTourner = true;
@@ -139,7 +140,7 @@ public class EnemyCtrl : MonoBehaviour
     {
         if (collision.gameObject.tag == "playerAttackHitbox")
         {
-            systemeForce.MettreJoueurForce(1);
+            _systemeForce.MettreJoueurForce(1);
             Destroy(gameObject);
         }
     }
