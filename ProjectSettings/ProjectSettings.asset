@@ -631,7 +631,6 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Collab: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -645,10 +644,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 0e225e2b-4613-47c9-aa55-83b8a24b58ae
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
-  projectName: Boole Knight
-  organizationId: wwwnic
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

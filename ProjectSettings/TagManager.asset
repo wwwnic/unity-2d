@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - body
+  - box
+  - pedestal
   - lever
   - playerAttackHitbox
   - door
@@ -14,11 +16,6 @@ TagManager:
   - ui
   - loseScreen
   - solution
-  - menuPause
-<<<<<<< HEAD
-  - box
-=======
->>>>>>> 572ddb2e558fd542aee017c59185d19c56972a6b
   layers:
   - Default
   - TransparentFX
