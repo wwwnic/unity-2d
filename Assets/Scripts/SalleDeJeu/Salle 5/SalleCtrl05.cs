@@ -28,7 +28,7 @@
             _resultatColonneNAND2_1 = ComparateurBooleen(OperationBooleen.NAND, _resultatColonneNO1_1, _resultatColonneNAND1_2);
             _resultatColonneXOR2_2 = ComparateurBooleen(OperationBooleen.XOR, _resultatColonneNAND1_2, _resultatColonneNOR1_3);
 
-            _resultatFinalColonneAND3_1 = ComparateurBooleen(OperationBooleen.AND, _resultatColonneNAND2_1, _resultatColonneXOR2_2);
+            _resultatFinalColonneAND3_1 = ComparateurBooleen(OperationBooleen.NOR, _resultatColonneNAND2_1, _resultatColonneXOR2_2);
 
             return _resultatFinalColonneAND3_1;
         }

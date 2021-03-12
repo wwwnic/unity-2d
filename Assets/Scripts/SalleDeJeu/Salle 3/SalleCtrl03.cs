@@ -31,11 +31,11 @@
             _resultatColonneNOR1_3 = ComparateurBooleen(OperationBooleen.NOR, objectActionnableList[4], objectActionnableList[5]);
             _resultatColonneOR1_4 = ComparateurBooleen(OperationBooleen.OR, objectActionnableList[6], objectActionnableList[7]);
 
-            _resultatColonneNOR2_1 = ComparateurBooleen(OperationBooleen.NOR, objectActionnableList[0].GetEstActive(), _resultatColonneNO1_1);
-            _resultatColonneXOR2_2 = ComparateurBooleen(OperationBooleen.XOR, _resultatColonneAND1_2, _resultatColonneNOR1_3);
+            _resultatColonneNOR2_1 = ComparateurBooleen(OperationBooleen.XOR, objectActionnableList[0].GetEstActive(), _resultatColonneNO1_1);
+            _resultatColonneXOR2_2 = ComparateurBooleen(OperationBooleen.XNOR, _resultatColonneAND1_2, _resultatColonneNOR1_3);
             _resultatColonneNAND2_3 = ComparateurBooleen(OperationBooleen.NAND, _resultatColonneNOR1_3, _resultatColonneOR1_4);
 
-            _resultatColonneAND3_1 = ComparateurBooleen(OperationBooleen.AND, _resultatColonneNOR2_1, _resultatColonneXOR2_2);
+            _resultatColonneAND3_1 = ComparateurBooleen(OperationBooleen.NOR, _resultatColonneNOR2_1, _resultatColonneXOR2_2);
             _resultatColonneAND3_2 = ComparateurBooleen(OperationBooleen.AND, _resultatColonneNOR1_3, _resultatColonneNAND2_3);
 
             _resultatFinalColonneAND4_1 = ComparateurBooleen(OperationBooleen.AND, _resultatColonneAND3_1, _resultatColonneAND3_2);

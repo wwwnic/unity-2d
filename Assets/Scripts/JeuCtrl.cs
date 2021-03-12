@@ -43,7 +43,7 @@ public class JeuCtrl : MonoBehaviour
         }
 
         // Sauter.
-        if (Input.GetAxisRaw("Jump") != 0)
+        if (Input.GetAxisRaw("Jump") != 0 || Input.GetKeyDown(KeyCode.UpArrow))
         {
             _persoCtrl.Sauter();
         }
