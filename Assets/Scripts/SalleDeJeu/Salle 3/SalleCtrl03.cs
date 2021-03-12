@@ -26,29 +26,29 @@
         /// <returns>Si la salle est terminée</returns>
         public override bool CalculeBooleen()
         {
-            _resultatColonneNO1_1 = !(objectActionnableList[1].AvoirEstActivé());
-            _resultatColonneAND1_2 = ComparateurBooleen(BooleanOperation.et_AND, objectActionnableList[2], objectActionnableList[3]);
-            _resultatColonneNOR1_3 = ComparateurBooleen(BooleanOperation.nonOu_NOR, objectActionnableList[4], objectActionnableList[5]);
-            _resultatColonneOR1_4 = ComparateurBooleen(BooleanOperation.ou_OR, objectActionnableList[6], objectActionnableList[7]);
+            _resultatColonneNO1_1 = !(objectActionnableList[1].GetEstActive());
+            _resultatColonneAND1_2 = ComparateurBooleen(OperationBooleen.AND, objectActionnableList[2], objectActionnableList[3]);
+            _resultatColonneNOR1_3 = ComparateurBooleen(OperationBooleen.NOR, objectActionnableList[4], objectActionnableList[5]);
+            _resultatColonneOR1_4 = ComparateurBooleen(OperationBooleen.OR, objectActionnableList[6], objectActionnableList[7]);
 
-            _resultatColonneNOR2_1 = ComparateurBooleen(BooleanOperation.nonOu_NOR, objectActionnableList[0].AvoirEstActivé(), _resultatColonneNO1_1);
-            _resultatColonneXOR2_2 = ComparateurBooleen(BooleanOperation.ouExclusif_XOR, _resultatColonneAND1_2, _resultatColonneNOR1_3);
-            _resultatColonneNAND2_3 = ComparateurBooleen(BooleanOperation.nonEt_NAND, _resultatColonneNOR1_3, _resultatColonneOR1_4);
+            _resultatColonneNOR2_1 = ComparateurBooleen(OperationBooleen.NOR, objectActionnableList[0].GetEstActive(), _resultatColonneNO1_1);
+            _resultatColonneXOR2_2 = ComparateurBooleen(OperationBooleen.XOR, _resultatColonneAND1_2, _resultatColonneNOR1_3);
+            _resultatColonneNAND2_3 = ComparateurBooleen(OperationBooleen.NAND, _resultatColonneNOR1_3, _resultatColonneOR1_4);
 
-            _resultatColonneAND3_1 = ComparateurBooleen(BooleanOperation.et_AND, _resultatColonneNOR2_1, _resultatColonneXOR2_2);
-            _resultatColonneAND3_2 = ComparateurBooleen(BooleanOperation.et_AND, _resultatColonneNOR1_3, _resultatColonneNAND2_3);
+            _resultatColonneAND3_1 = ComparateurBooleen(OperationBooleen.AND, _resultatColonneNOR2_1, _resultatColonneXOR2_2);
+            _resultatColonneAND3_2 = ComparateurBooleen(OperationBooleen.AND, _resultatColonneNOR1_3, _resultatColonneNAND2_3);
 
-            _resultatFinalColonneAND4_1 = ComparateurBooleen(BooleanOperation.et_AND, _resultatColonneAND3_1, _resultatColonneAND3_2);
+            _resultatFinalColonneAND4_1 = ComparateurBooleen(OperationBooleen.AND, _resultatColonneAND3_1, _resultatColonneAND3_2);
 
             return _resultatFinalColonneAND4_1;
         }
 
         /// <summary>
-        /// Détecte un changement dans une salle.
+        /// Détecte un changement dans la salle.
         /// </summary>
         public override void DetectionChangementObjetActionnable()
         {
-            objectAnimatorSetParameterBool(CalculeBooleen());
+            changerParametreDansAnimator(CalculeBooleen());
         }
     }
 }

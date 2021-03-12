@@ -15,21 +15,21 @@
         /// <returns>Si la salle est terminée</returns>
         public override bool CalculeBooleen()
         {
-            _resultatColonneXNOR1_1 = ComparateurBooleen(BooleanOperation.nonOuExclusif_XNOR, objectActionnableList[0], objectActionnableList[1]);
-            _resultatColonneXOR1_2 = ComparateurBooleen(BooleanOperation.ouExclusif_XOR, objectActionnableList[2], objectActionnableList[3]);
+            _resultatColonneXNOR1_1 = ComparateurBooleen(OperationBooleen.XNOR, objectActionnableList[0], objectActionnableList[1]);
+            _resultatColonneXOR1_2 = ComparateurBooleen(OperationBooleen.XOR, objectActionnableList[2], objectActionnableList[3]);
 
-            _resultatFinalColonneNAND2_1 = ComparateurBooleen(BooleanOperation.et_AND, _resultatColonneXNOR1_1, _resultatColonneXOR1_2);
+            _resultatFinalColonneNAND2_1 = ComparateurBooleen(OperationBooleen.AND, _resultatColonneXNOR1_1, _resultatColonneXOR1_2);
 
             return _resultatFinalColonneNAND2_1;
         }
 
 
         /// <summary>
-        /// Détecte un changement dans une salle.
+        /// Détecte un changement dans la salle.
         /// </summary>
         public override void DetectionChangementObjetActionnable()
         {
-            objectAnimatorSetParameterBool(CalculeBooleen());
+            changerParametreDansAnimator(CalculeBooleen());
         }
     }
 }

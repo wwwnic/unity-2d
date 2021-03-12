@@ -13,7 +13,7 @@ public class UICtrl : MonoBehaviour
     private bool _afficheUnEcranFinal = false;
     private void Awake()
     {
-        _canvaInfoJoueur = GameObject.Find("InformationJoueur").GetComponent<CanvasGroup>();
+        _canvaInfoJoueur = GameObject.Find("Information joueur").GetComponent<CanvasGroup>();
         _cam = Camera.main;
         Time.timeScale = 1;
         bgUI.transform.position = new Vector2(-25.6f, -14.6f);
@@ -49,16 +49,16 @@ public class UICtrl : MonoBehaviour
     public void MontrerEcranPerdu() => MontrerUnEcranDePartieTerminee(ecranPartiePerdu);
 
     /// <summary>
-    /// Affiche le menu pause
+    /// Affiche le menu pause sauf si la partie est terminee
     /// </summary>
-    /// <param name="menuAffiche">la valeur d'affichage imposé</param>
-    public void AfficherMenuPause(bool menuAffiche)
+    /// <param name="veutAfficherMenu">Si le joueur souhaite faire pause ou redemarer</param>
+    public void AfficherMenuPause(bool veutAfficherMenu)
     {
         if (_afficheUnEcranFinal) return;
-        menuPause.SetActive(menuAffiche);
-        ChangerOpaciteInfoJoueur(menuAffiche);
-        _joueurAfficheMenuPause = menuAffiche;
-        Time.timeScale = menuAffiche ? 0 : 1;
+        menuPause.SetActive(veutAfficherMenu);
+        ChangerOpaciteInfoJoueur(veutAfficherMenu);
+        _joueurAfficheMenuPause = veutAfficherMenu;
+        Time.timeScale = veutAfficherMenu ? 0 : 1;
     }
 
     public bool getJoueurAfficheMenuPause() => _joueurAfficheMenuPause;

@@ -24478,7 +24478,7 @@ GameObject:
   - component: {fileID: 798727290}
   - component: {fileID: 798727289}
   m_Layer: 0
-  m_Name: ControlleurJeu
+  m_Name: Controlleur du jeu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25551,7 +25551,7 @@ GameObject:
   - component: {fileID: 936907275}
   - component: {fileID: 936907276}
   m_Layer: 5
-  m_Name: InformationJoueur
+  m_Name: Information joueur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27666,7 +27666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1062238022}
   m_Layer: 5
-  m_Name: ecranDeFinDePartie
+  m_Name: Ecran de fin de partie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28263,9 +28263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4cf023c8222bf498a38d3bfe221129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceJoueur: 5
-  gainForce: 1
-  perteForce: 1
+  forceDuJoueur: 5
   systemeDeVieAmodifier: {fileID: 1239484070}
   texteAmodifier: {fileID: 1599823052}
 --- !u!212 &1239484074 stripped
@@ -31962,7 +31960,7 @@ PrefabInstance:
     - target: {fileID: 7607205768297006142, guid: 852f4d1f3a25f584f90104049585ee2d,
         type: 3}
       propertyPath: m_Name
-      value: knight
+      value: Chevalier
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 852f4d1f3a25f584f90104049585ee2d, type: 3}

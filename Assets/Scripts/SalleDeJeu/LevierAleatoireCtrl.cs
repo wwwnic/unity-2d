@@ -4,9 +4,9 @@ namespace SalleDeJeu
 {
 
     /// <summary>
-    /// Classe qui mélange l'etat des leviers afin de permettre une rejouabilite
+    /// Classe qui mélange l'etat des objets actionnable des salles passees en serializefield.
     /// </summary>
-    public class StatusLevierAleatoire : MonoBehaviour
+    public class LevierAleatoireCtrl : MonoBehaviour
     {
         [SerializeField] protected List<LogiqueDesSallesDeJeu> listeDeSalleDeJeu;
 
@@ -17,11 +17,9 @@ namespace SalleDeJeu
         }
 
         /// <summary>
-        /// Modfie l'etat d'une liste d'objet actionnable aleatoirement.
-        /// Actionne les leviers aléatoirement avant le début de la partie
+        /// Actionne les leviers aléatoirement avant le debut de la partie
+        /// Modfie l'etat d'une liste d'objet actionnable de facon aleatoire dans une salles qui est dans la liste de salle.
         /// </summary>
-        /// <param name="objectActionnableList">liste d'objet actionnable</param>
-        /// <returns>liste d'objet actionnable</returns>
         private void ActiverLevierAleatoirement()
         {
 
@@ -33,10 +31,10 @@ namespace SalleDeJeu
                 ObjetActionnable objectActionnableRetour;
                 while (salleTerminable)
                 {
-                    foreach (ObjetActionnable objectActionnable in salle.GetObjectActionnableList())
+                    foreach (ObjetActionnable objectActionnable in salle.GetObjetActionnableList())
                     {
                         objectActionnableRetour = objectActionnable;
-                        objectActionnable.MettreEstActivé(Random.Range(0, 2) > 0);
+                        objectActionnable.SetEstActive(Random.Range(0, 2) > 0);
                     }
                     salleTerminable = salle.CalculeBooleen();
                 }

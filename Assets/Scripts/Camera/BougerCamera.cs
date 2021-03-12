@@ -6,49 +6,48 @@
 /// </summary>
 public class BougerCamera : MonoBehaviour
 {
-    public float amortiCamera = 1.5f;
-    public Transform _cible;
-    public Vector2 décalage = new Vector2(2f, 1f);
+    private float _amortiCamera = 1.5f;
+    private Transform _cible;
+    private Vector2 _décalage = new Vector2(2f, 1f);
+    private bool _regardeGauche;
+    private int _dernierX;
+    private float _vitesseDynamique;
 
-    private bool regardeGauche;
-    private int dernierX;
-    private float vitesseDynamique;
-
-    void Start()
+   private void Start()
     {
-        décalage = new Vector2(Mathf.Abs(décalage.x), décalage.y);
+        _décalage = new Vector2(Mathf.Abs(_décalage.x), _décalage.y);
         TrouverJoueur();
     }
 
     /// <summary>
     /// Trouve la position du joueur.
     /// </summary>
-    public void TrouverJoueur()
+    private void TrouverJoueur()
     {
-        dernierX = Mathf.RoundToInt(_cible.position.x);
-        transform.position = new Vector3(_cible.position.x + décalage.x, _cible.position.y + décalage.y, transform.position.z);
+        _dernierX = Mathf.RoundToInt(_cible.position.x);
+        transform.position = new Vector3(_cible.position.x + _décalage.x, _cible.position.y + _décalage.y, transform.position.z);
     }
 
 
-    void FixedUpdate()
+   private void FixedUpdate()
     {
         if (_cible)
         {
-            int currentX = Mathf.RoundToInt(_cible.position.x);
-            if (currentX > dernierX) regardeGauche = false; else if (currentX < dernierX) regardeGauche = true;
-            dernierX = Mathf.RoundToInt(_cible.position.x);
+            int positionX = Mathf.RoundToInt(_cible.position.x);
+            _regardeGauche = positionX < _dernierX;
+            _dernierX = Mathf.RoundToInt(_cible.position.x);
 
-            Vector3 target;
-            if (regardeGauche)
+            Vector3 cible;
+            if (_regardeGauche)
             {
-                target = new Vector3(_cible.position.x - décalage.x, _cible.position.y + décalage.y + vitesseDynamique, transform.position.z);
+                cible = new Vector3(_cible.position.x - _décalage.x, _cible.position.y + _décalage.y + _vitesseDynamique, transform.position.z);
             }
             else
             {
-                target = new Vector3(_cible.position.x + décalage.x, _cible.position.y + décalage.y + vitesseDynamique, transform.position.z);
+                cible = new Vector3(_cible.position.x + _décalage.x, _cible.position.y + _décalage.y + _vitesseDynamique, transform.position.z);
             }
-            Vector3 currentPosition = Vector3.Lerp(transform.position, target, amortiCamera * Time.deltaTime);
-            transform.position = currentPosition;
+            Vector3 positionActuel = Vector3.Lerp(transform.position, cible, _amortiCamera * Time.deltaTime);
+            transform.position = positionActuel;
         }
     }
 }

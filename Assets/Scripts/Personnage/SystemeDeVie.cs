@@ -23,41 +23,43 @@ public class SystemeDeVie : MonoBehaviour
     private bool _estInvincible;
     private int _vieActuel = 3;
     private UICtrl _uictrl;
-    private PersoCtrl persoCtrl;
+    private PersoCtrl _persoCtrl;
     void Awake()
     {
-        persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
+        _persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
         _uictrl = GameObject.FindWithTag("ui").GetComponent<UICtrl>();
-
+        _estInvincible = false;
+        ChangerLaVieDuChevalier();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        MettreAJourLesCoeurs();
+    }
+
+    /// <summary>
+    /// Change la vie du chevlier au debut de la partie si sa vie maximum est plus basse que sa vie actuel.
+    /// </summary>
+    private void ChangerLaVieDuChevalier()
+    {
         if (_vieActuel > _vieDuChevalier)
         {
             _vieActuel = _vieDuChevalier;
         }
-        _estInvincible = false;
-        MettreAJourLesCoeurs();
     }
-
 
     /// <summary>
     /// Met brutalement fin à la partie. 
     /// </summary>
     private void MettreFinALaPartie()
     {
-
-        if (_vieActuel <= 0)
-        {
-            CacherMenuPause();
-            cameraDeDefaite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-            CacherLesSpritesDuChevalier();
-            persoCtrl.joueurEstMort();
-            _uictrl.MontrerEcranPerdu();
-        }
+        cameraDeDefaite.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+        CacherLesSpritesDuChevalier();
+        _persoCtrl.JoueurEstMort();
+        _uictrl.MontrerEcranPerdu();
     }
+
     /// <summary>
     /// Met a jour les coeurs
     /// </summary>
@@ -102,16 +104,10 @@ public class SystemeDeVie : MonoBehaviour
     }
 
     /// <summary>
-    /// Cache le menu pause
-    /// </summary>
-    private void CacherMenuPause() => _uictrl.AfficherMenuPause(false);
-
-    /// <summary>
     ///  Retire 1 coeur de vie au joueur 
     /// </summary>
     public void prendreDommageEtDevientInvincible()
     {
-        CacherMenuPause();
         _vieActuel -= 1;
         MettreAJourLesCoeurs();
         StartCoroutine(DevientTemporairementInvincible());

@@ -27,7 +27,7 @@ public class PersoCtrl : MonoBehaviour
     private bool _estMort = false;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
@@ -39,14 +39,14 @@ public class PersoCtrl : MonoBehaviour
     /// <summary>
     /// Tue le joueur
     /// </summary>
-    public void joueurEstMort()
+    public void JoueurEstMort()
     {
         _estMort = true;
     }
 
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         _anim.SetFloat("deplacement", Mathf.Abs(_rb.velocity.x));
         _estAuSol = EstSurLeSol();
@@ -207,5 +207,4 @@ public class PersoCtrl : MonoBehaviour
 
         return detecteUneColision;
     }
-
 }

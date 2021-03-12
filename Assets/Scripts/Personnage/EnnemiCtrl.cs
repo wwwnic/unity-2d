@@ -13,42 +13,34 @@ using UnityEngine;
 public class EnnemiCtrl : MonoBehaviour
 {
 
-    [SerializeField] float speed;
+    [SerializeField] float vistesse;
     [SerializeField] private LayerMask layerSol;
 
-    private SystemeForce _systemeForce;
+    private SystemeDeForce _systemeDeForce;
     private Rigidbody2D _rb;
     private CapsuleCollider2D _collider;
     private bool _peutTourner;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        _systemeForce = GameObject.FindGameObjectWithTag("Player").GetComponent<SystemeForce>();
+        _systemeDeForce = GameObject.FindGameObjectWithTag("Player").GetComponent<SystemeDeForce>();
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
         _peutTourner = true;
     }
 
     /// <summary>
-    /// Teste en permanence si une collision avec un mur survient ou si l'ennemi de ne se trouve plus sur le sol.
-    /// 
-    /// S'il détecte une collision avec un mur ou qu'il ne touche plus le sol, l'ennemi change de côté et le sprite se retourne,
+    /// Teste en permanence si une collision avec un mur survient ou si l'ennemi ne se trouve plus sur le sol.
+    /// S'il détecte une collision avec un mur ou qu'il ne touche plus le sol, l'ennemi change de côté et le sprite se retourne.
     /// </summary>
     private void FixedUpdate()
     {
-        if (_peutTourner && ToucheLeMurDroit() | ToucheLeMurGauche())
+        if (_peutTourner && ToucheLeMurDroit() | ToucheLeMurGauche() | !EstSurLeSol())
         {
             Retourner();
 
         }
-
-        if (_peutTourner && !EstSurLeSol())
-        {
-            Retourner();
-
-        }
-        _rb.velocity = new Vector2(speed, _rb.velocity.y);
+        _rb.velocity = new Vector2(vistesse, _rb.velocity.y);
     }
 
     /// <summary>
@@ -57,7 +49,7 @@ public class EnnemiCtrl : MonoBehaviour
     private void Retourner()
     {
         if (!_peutTourner) return;
-        speed = -speed;
+        vistesse = -vistesse;
         Vector2 scale = new Vector2(-transform.localScale.x, transform.localScale.y);
         transform.localScale = scale;
         StartCoroutine(AttendreApresTourner());
@@ -116,21 +108,20 @@ public class EnnemiCtrl : MonoBehaviour
     {
         float ajustement = 0.1f;
 
-        Vector2 centerMin = _collider.bounds.center;
-        centerMin[0] = _collider.bounds.min.x;
-        Vector2 centerMax = _collider.bounds.center;
-        centerMax[0] = _collider.bounds.max.x;
+        Vector2 centreMin = _collider.bounds.center;
+        centreMin[0] = _collider.bounds.min.x;
+        Vector2 centreMax = _collider.bounds.center;
+        centreMax[0] = _collider.bounds.max.x;
 
-        RaycastHit2D raycastHitMax = Physics2D.Raycast(centerMax, Vector2.down, _collider.bounds.extents.y + ajustement, layerSol);
-        RaycastHit2D raycastHitMin = Physics2D.Raycast(centerMin, Vector2.down, _collider.bounds.extents.y + ajustement, layerSol);
+        RaycastHit2D raycastHitMax = Physics2D.Raycast(centreMax, Vector2.down, _collider.bounds.extents.y + ajustement, layerSol);
+        RaycastHit2D raycastHitMin = Physics2D.Raycast(centreMin, Vector2.down, _collider.bounds.extents.y + ajustement, layerSol);
 
         Color rayColor = (raycastHitMax.collider != null && raycastHitMin.collider != null ? Color.green : Color.red);
-        Debug.DrawRay(centerMax, Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
-        Debug.DrawRay(centerMin, Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(centreMax, Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
+        Debug.DrawRay(centreMin, Vector2.down * (_collider.bounds.extents.y + ajustement), rayColor);
 
         return raycastHitMax.collider != null && raycastHitMin.collider != null;
     }
-
 
     /// <summary>
     /// Ajoute de la force au joueur et detruit le gameobject de l'enemie lorsque le joueur l'attaque.
@@ -140,13 +131,13 @@ public class EnnemiCtrl : MonoBehaviour
     {
         if (collision.gameObject.tag == "playerAttackHitbox")
         {
-            _systemeForce.MettreJoueurForce(1);
+            _systemeDeForce.SetForceJoueur(1);
             Destroy(gameObject);
         }
     }
 
     /// <summary>
-    /// Fait la vérification du colider avec qui il a eu une collision et retourne l'enemie besoin ou fait du degat s'il touche au joueur
+    /// Fait la verification du colider avec qui il a eu une collision et retourne l'enemie besoin ou fait du degat s'il touche au joueur
     /// </summary>
     /// <param name="collision">Représente le colider qui vient d'entrer en collision avec l'ennemi</param>
     private void OnCollisionEnter2D(Collision2D collision)
@@ -161,7 +152,6 @@ public class EnnemiCtrl : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Permet de faire du degat si le joueur reste coller sur un enemie.
     /// </summary>
@@ -173,5 +163,4 @@ public class EnnemiCtrl : MonoBehaviour
             collision.gameObject.GetComponent<SystemeDeVie>().prendreDamageEtDevientInvicibleSaufSiInvincible();
         }
     }
-
 }

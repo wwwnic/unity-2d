@@ -9,17 +9,17 @@ namespace SalleDeJeu
     public class ObjetActionnable : MonoBehaviour
     {
 
-        [SerializeField] protected bool _estActivé = false;
+        [SerializeField] protected bool estActive = false;
         [SerializeField] protected LogiqueDesSallesDeJeu scriptSalleAMettreAJour;
 
-        public void MettreEstActivé(bool nouvelÉtat)
+        public void SetEstActive(bool nouvelEtat)
         {
-            _estActivé = nouvelÉtat;
+            estActive = nouvelEtat;
         }
 
-        public bool AvoirEstActivé()
+        public bool GetEstActive()
         {
-            return _estActivé;
+            return estActive;
         }
     }
 }

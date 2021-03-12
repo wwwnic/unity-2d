@@ -12,17 +12,17 @@
         /// <returns>Si la salle est terminée</returns>
         public override bool CalculeBooleen()
         {
-            return ComparateurBooleen(BooleanOperation.et_AND, objectActionnableList[0], objectActionnableList[1]);
+            return ComparateurBooleen(OperationBooleen.AND, objectActionnableList[0], objectActionnableList[1]);
         }
 
 
 
         /// <summary>
-        /// Détecte un changement dans une salle.
+        /// Détecte un changement dans la salle.
         /// </summary>
         public override void DetectionChangementObjetActionnable()
         {
-            objectAnimatorSetParameterBool(CalculeBooleen());
+            changerParametreDansAnimator(CalculeBooleen());
         }
     }
 }

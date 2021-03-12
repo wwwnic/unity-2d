@@ -5,17 +5,17 @@
 /// </summary>
 public class JeuCtrl : MonoBehaviour
 {
-    private PersoCtrl persoCtrl;
-    private TailleCameraCtrl cameraSizeCtrl;
+    private PersoCtrl _persoCtrl;
+    private TailleCameraCtrl _cameraSizeCtrl;
     private bool _enAttaque = false;
-    private bool _regardeLaSolution = false;
+    private bool _menuPauseEstOuvert = false;
     private UICtrl _uictrl;
 
     void Awake()
     {
         _uictrl = GameObject.FindWithTag("ui").GetComponent<UICtrl>();
-        persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
-        cameraSizeCtrl = GameObject.FindWithTag("MainCamera").GetComponent<TailleCameraCtrl>();
+        _persoCtrl = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
+        _cameraSizeCtrl = GameObject.FindWithTag("MainCamera").GetComponent<TailleCameraCtrl>();
 
         #if UNITY_EDITOR
         Debug.unityLogger.logEnabled = true;
@@ -31,34 +31,34 @@ public class JeuCtrl : MonoBehaviour
         // Mouvement gauche/droite.
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            persoCtrl.Avancer();
+            _persoCtrl.Avancer();
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            persoCtrl.Reculer();
+            _persoCtrl.Reculer();
         }
         else
         {
-            persoCtrl.Arreter();
+            _persoCtrl.Arreter();
         }
 
         // Sauter.
         if (Input.GetAxisRaw("Jump") != 0)
         {
-            persoCtrl.Sauter();
+            _persoCtrl.Sauter();
         }
         else
         {
-            persoCtrl.SauterFin();
+            _persoCtrl.SauterFin();
         }
 
         // L'attaque.
-        _regardeLaSolution = _uictrl.getJoueurAfficheMenuPause();
-        if (Input.GetAxisRaw("Fire1") != 0 && !_regardeLaSolution)
+        _menuPauseEstOuvert = _uictrl.getJoueurAfficheMenuPause();
+        if (Input.GetAxisRaw("Fire1") != 0 && !_menuPauseEstOuvert)
         {
             if (!_enAttaque)
             {
-                persoCtrl.Attaquer();
+                _persoCtrl.Attaquer();
                 _enAttaque = true;
             }
         }
@@ -70,21 +70,13 @@ public class JeuCtrl : MonoBehaviour
         // Ouvre ou ferme la solution
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
-            _regardeLaSolution = _uictrl.getJoueurAfficheMenuPause();
-            if (!_regardeLaSolution)
-            {
-                _uictrl.AfficherMenuPause(true);
-            }
-            if (_regardeLaSolution)
-            {
-                _uictrl.AfficherMenuPause(false);
-            }
+           _uictrl.AfficherMenuPause(!_menuPauseEstOuvert);
         }
 
         //permet le zoom sauf si le joueur regarde la solution
-        if (!_regardeLaSolution)
+        if (!_menuPauseEstOuvert)
         {
-            cameraSizeCtrl.AjustementZoomCamera(Input.GetAxis("Mouse ScrollWheel"));
+            _cameraSizeCtrl.AjustementZoomCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
 }

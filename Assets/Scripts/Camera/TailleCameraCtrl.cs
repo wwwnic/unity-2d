@@ -5,25 +5,25 @@
 /// </summary>
 public class TailleCameraCtrl : MonoBehaviour
 {
-    private Camera cam;
-    private float requeteDeZoom;
+    private Camera _cam;
+    private float _requeteDeZoom;
     [SerializeField] private float vitesseDuZoom = 4f;
     [SerializeField] private float zoomMaxDevant = 6f;
     [SerializeField] private float zoomMaxDerriere = 10f;
 
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        cam = Camera.main;
-        requeteDeZoom = cam.orthographicSize;
+        _cam = Camera.main;
+        _requeteDeZoom = _cam.orthographicSize;
     }
 
-    // Update is called once per frame
+    // Ajuste le la grandeur de la camera pour simuler un zoom
     public void AjustementZoomCamera(float valeurRoulette)
     {
-        requeteDeZoom -= valeurRoulette * vitesseDuZoom;
-        requeteDeZoom = Mathf.Clamp(requeteDeZoom, zoomMaxDevant, zoomMaxDerriere);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, requeteDeZoom, Time.deltaTime * vitesseDuZoom);
+        _requeteDeZoom -= valeurRoulette * vitesseDuZoom;
+        _requeteDeZoom = Mathf.Clamp(_requeteDeZoom, zoomMaxDevant, zoomMaxDerriere);
+        _cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, _requeteDeZoom, Time.deltaTime * vitesseDuZoom);
     }
 }

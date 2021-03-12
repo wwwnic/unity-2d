@@ -13,14 +13,14 @@ public class CameraCtrl : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         personnage = GameObject.FindWithTag("Player").GetComponent<PersoCtrl>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Vector2 posPersonage = personnage.transform.position;
         Vector2 posCamera = transform.position;
@@ -29,5 +29,4 @@ public class CameraCtrl : MonoBehaviour
 
         rb.velocity = new Vector2(distanceEntrePersonnageEtCameraEnX * vitesseDeLaCameraEnX, distanceEntrePersonnageEtCameraEnY * vitesseDeLaCameraEnY);
     }
-
 }

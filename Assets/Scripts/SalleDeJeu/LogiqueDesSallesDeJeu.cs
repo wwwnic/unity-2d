@@ -6,14 +6,11 @@ namespace SalleDeJeu
 {
     ///<summary>
     ///Cette classe permet de resoudre l'algebre de boole utilise dans le jeu.
-    ///
-    ///Cette classe est parente de toutes les salles du jeu, elle fournit aux enfants les outils necessaires pour operer (Liste de levier, objet a actionner, etc) 
-    ///Ensuite, elle résout l'algebre de Boole (voir énum BooleanOperation) 
-    ///Elle est surchargée afin d'accommoder le scripting des salles au maximum.
+    ///Elle est parente de toutes les salles du jeu, elle fournit aux enfants les outils necessaires pour operer (Liste de levier, operation booleen, etc) 
     ///</summary>
     public abstract class LogiqueDesSallesDeJeu : MonoBehaviour, IlogiqueDesSalles
     {
-        [Tooltip("La liste d'obejet actionnable, levier / pedestal")]
+        [Tooltip("La liste d'objet actionnable, levier / pedestal")]
         [SerializeField] protected List<ObjetActionnable> objectActionnableList;
         [Tooltip("Nom du parametre a modifier dans l'Animator")]
         [SerializeField] protected string objectToActivateParameterName = "activated";
@@ -21,64 +18,61 @@ namespace SalleDeJeu
         [SerializeField] protected GameObject objectToActivate;
 
 
-        public List<ObjetActionnable> GetObjectActionnableList()
+        public List<ObjetActionnable> GetObjetActionnableList()
         {
             return objectActionnableList;
         }
 
         ///<summary>
-        ///Une enumeration des operations possible
+        ///Une enumeration des operations possible, 'no', 'true' et 'false' sont exlcus
         ///</summary>
-        protected enum BooleanOperation
+        protected enum OperationBooleen
         {
-            et_AND, ou_OR, non_NO, nonEt_NAND, nonOu_NOR, ouExclusif_XOR, nonOuExclusif_XNOR
+            AND, OR, NAND, NOR, XOR, XNOR
         }
 
         ///<summary>
-        ///Cette methode abstract force la classe enfant a l'utiliser. Elle est appelé par un objet actionnale (ex, levier)
-        ///quand la veleur booleen de celui-ci est modifie
+        /// Est appele par un objet actionnale (ex: un levier) quand la veleur booleen de celui-ci est modifie.
         ///</summary>
         public abstract void DetectionChangementObjetActionnable();
         /// <summary>
-        /// Fait l'opération booléene.
+        /// Fait les operations d'une salle de jeu et retourne si elle est complete
         /// </summary>
         /// <returns></returns>
         public abstract bool CalculeBooleen();
 
 
         ///<summary>
-        ///Change la condition d'animation d'un Gameobject (ex, ouvre une porte en modifiant son paramettre dans l'animator).
+        ///Change la condition d'animation d'un Gameobject (ex: ouvre une porte en modifiant son paramettre dans l'animator).
         ///</summary>
         ///<param name= "condition"> valeur booleen qui dicte si l'animation est a true ou false </param>
-        public void objectAnimatorSetParameterBool(bool condition)
+        public void changerParametreDansAnimator(bool condition)
         {
             objectToActivate.GetComponent<Animator>().SetBool(objectToActivateParameterName, condition);
         }
 
         /// <summary>
-        /// La fonction qui s'occupe de resoudre le operation booleen
+        /// La fonction qui s'occupe de resoudre les operations booleen
         /// </summary>
         /// <param name="operation">le type d'opration</param>
         /// <param name="x">un booleen</param>
         /// <param name="y">un deuxieme booleen</param>
-        /// <returns></returns>
-        protected bool ComparateurBooleen(BooleanOperation operation, bool x, bool y)
+        /// <returns>Un boolean qui correspont a la reponse de la comparaison</returns>
+        protected bool ComparateurBooleen(OperationBooleen operation, bool x, bool y)
         {
             switch (operation)
             {
-                case BooleanOperation.et_AND:
+                case OperationBooleen.AND:
                     return x && y;
-                case BooleanOperation.ou_OR:
+                case OperationBooleen.OR:
                     return x || y;
-                case BooleanOperation.non_NO:
-                    return !x;
-                case BooleanOperation.nonEt_NAND:
+                case OperationBooleen.NAND:
                     return !(x && y);
-                case BooleanOperation.nonOu_NOR:
+                case OperationBooleen.NOR:
                     return !(x || y);
-                case BooleanOperation.ouExclusif_XOR:
+                case OperationBooleen.XOR:
                     return x ^ y;
-                case BooleanOperation.nonOuExclusif_XNOR:
+                case OperationBooleen.XNOR:
                     return !(x ^ y);
                 default:
                     return false;
@@ -86,15 +80,15 @@ namespace SalleDeJeu
         }
 
         /// <summary>
-        /// La fonction qui s'occupe de resoudre le operation booleen en passant des ObjectActionnable en parametre
+        /// La fonction qui s'occupe de resoudre les operations booleen en passant des ObjectActionnable en parametre
         /// </summary>
         /// <param name="operation"></param>
         /// <param name="objectActionnableX">un objet actionnable</param>
         /// <param name="objectActionnableY">un objet actionnable</param>
-        /// <returns></returns>
-        protected bool ComparateurBooleen(BooleanOperation operation, ObjetActionnable objectActionnableX, ObjetActionnable objectActionnableY)
+        /// <returns>Un boolean qui correspont a la reponse de la comparaison</returns>
+        protected bool ComparateurBooleen(OperationBooleen operation, ObjetActionnable objectActionnableX, ObjetActionnable objectActionnableY)
         {
-            return ComparateurBooleen(operation, objectActionnableX.AvoirEstActivé(), objectActionnableY.AvoirEstActivé());
+            return ComparateurBooleen(operation, objectActionnableX.GetEstActive(), objectActionnableY.GetEstActive());
         }
 
     }
