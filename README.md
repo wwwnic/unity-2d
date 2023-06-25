@@ -16,10 +16,10 @@ BoolKnight met en avant des énigmes qui nécessitent la compréhension et l'uti
 
 ## Comment utiliser
 
-1. Clonez le dépôt à l'aide de la commande suivante : `git clone https://github.com/wwwnic/BoolKnight.git`
+1. Clonez le dépôt à l'aide de la commande suivante : `git clone https://github.com/wwwnic/unity-2d.git`
 2. Ouvrez le projet dans Unity.
 3. Compilez et exécutez le jeu à partir de l'éditeur Unity.
 
 ## Contact
 
-En cas de problème ou pour des suggestions, veuillez ouvrir un [issue](https://github.com/wwwnic/BoolKnight/issues) sur ce dépôt GitHub.
+En cas de problème ou pour des suggestions, veuillez ouvrir un [issue](https://github.com/wwwnic/unity-2d/issues) sur ce dépôt GitHub.
